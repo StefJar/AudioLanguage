@@ -1,0 +1,1408 @@
+Variables
+Layout: <Variable index> <name> <type> [<amount>]
+0	uiUpdate	integer	[1]
+1	uiFilterTypeSel	integer	[1]
+2	uiFilterIndex	integer	[1]
+3	LoutFilter	biquad	[3]
+4	RoutInpSel	integer	[1]
+5	RinFilter	biquad	[3]
+6	bDown	button	[1]
+7	uiFilterBankSel	integer	[1]
+8	fquality	rational	[1]
+9	fs	rational	[1]
+10	uiSel	integer	[1]
+11	volume	rational	[1]
+12	RoutFilter	biquad	[3]
+13	ffreq	rational	[1]
+14	LoutInpSel	integer	[1]
+15	d	display	[1]
+16	bUp	button	[1]
+17	bSelect	button	[1]
+18	LinFilter	biquad	[3]
+19	uiMenuSel	integer	[1]
+20	p	panel	[1]
+21	fgain	rational	[1]
+22	uiSelChannel	integer	[1]
+23	uiState	integer	[1]
+24	#fv_dspInit_i	integer	[1]
+25	#const97	integer	[1]
+26	#const98	integer	[1]
+27	#const99	rational	[1]
+28	#const100	rational	[1]
+29	#const101	integer	[1]
+30	#const102	rational	[1]
+31	#const105	rational	[1]
+32	#fv_uiDisplay_headerText	string	[1]
+33	#fv_uiDisplay_dispText	string	[1]
+34	#fv_uiDisplay_selText	string	[1]
+35	#fv_uiDisplay_stateChange	integer	[1]
+36	#const42	integer	[1]
+37	#const44	integer	[1]
+38	#const45	integer	[1]
+39	#const46	integer	[1]
+40	#const47	integer	[1]
+41	#const48	integer	[1]
+42	#const49	integer	[1]
+43	#const50	integer	[1]
+44	#const52	integer	[1]
+45	#const53	integer	[1]
+46	#const54	integer	[1]
+47	#const55	integer	[1]
+48	#const56	integer	[1]
+49	#const57	rational	[1]
+50	#const58	rational	[1]
+51	#const59	rational	[1]
+52	#const60	rational	[1]
+53	#const61	rational	[1]
+54	#const62	rational	[1]
+55	#const64	string	[1]
+56	#const95	integer	[1]
+57	#const66	string	[1]
+58	#const68	string	[1]
+59	#const70	string	[1]
+60	#const72	string	[1]
+61	#const74	string	[1]
+62	#const76	string	[1]
+63	#const78	string	[1]
+64	#const80	string	[1]
+65	#const82	string	[1]
+66	#const84	string	[1]
+67	#const86	string	[1]
+68	#const88	string	[1]
+69	#fv_uiDisplay_#fv_getSelText_valToStr	string	[1]
+70	#const2	string	[1]
+71	#const4	string	[1]
+72	#const5	string	[1]
+73	#const12	string	[1]
+74	#const13	string	[1]
+75	#const14	string	[1]
+76	#const16	string	[1]
+77	#const18	string	[1]
+78	#const20	string	[1]
+79	#const21	string	[1]
+80	#const22	string	[1]
+81	#const23	string	[1]
+82	#const25	string	[1]
+83	#const27	string	[1]
+84	#const29	string	[1]
+85	#const35	string	[1]
+Code
+Layout: <programm counter> function (parameter1, parameter2, ..., parameterN)  
+0	assignConstInteger (#const97, 0, 1, 0)
+1	assignConstInteger (#const98, 0, 1, 3)
+2	assignConstRational (#const99, 0, 1, 1.0)
+3	assignConstRational (#const100, 0, 1, 0.0)
+4	assignConstInteger (#const101, 0, 1, 1)
+5	assignConstRational (#const102, 0, 1, 48000.0)
+6	assignConstRational (#const105, 0, 1, 7500.0)
+7	assignConstInteger (#const42, 0, 1, 10)
+8	assignConstInteger (#const44, 0, 1, 20)
+9	assignConstInteger (#const45, 0, 1, 40)
+10	assignConstInteger (#const46, 0, 1, 2)
+11	assignConstInteger (#const47, 0, 1, 30)
+12	assignConstInteger (#const48, 0, 1, 21)
+13	assignConstInteger (#const49, 0, 1, 22)
+14	assignConstInteger (#const50, 0, 1, 23)
+15	assignConstInteger (#const52, 0, 1, 24)
+16	assignConstInteger (#const53, 0, 1, 5)
+17	assignConstInteger (#const54, 0, 1, 25)
+18	assignConstInteger (#const55, 0, 1, 41)
+19	assignConstInteger (#const56, 0, 1, 42)
+20	assignConstRational (#const57, 0, 1, 15000.0)
+21	assignConstRational (#const58, 0, 1, 100.0)
+22	assignConstRational (#const59, 0, 1, 5.0)
+23	assignConstRational (#const60, 0, 1, 0.1)
+24	assignConstRational (#const61, 0, 1, -5.0)
+25	assignConstRational (#const62, 0, 1, 10.0)
+26	setStringSize (#const64, 0, 1)
+27	setStringValues (#const64, 0, 0, 538976266, 538976288, 538976288, 538976288)
+28	assignConstInteger (#const95, 0, 1, 4)
+29	setStringSize (#const66, 0, 14)
+30	setStringValues (#const66, 0, 0, 543772754, 1093618753, 1701060688, 538996589)
+31	setStringSize (#const68, 0, 11)
+32	setStringValues (#const68, 0, 0, 1701602675, 1881175139, 544502369, 538976288)
+33	setStringSize (#const70, 0, 11)
+34	setStringValues (#const70, 0, 0, 1953261926, 1646293605, 543911521, 538976288)
+35	setStringSize (#const72, 0, 12)
+36	setStringValues (#const72, 0, 0, 1953261926, 1763734117, 2019910766, 538976288)
+37	setStringSize (#const74, 0, 11)
+38	setStringValues (#const74, 0, 0, 1953261926, 1948283493, 543518841, 538976288)
+39	setStringSize (#const76, 0, 9)
+40	setStringValues (#const76, 0, 0, 1902473830, 1668179317, 538976377, 538976288)
+41	setStringSize (#const78, 0, 4)
+42	setStringValues (#const78, 0, 0, 1852399975, 538976288, 538976288, 538976288)
+43	setStringSize (#const80, 0, 7)
+44	setStringValues (#const80, 0, 0, 1818326385, 544830569, 538976288, 538976288)
+45	setStringSize (#const82, 0, 6)
+46	setStringValues (#const82, 0, 0, 1970040694, 538994029, 538976288, 538976288)
+47	setStringSize (#const84, 0, 7)
+48	setStringValues (#const84, 0, 0, 1953853298, 543649385, 538976288, 538976288)
+49	setStringSize (#const86, 0, 11)
+50	setStringValues (#const86, 0, 0, 1952867692, 1953853216, 544503152, 538976288)
+51	setStringSize (#const88, 0, 12)
+52	setStringValues (#const88, 0, 0, 1751607666, 1970217076, 1953853556, 538976288)
+53	setStringSize (#const2, 0, 12)
+54	setStringValues (#const2, 0, 0, 1936028272, 1702043763, 1952671084, 538976288)
+55	setStringSize (#const4, 0, 2)
+56	setStringValues (#const4, 0, 0, 538976318, 538976288, 538976288, 538976288)
+57	setStringSize (#const5, 0, 2)
+58	setStringValues (#const5, 0, 0, 538976288, 538976288, 538976288, 538976288)
+59	setStringSize (#const12, 0, 7)
+60	setStringValues (#const12, 0, 0, 1952867692, 544106784, 538976288, 538976288)
+61	setStringSize (#const13, 0, 8)
+62	setStringValues (#const13, 0, 0, 1751607666, 1852383348, 538976288, 538976288)
+63	setStringSize (#const14, 0, 8)
+64	setStringValues (#const14, 0, 0, 1952867692, 1953853216, 538976288, 538976288)
+65	setStringSize (#const16, 0, 9)
+66	setStringValues (#const16, 0, 0, 1751607666, 1970217076, 538976372, 538976288)
+67	setStringSize (#const18, 0, 6)
+68	setStringValues (#const18, 0, 0, 1701080681, 538976376, 538976288, 538976288)
+69	setStringSize (#const20, 0, 6)
+70	setStringValues (#const20, 0, 0, 1634761058, 538997619, 538976288, 538976288)
+71	setStringSize (#const21, 0, 7)
+72	setStringValues (#const21, 0, 0, 1886875500, 544437089, 538976288, 538976288)
+73	setStringSize (#const22, 0, 8)
+74	setStringValues (#const22, 0, 0, 1751607656, 1936941424, 538976288, 538976288)
+75	setStringSize (#const23, 0, 9)
+76	setStringValues (#const23, 0, 0, 544698220, 1818585203, 538976358, 538976288)
+77	setStringSize (#const25, 0, 10)
+78	setStringValues (#const25, 0, 0, 1751607656, 1701344032, 538994284, 538976288)
+79	setStringSize (#const27, 0, 4)
+80	setStringValues (#const27, 0, 0, 1801545072, 538976288, 538976288, 538976288)
+81	setStringSize (#const29, 0, 3)
+82	setStringValues (#const29, 0, 0, 544884768, 538976288, 538976288, 538976288)
+83	setStringSize (#const35, 0, 4)
+84	setStringValues (#const35, 0, 0, 1702131053, 538976288, 538976288, 538976288)
+85	assignInteger (#fv_dspInit_i, #const97)
+86	label ID:410
+86	compareIntegerLess (#fv_dspInit_i, 0, #const98, 0)
+87	jumpNCF (label ID:411)
+88	initBiquad (LinFilter, #fv_dspInit_i, #const99, #const100, #const100, #const100, #const100)
+89	initBiquad (RinFilter, #fv_dspInit_i, #const99, #const100, #const100, #const100, #const100)
+90	initBiquad (LoutFilter, #fv_dspInit_i, #const99, #const100, #const100, #const100, #const100)
+91	initBiquad (RoutFilter, #fv_dspInit_i, #const99, #const100, #const100, #const100, #const100)
+92	addInteger (#fv_dspInit_i, #const101, #fv_dspInit_i)
+93	jump (label ID:410)
+94	label ID:411
+94	assignInteger (LoutInpSel, #const97)
+95	assignInteger (RoutInpSel, #const101)
+96	assignRational (fs, #const102)
+97	assignRational (volume, #const99)
+98	uiSetDim (0, 0, 520, 260, p, 0)
+99	uiSetDim (380, 10, 50, 50, bUp, 0)
+100	uiSetDim (430, 10, 50, 50, bSelect, 0)
+101	uiSetDim (480, 10, 50, 50, bDown, 0)
+102	uiSetDim (25, 70, 500, 100, d, 0)
+103	uiInitPanel (1, p, 0)
+104	uiInitDisplay (1, d, 0, p, 0)
+105	uiSetDisplayTextDim (d, 0, 16, 2)
+106	uiInitButton (8, bUp, 0, p, 0)
+107	uiInitButton (7, bDown, 0, p, 0)
+108	uiInitButton (6, bSelect, 0, p, 0)
+109	assignInteger (uiState, #const97 = "0"(integer))
+110	assignInteger (uiSel, #const97 = "0"(integer))
+111	assignInteger (uiUpdate, #const101 = "1"(integer))
+112	assignInteger (uiSelChannel, #const97 = "0"(integer))
+113	assignInteger (uiMenuSel, #const97 = "0"(integer))
+114	assignInteger (uiFilterBankSel, #const97 = "0"(integer))
+115	assignInteger (uiFilterIndex, #const97 = "0"(integer))
+116	assignInteger (uiFilterTypeSel, #const97 = "0"(integer))
+117	assignRational (ffreq, #const105)
+118	assignRational (fgain, #const99 = "1.0"(rational))
+119	assignRational (fquality, #const99 = "1.0"(rational))
+120	label ID:56
+120	uiCheckButtonPressed (bSelect, 0)
+121	jumpNCF (label ID:588)
+122	compareIntegerEqual (uiState, 0, #const97 = "0"(integer), 0)
+123	jumpNCF (label ID:412)
+124	assignInteger (uiState, #const42)
+125	assignInteger (#fv_uiDisplay_stateChange, #const101 = "1"(integer))
+126	label ID:412
+126	compareIntegerEqual (#fv_uiDisplay_stateChange, 0, #const97 = "0"(integer), 0)
+127	jumpNCF (label ID:417)
+128	compareIntegerEqual (uiState, 0, #const42, 0)
+129	jumpNCF (label ID:416)
+130	assignInteger (uiMenuSel, uiSel)
+131	compareIntegerEqual (uiSel, 0, #const97 = "0"(integer), 0)
+132	jumpNCF (label ID:413)
+133	assignInteger (uiState, #const44)
+134	label ID:413
+134	compareIntegerEqual (uiSel, 0, #const101 = "1"(integer), 0)
+135	jumpNCF (label ID:414)
+136	assignInteger (uiState, #const45)
+137	assignInteger (uiSel, uiSelChannel)
+138	label ID:414
+138	compareIntegerEqual (uiSel, 0, #const46, 0)
+139	jumpNCF (label ID:415)
+140	assignInteger (uiState, #const47)
+141	label ID:415
+141	assignInteger (#fv_uiDisplay_stateChange, #const101 = "1"(integer))
+142	update (uiMenuSel)
+143	label ID:416
+143	label ID:417
+143	compareIntegerEqual (#fv_uiDisplay_stateChange, 0, #const97 = "0"(integer), 0)
+144	jumpNCF (label ID:419)
+145	compareIntegerEqual (uiState, 0, #const44, 0)
+146	jumpNCF (label ID:418)
+147	assignInteger (uiFilterBankSel, uiSel)
+148	assignInteger (uiSel, uiFilterIndex)
+149	assignInteger (uiState, #const48)
+150	assignInteger (#fv_uiDisplay_stateChange, #const101 = "1"(integer))
+151	update (uiFilterBankSel)
+152	label ID:418
+152	label ID:419
+152	compareIntegerEqual (#fv_uiDisplay_stateChange, 0, #const97 = "0"(integer), 0)
+153	jumpNCF (label ID:421)
+154	compareIntegerEqual (uiState, 0, #const48, 0)
+155	jumpNCF (label ID:420)
+156	assignInteger (uiFilterIndex, uiSel)
+157	assignInteger (uiSel, uiFilterTypeSel)
+158	assignInteger (uiState, #const49)
+159	assignInteger (#fv_uiDisplay_stateChange, #const101 = "1"(integer))
+160	update (uiFilterIndex)
+161	label ID:420
+161	label ID:421
+161	compareIntegerEqual (#fv_uiDisplay_stateChange, 0, #const97 = "0"(integer), 0)
+162	jumpNCF (label ID:459)
+163	compareIntegerEqual (uiState, 0, #const49, 0)
+164	jumpNCF (label ID:458)
+165	assignInteger (uiFilterTypeSel, uiSel)
+166	update (uiFilterTypeSel)
+167	compareIntegerEqual (uiFilterTypeSel, 0, #const97 = "0"(integer), 0)
+168	jumpNCF (label ID:456)
+169	compareIntegerEqual (uiFilterTypeSel, 0, #const97 = "0"(integer), 0)
+170	jumpNCF (label ID:426)
+171	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+172	jumpNCF (label ID:422)
+173	initBiquad (LinFilter, uiFilterIndex, #const99 = "1.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational))
+174	label ID:422
+174	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+175	jumpNCF (label ID:423)
+176	initBiquad (RinFilter, uiFilterIndex, #const99 = "1.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational))
+177	label ID:423
+177	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+178	jumpNCF (label ID:424)
+179	initBiquad (LoutFilter, uiFilterIndex, #const99 = "1.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational))
+180	label ID:424
+180	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+181	jumpNCF (label ID:425)
+182	initBiquad (RoutFilter, uiFilterIndex, #const99 = "1.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational))
+183	label ID:425
+183	label ID:426
+183	compareIntegerEqual (uiFilterTypeSel, 0, #const101 = "1"(integer), 0)
+184	jumpNCF (label ID:431)
+185	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+186	jumpNCF (label ID:427)
+187	initBiquadAsLP (LinFilter, uiFilterIndex, fs, ffreq)
+188	label ID:427
+188	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+189	jumpNCF (label ID:428)
+190	initBiquadAsLP (RinFilter, uiFilterIndex, fs, ffreq)
+191	label ID:428
+191	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+192	jumpNCF (label ID:429)
+193	initBiquadAsLP (LoutFilter, uiFilterIndex, fs, ffreq)
+194	label ID:429
+194	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+195	jumpNCF (label ID:430)
+196	initBiquadAsLP (RoutFilter, uiFilterIndex, fs, ffreq)
+197	label ID:430
+197	label ID:431
+197	compareIntegerEqual (uiFilterTypeSel, 0, #const46, 0)
+198	jumpNCF (label ID:436)
+199	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+200	jumpNCF (label ID:432)
+201	initBiquadAsHP (LinFilter, uiFilterIndex, fs, ffreq)
+202	label ID:432
+202	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+203	jumpNCF (label ID:433)
+204	initBiquadAsHP (RinFilter, uiFilterIndex, fs, ffreq)
+205	label ID:433
+205	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+206	jumpNCF (label ID:434)
+207	initBiquadAsHP (LoutFilter, uiFilterIndex, fs, ffreq)
+208	label ID:434
+208	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+209	jumpNCF (label ID:435)
+210	initBiquadAsHP (RoutFilter, uiFilterIndex, fs, ffreq)
+211	label ID:435
+211	label ID:436
+211	compareIntegerEqual (uiFilterTypeSel, 0, #const98 = "3"(integer), 0)
+212	jumpNCF (label ID:441)
+213	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+214	jumpNCF (label ID:437)
+215	initBiquadAsLowFreqShelvFilter (LinFilter, uiFilterIndex, fs, ffreq, fgain)
+216	label ID:437
+216	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+217	jumpNCF (label ID:438)
+218	initBiquadAsLowFreqShelvFilter (RinFilter, uiFilterIndex, fs, ffreq, fgain)
+219	label ID:438
+219	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+220	jumpNCF (label ID:439)
+221	initBiquadAsLowFreqShelvFilter (LoutFilter, uiFilterIndex, fs, ffreq, fgain)
+222	label ID:439
+222	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+223	jumpNCF (label ID:440)
+224	initBiquadAsLowFreqShelvFilter (RoutFilter, uiFilterIndex, fs, ffreq, fgain)
+225	label ID:440
+225	label ID:441
+225	compareIntegerEqual (uiFilterTypeSel, 0, #const95, 0)
+226	jumpNCF (label ID:446)
+227	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+228	jumpNCF (label ID:442)
+229	initBiquadAsHighFreqShelvFilter (LinFilter, uiFilterIndex, fs, ffreq, fgain)
+230	label ID:442
+230	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+231	jumpNCF (label ID:443)
+232	initBiquadAsHighFreqShelvFilter (RinFilter, uiFilterIndex, fs, ffreq, fgain)
+233	label ID:443
+233	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+234	jumpNCF (label ID:444)
+235	initBiquadAsHighFreqShelvFilter (LoutFilter, uiFilterIndex, fs, ffreq, fgain)
+236	label ID:444
+236	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+237	jumpNCF (label ID:445)
+238	initBiquadAsHighFreqShelvFilter (RoutFilter, uiFilterIndex, fs, ffreq, fgain)
+239	label ID:445
+239	label ID:446
+239	compareIntegerEqual (uiFilterTypeSel, 0, #const53, 0)
+240	jumpNCF (label ID:451)
+241	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+242	jumpNCF (label ID:447)
+243	initBiquadAsPeakFilter (LinFilter, uiFilterIndex, fs, ffreq, fquality, fgain)
+244	label ID:447
+244	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+245	jumpNCF (label ID:448)
+246	initBiquadAsPeakFilter (RinFilter, uiFilterIndex, fs, ffreq, fquality, fgain)
+247	label ID:448
+247	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+248	jumpNCF (label ID:449)
+249	initBiquadAsPeakFilter (LoutFilter, uiFilterIndex, fs, ffreq, fquality, fgain)
+250	label ID:449
+250	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+251	jumpNCF (label ID:450)
+252	initBiquadAsPeakFilter (RoutFilter, uiFilterIndex, fs, ffreq, fquality, fgain)
+253	label ID:450
+253	label ID:451
+253	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+254	jumpNCF (label ID:452)
+255	update (LinFilter)
+256	label ID:452
+256	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+257	jumpNCF (label ID:453)
+258	update (RinFilter)
+259	label ID:453
+259	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+260	jumpNCF (label ID:454)
+261	update (LoutFilter)
+262	label ID:454
+262	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+263	jumpNCF (label ID:455)
+264	update (RoutFilter)
+265	label ID:455
+265	assignInteger (uiState, #const42)
+266	assignInteger (uiSel, #const97 = "0"(integer))
+267	jump (label ID:457)
+268	label ID:456
+268	assignInteger (uiState, #const50)
+269	label ID:457
+269	assignInteger (#fv_uiDisplay_stateChange, #const101 = "1"(integer))
+270	label ID:458
+270	label ID:459
+270	compareIntegerEqual (#fv_uiDisplay_stateChange, 0, #const97 = "0"(integer), 0)
+271	jumpNCF (label ID:497)
+272	compareIntegerEqual (uiState, 0, #const50, 0)
+273	jumpNCF (label ID:496)
+274	compareIntegerLess (uiFilterTypeSel, 0, #const98 = "3"(integer), 0)
+275	jumpNCF (label ID:494)
+276	compareIntegerEqual (uiFilterTypeSel, 0, #const97 = "0"(integer), 0)
+277	jumpNCF (label ID:464)
+278	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+279	jumpNCF (label ID:460)
+280	initBiquad (LinFilter, uiFilterIndex, #const99 = "1.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational))
+281	label ID:460
+281	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+282	jumpNCF (label ID:461)
+283	initBiquad (RinFilter, uiFilterIndex, #const99 = "1.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational))
+284	label ID:461
+284	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+285	jumpNCF (label ID:462)
+286	initBiquad (LoutFilter, uiFilterIndex, #const99 = "1.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational))
+287	label ID:462
+287	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+288	jumpNCF (label ID:463)
+289	initBiquad (RoutFilter, uiFilterIndex, #const99 = "1.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational))
+290	label ID:463
+290	label ID:464
+290	compareIntegerEqual (uiFilterTypeSel, 0, #const101 = "1"(integer), 0)
+291	jumpNCF (label ID:469)
+292	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+293	jumpNCF (label ID:465)
+294	initBiquadAsLP (LinFilter, uiFilterIndex, fs, ffreq)
+295	label ID:465
+295	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+296	jumpNCF (label ID:466)
+297	initBiquadAsLP (RinFilter, uiFilterIndex, fs, ffreq)
+298	label ID:466
+298	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+299	jumpNCF (label ID:467)
+300	initBiquadAsLP (LoutFilter, uiFilterIndex, fs, ffreq)
+301	label ID:467
+301	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+302	jumpNCF (label ID:468)
+303	initBiquadAsLP (RoutFilter, uiFilterIndex, fs, ffreq)
+304	label ID:468
+304	label ID:469
+304	compareIntegerEqual (uiFilterTypeSel, 0, #const46, 0)
+305	jumpNCF (label ID:474)
+306	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+307	jumpNCF (label ID:470)
+308	initBiquadAsHP (LinFilter, uiFilterIndex, fs, ffreq)
+309	label ID:470
+309	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+310	jumpNCF (label ID:471)
+311	initBiquadAsHP (RinFilter, uiFilterIndex, fs, ffreq)
+312	label ID:471
+312	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+313	jumpNCF (label ID:472)
+314	initBiquadAsHP (LoutFilter, uiFilterIndex, fs, ffreq)
+315	label ID:472
+315	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+316	jumpNCF (label ID:473)
+317	initBiquadAsHP (RoutFilter, uiFilterIndex, fs, ffreq)
+318	label ID:473
+318	label ID:474
+318	compareIntegerEqual (uiFilterTypeSel, 0, #const98 = "3"(integer), 0)
+319	jumpNCF (label ID:479)
+320	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+321	jumpNCF (label ID:475)
+322	initBiquadAsLowFreqShelvFilter (LinFilter, uiFilterIndex, fs, ffreq, fgain)
+323	label ID:475
+323	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+324	jumpNCF (label ID:476)
+325	initBiquadAsLowFreqShelvFilter (RinFilter, uiFilterIndex, fs, ffreq, fgain)
+326	label ID:476
+326	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+327	jumpNCF (label ID:477)
+328	initBiquadAsLowFreqShelvFilter (LoutFilter, uiFilterIndex, fs, ffreq, fgain)
+329	label ID:477
+329	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+330	jumpNCF (label ID:478)
+331	initBiquadAsLowFreqShelvFilter (RoutFilter, uiFilterIndex, fs, ffreq, fgain)
+332	label ID:478
+332	label ID:479
+332	compareIntegerEqual (uiFilterTypeSel, 0, #const95, 0)
+333	jumpNCF (label ID:484)
+334	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+335	jumpNCF (label ID:480)
+336	initBiquadAsHighFreqShelvFilter (LinFilter, uiFilterIndex, fs, ffreq, fgain)
+337	label ID:480
+337	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+338	jumpNCF (label ID:481)
+339	initBiquadAsHighFreqShelvFilter (RinFilter, uiFilterIndex, fs, ffreq, fgain)
+340	label ID:481
+340	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+341	jumpNCF (label ID:482)
+342	initBiquadAsHighFreqShelvFilter (LoutFilter, uiFilterIndex, fs, ffreq, fgain)
+343	label ID:482
+343	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+344	jumpNCF (label ID:483)
+345	initBiquadAsHighFreqShelvFilter (RoutFilter, uiFilterIndex, fs, ffreq, fgain)
+346	label ID:483
+346	label ID:484
+346	compareIntegerEqual (uiFilterTypeSel, 0, #const53, 0)
+347	jumpNCF (label ID:489)
+348	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+349	jumpNCF (label ID:485)
+350	initBiquadAsPeakFilter (LinFilter, uiFilterIndex, fs, ffreq, fquality, fgain)
+351	label ID:485
+351	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+352	jumpNCF (label ID:486)
+353	initBiquadAsPeakFilter (RinFilter, uiFilterIndex, fs, ffreq, fquality, fgain)
+354	label ID:486
+354	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+355	jumpNCF (label ID:487)
+356	initBiquadAsPeakFilter (LoutFilter, uiFilterIndex, fs, ffreq, fquality, fgain)
+357	label ID:487
+357	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+358	jumpNCF (label ID:488)
+359	initBiquadAsPeakFilter (RoutFilter, uiFilterIndex, fs, ffreq, fquality, fgain)
+360	label ID:488
+360	label ID:489
+360	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+361	jumpNCF (label ID:490)
+362	update (LinFilter)
+363	label ID:490
+363	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+364	jumpNCF (label ID:491)
+365	update (RinFilter)
+366	label ID:491
+366	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+367	jumpNCF (label ID:492)
+368	update (LoutFilter)
+369	label ID:492
+369	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+370	jumpNCF (label ID:493)
+371	update (RoutFilter)
+372	label ID:493
+372	assignInteger (uiState, #const42)
+373	assignInteger (uiSel, #const97 = "0"(integer))
+374	jump (label ID:495)
+375	label ID:494
+375	assignInteger (uiState, #const52)
+376	label ID:495
+376	update (ffreq)
+377	assignInteger (#fv_uiDisplay_stateChange, #const101 = "1"(integer))
+378	label ID:496
+378	label ID:497
+378	compareIntegerEqual (#fv_uiDisplay_stateChange, 0, #const97 = "0"(integer), 0)
+379	jumpNCF (label ID:535)
+380	compareIntegerEqual (uiState, 0, #const52, 0)
+381	jumpNCF (label ID:534)
+382	compareIntegerLess (uiFilterTypeSel, 0, #const53, 0)
+383	jumpNCF (label ID:532)
+384	compareIntegerEqual (uiFilterTypeSel, 0, #const97 = "0"(integer), 0)
+385	jumpNCF (label ID:502)
+386	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+387	jumpNCF (label ID:498)
+388	initBiquad (LinFilter, uiFilterIndex, #const99 = "1.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational))
+389	label ID:498
+389	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+390	jumpNCF (label ID:499)
+391	initBiquad (RinFilter, uiFilterIndex, #const99 = "1.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational))
+392	label ID:499
+392	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+393	jumpNCF (label ID:500)
+394	initBiquad (LoutFilter, uiFilterIndex, #const99 = "1.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational))
+395	label ID:500
+395	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+396	jumpNCF (label ID:501)
+397	initBiquad (RoutFilter, uiFilterIndex, #const99 = "1.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational))
+398	label ID:501
+398	label ID:502
+398	compareIntegerEqual (uiFilterTypeSel, 0, #const101 = "1"(integer), 0)
+399	jumpNCF (label ID:507)
+400	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+401	jumpNCF (label ID:503)
+402	initBiquadAsLP (LinFilter, uiFilterIndex, fs, ffreq)
+403	label ID:503
+403	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+404	jumpNCF (label ID:504)
+405	initBiquadAsLP (RinFilter, uiFilterIndex, fs, ffreq)
+406	label ID:504
+406	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+407	jumpNCF (label ID:505)
+408	initBiquadAsLP (LoutFilter, uiFilterIndex, fs, ffreq)
+409	label ID:505
+409	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+410	jumpNCF (label ID:506)
+411	initBiquadAsLP (RoutFilter, uiFilterIndex, fs, ffreq)
+412	label ID:506
+412	label ID:507
+412	compareIntegerEqual (uiFilterTypeSel, 0, #const46, 0)
+413	jumpNCF (label ID:512)
+414	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+415	jumpNCF (label ID:508)
+416	initBiquadAsHP (LinFilter, uiFilterIndex, fs, ffreq)
+417	label ID:508
+417	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+418	jumpNCF (label ID:509)
+419	initBiquadAsHP (RinFilter, uiFilterIndex, fs, ffreq)
+420	label ID:509
+420	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+421	jumpNCF (label ID:510)
+422	initBiquadAsHP (LoutFilter, uiFilterIndex, fs, ffreq)
+423	label ID:510
+423	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+424	jumpNCF (label ID:511)
+425	initBiquadAsHP (RoutFilter, uiFilterIndex, fs, ffreq)
+426	label ID:511
+426	label ID:512
+426	compareIntegerEqual (uiFilterTypeSel, 0, #const98 = "3"(integer), 0)
+427	jumpNCF (label ID:517)
+428	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+429	jumpNCF (label ID:513)
+430	initBiquadAsLowFreqShelvFilter (LinFilter, uiFilterIndex, fs, ffreq, fgain)
+431	label ID:513
+431	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+432	jumpNCF (label ID:514)
+433	initBiquadAsLowFreqShelvFilter (RinFilter, uiFilterIndex, fs, ffreq, fgain)
+434	label ID:514
+434	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+435	jumpNCF (label ID:515)
+436	initBiquadAsLowFreqShelvFilter (LoutFilter, uiFilterIndex, fs, ffreq, fgain)
+437	label ID:515
+437	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+438	jumpNCF (label ID:516)
+439	initBiquadAsLowFreqShelvFilter (RoutFilter, uiFilterIndex, fs, ffreq, fgain)
+440	label ID:516
+440	label ID:517
+440	compareIntegerEqual (uiFilterTypeSel, 0, #const95, 0)
+441	jumpNCF (label ID:522)
+442	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+443	jumpNCF (label ID:518)
+444	initBiquadAsHighFreqShelvFilter (LinFilter, uiFilterIndex, fs, ffreq, fgain)
+445	label ID:518
+445	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+446	jumpNCF (label ID:519)
+447	initBiquadAsHighFreqShelvFilter (RinFilter, uiFilterIndex, fs, ffreq, fgain)
+448	label ID:519
+448	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+449	jumpNCF (label ID:520)
+450	initBiquadAsHighFreqShelvFilter (LoutFilter, uiFilterIndex, fs, ffreq, fgain)
+451	label ID:520
+451	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+452	jumpNCF (label ID:521)
+453	initBiquadAsHighFreqShelvFilter (RoutFilter, uiFilterIndex, fs, ffreq, fgain)
+454	label ID:521
+454	label ID:522
+454	compareIntegerEqual (uiFilterTypeSel, 0, #const53, 0)
+455	jumpNCF (label ID:527)
+456	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+457	jumpNCF (label ID:523)
+458	initBiquadAsPeakFilter (LinFilter, uiFilterIndex, fs, ffreq, fquality, fgain)
+459	label ID:523
+459	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+460	jumpNCF (label ID:524)
+461	initBiquadAsPeakFilter (RinFilter, uiFilterIndex, fs, ffreq, fquality, fgain)
+462	label ID:524
+462	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+463	jumpNCF (label ID:525)
+464	initBiquadAsPeakFilter (LoutFilter, uiFilterIndex, fs, ffreq, fquality, fgain)
+465	label ID:525
+465	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+466	jumpNCF (label ID:526)
+467	initBiquadAsPeakFilter (RoutFilter, uiFilterIndex, fs, ffreq, fquality, fgain)
+468	label ID:526
+468	label ID:527
+468	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+469	jumpNCF (label ID:528)
+470	update (LinFilter)
+471	label ID:528
+471	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+472	jumpNCF (label ID:529)
+473	update (RinFilter)
+474	label ID:529
+474	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+475	jumpNCF (label ID:530)
+476	update (LoutFilter)
+477	label ID:530
+477	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+478	jumpNCF (label ID:531)
+479	update (RoutFilter)
+480	label ID:531
+480	assignInteger (uiState, #const42)
+481	assignInteger (uiSel, #const97 = "0"(integer))
+482	jump (label ID:533)
+483	label ID:532
+483	assignInteger (uiState, #const54)
+484	label ID:533
+484	update (fgain)
+485	assignInteger (#fv_uiDisplay_stateChange, #const101 = "1"(integer))
+486	label ID:534
+486	label ID:535
+486	compareIntegerEqual (#fv_uiDisplay_stateChange, 0, #const97 = "0"(integer), 0)
+487	jumpNCF (label ID:571)
+488	compareIntegerEqual (uiState, 0, #const54, 0)
+489	jumpNCF (label ID:570)
+490	compareIntegerEqual (uiFilterTypeSel, 0, #const97 = "0"(integer), 0)
+491	jumpNCF (label ID:540)
+492	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+493	jumpNCF (label ID:536)
+494	initBiquad (LinFilter, uiFilterIndex, #const99 = "1.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational))
+495	label ID:536
+495	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+496	jumpNCF (label ID:537)
+497	initBiquad (RinFilter, uiFilterIndex, #const99 = "1.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational))
+498	label ID:537
+498	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+499	jumpNCF (label ID:538)
+500	initBiquad (LoutFilter, uiFilterIndex, #const99 = "1.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational))
+501	label ID:538
+501	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+502	jumpNCF (label ID:539)
+503	initBiquad (RoutFilter, uiFilterIndex, #const99 = "1.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational), #const100 = "0.0"(rational))
+504	label ID:539
+504	label ID:540
+504	compareIntegerEqual (uiFilterTypeSel, 0, #const101 = "1"(integer), 0)
+505	jumpNCF (label ID:545)
+506	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+507	jumpNCF (label ID:541)
+508	initBiquadAsLP (LinFilter, uiFilterIndex, fs, ffreq)
+509	label ID:541
+509	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+510	jumpNCF (label ID:542)
+511	initBiquadAsLP (RinFilter, uiFilterIndex, fs, ffreq)
+512	label ID:542
+512	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+513	jumpNCF (label ID:543)
+514	initBiquadAsLP (LoutFilter, uiFilterIndex, fs, ffreq)
+515	label ID:543
+515	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+516	jumpNCF (label ID:544)
+517	initBiquadAsLP (RoutFilter, uiFilterIndex, fs, ffreq)
+518	label ID:544
+518	label ID:545
+518	compareIntegerEqual (uiFilterTypeSel, 0, #const46, 0)
+519	jumpNCF (label ID:550)
+520	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+521	jumpNCF (label ID:546)
+522	initBiquadAsHP (LinFilter, uiFilterIndex, fs, ffreq)
+523	label ID:546
+523	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+524	jumpNCF (label ID:547)
+525	initBiquadAsHP (RinFilter, uiFilterIndex, fs, ffreq)
+526	label ID:547
+526	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+527	jumpNCF (label ID:548)
+528	initBiquadAsHP (LoutFilter, uiFilterIndex, fs, ffreq)
+529	label ID:548
+529	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+530	jumpNCF (label ID:549)
+531	initBiquadAsHP (RoutFilter, uiFilterIndex, fs, ffreq)
+532	label ID:549
+532	label ID:550
+532	compareIntegerEqual (uiFilterTypeSel, 0, #const98 = "3"(integer), 0)
+533	jumpNCF (label ID:555)
+534	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+535	jumpNCF (label ID:551)
+536	initBiquadAsLowFreqShelvFilter (LinFilter, uiFilterIndex, fs, ffreq, fgain)
+537	label ID:551
+537	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+538	jumpNCF (label ID:552)
+539	initBiquadAsLowFreqShelvFilter (RinFilter, uiFilterIndex, fs, ffreq, fgain)
+540	label ID:552
+540	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+541	jumpNCF (label ID:553)
+542	initBiquadAsLowFreqShelvFilter (LoutFilter, uiFilterIndex, fs, ffreq, fgain)
+543	label ID:553
+543	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+544	jumpNCF (label ID:554)
+545	initBiquadAsLowFreqShelvFilter (RoutFilter, uiFilterIndex, fs, ffreq, fgain)
+546	label ID:554
+546	label ID:555
+546	compareIntegerEqual (uiFilterTypeSel, 0, #const95, 0)
+547	jumpNCF (label ID:560)
+548	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+549	jumpNCF (label ID:556)
+550	initBiquadAsHighFreqShelvFilter (LinFilter, uiFilterIndex, fs, ffreq, fgain)
+551	label ID:556
+551	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+552	jumpNCF (label ID:557)
+553	initBiquadAsHighFreqShelvFilter (RinFilter, uiFilterIndex, fs, ffreq, fgain)
+554	label ID:557
+554	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+555	jumpNCF (label ID:558)
+556	initBiquadAsHighFreqShelvFilter (LoutFilter, uiFilterIndex, fs, ffreq, fgain)
+557	label ID:558
+557	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+558	jumpNCF (label ID:559)
+559	initBiquadAsHighFreqShelvFilter (RoutFilter, uiFilterIndex, fs, ffreq, fgain)
+560	label ID:559
+560	label ID:560
+560	compareIntegerEqual (uiFilterTypeSel, 0, #const53, 0)
+561	jumpNCF (label ID:565)
+562	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+563	jumpNCF (label ID:561)
+564	initBiquadAsPeakFilter (LinFilter, uiFilterIndex, fs, ffreq, fquality, fgain)
+565	label ID:561
+565	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+566	jumpNCF (label ID:562)
+567	initBiquadAsPeakFilter (RinFilter, uiFilterIndex, fs, ffreq, fquality, fgain)
+568	label ID:562
+568	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+569	jumpNCF (label ID:563)
+570	initBiquadAsPeakFilter (LoutFilter, uiFilterIndex, fs, ffreq, fquality, fgain)
+571	label ID:563
+571	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+572	jumpNCF (label ID:564)
+573	initBiquadAsPeakFilter (RoutFilter, uiFilterIndex, fs, ffreq, fquality, fgain)
+574	label ID:564
+574	label ID:565
+574	compareIntegerEqual (uiFilterBankSel, 0, #const97 = "0"(integer), 0)
+575	jumpNCF (label ID:566)
+576	update (LinFilter)
+577	label ID:566
+577	compareIntegerEqual (uiFilterBankSel, 0, #const101 = "1"(integer), 0)
+578	jumpNCF (label ID:567)
+579	update (RinFilter)
+580	label ID:567
+580	compareIntegerEqual (uiFilterBankSel, 0, #const46, 0)
+581	jumpNCF (label ID:568)
+582	update (LoutFilter)
+583	label ID:568
+583	compareIntegerEqual (uiFilterBankSel, 0, #const98 = "3"(integer), 0)
+584	jumpNCF (label ID:569)
+585	update (RoutFilter)
+586	label ID:569
+586	assignInteger (uiState, #const42)
+587	assignInteger (uiSel, #const97 = "0"(integer))
+588	update (fquality)
+589	assignInteger (#fv_uiDisplay_stateChange, #const101 = "1"(integer))
+590	label ID:570
+590	label ID:571
+590	compareIntegerEqual (#fv_uiDisplay_stateChange, 0, #const97 = "0"(integer), 0)
+591	jumpNCF (label ID:573)
+592	compareIntegerEqual (uiState, 0, #const47, 0)
+593	jumpNCF (label ID:572)
+594	assignInteger (uiState, #const42)
+595	assignInteger (#fv_uiDisplay_stateChange, #const101 = "1"(integer))
+596	label ID:572
+596	label ID:573
+596	compareIntegerEqual (#fv_uiDisplay_stateChange, 0, #const97 = "0"(integer), 0)
+597	jumpNCF (label ID:577)
+598	compareIntegerEqual (uiState, 0, #const45, 0)
+599	jumpNCF (label ID:576)
+600	assignInteger (uiSelChannel, uiSel)
+601	compareIntegerEqual (uiSelChannel, 0, #const97 = "0"(integer), 0)
+602	jumpNCF (label ID:574)
+603	assignInteger (uiState, #const55)
+604	assignInteger (uiSel, LoutInpSel)
+605	assignInteger (uiSelChannel, LoutInpSel)
+606	jump (label ID:575)
+607	label ID:574
+607	assignInteger (uiState, #const56)
+608	assignInteger (uiSel, RoutInpSel)
+609	assignInteger (uiSelChannel, RoutInpSel)
+610	label ID:575
+610	update (uiSelChannel)
+611	assignInteger (#fv_uiDisplay_stateChange, #const101 = "1"(integer))
+612	label ID:576
+612	label ID:577
+612	compareIntegerEqual (#fv_uiDisplay_stateChange, 0, #const97 = "0"(integer), 0)
+613	jumpNCF (label ID:582)
+614	compareIntegerEqual (uiState, 0, #const55, 0)
+615	jumpNCF (label ID:581)
+616	compareIntegerEqual (uiSel, 0, #const46, 0)
+617	jumpNCF (label ID:578)
+618	assignInteger (LoutInpSel, uiSel)
+619	assignInteger (#fv_uiDisplay_stateChange, #const101 = "1"(integer))
+620	assignInteger (uiState, #const42)
+621	assignInteger (uiSelChannel, #const97 = "0"(integer))
+622	assignInteger (uiSel, #const97 = "0"(integer))
+623	jump (label ID:580)
+624	label ID:578
+624	compareIntegerNEqual (RoutInpSel, 0, uiSel, 0)
+625	jumpNCF (label ID:579)
+626	assignInteger (LoutInpSel, uiSel)
+627	assignInteger (#fv_uiDisplay_stateChange, #const101 = "1"(integer))
+628	assignInteger (uiState, #const42)
+629	assignInteger (uiSelChannel, #const97 = "0"(integer))
+630	assignInteger (uiSel, #const97 = "0"(integer))
+631	label ID:579
+631	label ID:580
+631	update (LoutInpSel)
+632	label ID:581
+632	label ID:582
+632	compareIntegerEqual (#fv_uiDisplay_stateChange, 0, #const97 = "0"(integer), 0)
+633	jumpNCF (label ID:587)
+634	compareIntegerEqual (uiState, 0, #const56, 0)
+635	jumpNCF (label ID:586)
+636	compareIntegerEqual (uiSel, 0, #const46, 0)
+637	jumpNCF (label ID:583)
+638	assignInteger (RoutInpSel, uiSel)
+639	assignInteger (#fv_uiDisplay_stateChange, #const101 = "1"(integer))
+640	assignInteger (uiState, #const42)
+641	assignInteger (uiSelChannel, #const97 = "0"(integer))
+642	assignInteger (uiSel, #const97 = "0"(integer))
+643	jump (label ID:585)
+644	label ID:583
+644	compareIntegerNEqual (LoutInpSel, 0, uiSel, 0)
+645	jumpNCF (label ID:584)
+646	assignInteger (RoutInpSel, uiSel)
+647	assignInteger (#fv_uiDisplay_stateChange, #const101 = "1"(integer))
+648	assignInteger (uiState, #const42)
+649	assignInteger (uiSelChannel, #const97 = "0"(integer))
+650	assignInteger (uiSel, #const97 = "0"(integer))
+651	label ID:584
+651	label ID:585
+651	update (RoutInpSel)
+652	label ID:586
+652	label ID:587
+652	assignInteger (uiUpdate, #const101 = "1"(integer))
+653	update (uiState)
+654	update (uiSel)
+655	update (uiUpdate)
+656	assignInteger (#fv_uiDisplay_stateChange, #const97 = "0"(integer))
+657	label ID:588
+657	uiCheckButtonPressed (bUp, 0)
+658	jumpNCF (label ID:621)
+659	compareIntegerEqual (uiState, 0, #const42, 0)
+660	jumpNCF (label ID:591)
+661	compareIntegerLess (uiSel, 0, #const46, 0)
+662	jumpNCF (label ID:589)
+663	addInteger (uiSel, #const101 = "1"(integer), uiSel)
+664	jump (label ID:590)
+665	label ID:589
+665	assignInteger (uiSel, #const97 = "0"(integer))
+666	label ID:590
+666	update (uiSel)
+667	label ID:591
+667	compareIntegerEqual (uiState, 0, #const44, 0)
+668	jumpNCF (label ID:594)
+669	compareIntegerLess (uiSel, 0, #const98 = "3"(integer), 0)
+670	jumpNCF (label ID:592)
+671	addInteger (uiSel, #const101 = "1"(integer), uiSel)
+672	jump (label ID:593)
+673	label ID:592
+673	assignInteger (uiSel, #const97 = "0"(integer))
+674	label ID:593
+674	update (uiSel)
+675	label ID:594
+675	compareIntegerEqual (uiState, 0, #const48, 0)
+676	jumpNCF (label ID:597)
+677	compareIntegerLess (uiSel, 0, #const46, 0)
+678	jumpNCF (label ID:595)
+679	addInteger (uiSel, #const101 = "1"(integer), uiSel)
+680	jump (label ID:596)
+681	label ID:595
+681	assignInteger (uiSel, #const97 = "0"(integer))
+682	label ID:596
+682	update (uiSel)
+683	label ID:597
+683	compareIntegerEqual (uiState, 0, #const49, 0)
+684	jumpNCF (label ID:600)
+685	compareIntegerLess (uiSel, 0, #const53, 0)
+686	jumpNCF (label ID:598)
+687	addInteger (uiSel, #const101 = "1"(integer), uiSel)
+688	jump (label ID:599)
+689	label ID:598
+689	assignInteger (uiSel, #const97 = "0"(integer))
+690	label ID:599
+690	update (uiSel)
+691	label ID:600
+691	compareIntegerEqual (uiState, 0, #const50, 0)
+692	jumpNCF (label ID:603)
+693	compareRationalLess (ffreq, 0, #const57, 0)
+694	jumpNCF (label ID:601)
+695	addRational (ffreq, #const58, ffreq)
+696	jump (label ID:602)
+697	label ID:601
+697	assignRational (ffreq, #const58)
+698	label ID:602
+698	update (ffreq)
+699	label ID:603
+699	compareIntegerEqual (uiState, 0, #const52, 0)
+700	jumpNCF (label ID:606)
+701	compareRationalLess (fgain, 0, #const59, 0)
+702	jumpNCF (label ID:604)
+703	addRational (fgain, #const60, fgain)
+704	jump (label ID:605)
+705	label ID:604
+705	assignRational (fgain, #const61)
+706	label ID:605
+706	update (fgain)
+707	label ID:606
+707	compareIntegerEqual (uiState, 0, #const54, 0)
+708	jumpNCF (label ID:609)
+709	compareRationalLess (fquality, 0, #const59, 0)
+710	jumpNCF (label ID:607)
+711	addRational (fquality, #const60, fquality)
+712	jump (label ID:608)
+713	label ID:607
+713	assignRational (fquality, #const60)
+714	label ID:608
+714	update (fquality)
+715	label ID:609
+715	compareIntegerEqual (uiState, 0, #const47, 0)
+716	jumpNCF (label ID:611)
+717	compareRationalLess (volume, 0, #const62, 0)
+718	jumpNCF (label ID:610)
+719	addRational (volume, #const60, volume)
+720	update (volume)
+721	label ID:610
+721	label ID:611
+721	compareIntegerEqual (uiState, 0, #const45, 0)
+722	jumpNCF (label ID:614)
+723	compareIntegerEqual (uiSel, 0, #const97 = "0"(integer), 0)
+724	jumpNCF (label ID:612)
+725	assignInteger (uiSel, #const101 = "1"(integer))
+726	jump (label ID:613)
+727	label ID:612
+727	assignInteger (uiSel, #const97 = "0"(integer))
+728	label ID:613
+728	update (uiSel)
+729	label ID:614
+729	compareIntegerEqual (uiState, 0, #const55, 0)
+730	jumpNCF (label ID:617)
+731	compareIntegerLess (uiSel, 0, #const46, 0)
+732	jumpNCF (label ID:615)
+733	addInteger (uiSel, #const101 = "1"(integer), uiSel)
+734	jump (label ID:616)
+735	label ID:615
+735	assignInteger (uiSel, #const97 = "0"(integer))
+736	label ID:616
+736	update (uiSel)
+737	label ID:617
+737	compareIntegerEqual (uiState, 0, #const56, 0)
+738	jumpNCF (label ID:620)
+739	compareIntegerLess (uiSel, 0, #const46, 0)
+740	jumpNCF (label ID:618)
+741	addInteger (uiSel, #const101 = "1"(integer), uiSel)
+742	jump (label ID:619)
+743	label ID:618
+743	assignInteger (uiSel, #const97 = "0"(integer))
+744	label ID:619
+744	update (uiSel)
+745	label ID:620
+745	assignInteger (uiUpdate, #const101 = "1"(integer))
+746	update (uiUpdate)
+747	label ID:621
+747	uiCheckButtonPressed (bDown, 0)
+748	jumpNCF (label ID:654)
+749	compareIntegerEqual (uiState, 0, #const42, 0)
+750	jumpNCF (label ID:624)
+751	compareIntegerMore (uiSel, 0, #const97 = "0"(integer), 0)
+752	jumpNCF (label ID:622)
+753	subInteger (uiSel, #const101 = "1"(integer), uiSel)
+754	jump (label ID:623)
+755	label ID:622
+755	assignInteger (uiSel, #const46)
+756	label ID:623
+756	update (uiSel)
+757	label ID:624
+757	compareIntegerEqual (uiState, 0, #const44, 0)
+758	jumpNCF (label ID:627)
+759	compareIntegerMore (uiSel, 0, #const97 = "0"(integer), 0)
+760	jumpNCF (label ID:625)
+761	subInteger (uiSel, #const101 = "1"(integer), uiSel)
+762	jump (label ID:626)
+763	label ID:625
+763	assignInteger (uiSel, #const98 = "3"(integer))
+764	label ID:626
+764	update (uiSel)
+765	label ID:627
+765	compareIntegerEqual (uiState, 0, #const48, 0)
+766	jumpNCF (label ID:630)
+767	compareIntegerMore (uiSel, 0, #const97 = "0"(integer), 0)
+768	jumpNCF (label ID:628)
+769	subInteger (uiSel, #const101 = "1"(integer), uiSel)
+770	jump (label ID:629)
+771	label ID:628
+771	assignInteger (uiSel, #const46)
+772	label ID:629
+772	update (uiSel)
+773	label ID:630
+773	compareIntegerEqual (uiState, 0, #const49, 0)
+774	jumpNCF (label ID:633)
+775	compareIntegerMore (uiSel, 0, #const97 = "0"(integer), 0)
+776	jumpNCF (label ID:631)
+777	subInteger (uiSel, #const101 = "1"(integer), uiSel)
+778	jump (label ID:632)
+779	label ID:631
+779	assignInteger (uiSel, #const53)
+780	label ID:632
+780	update (uiSel)
+781	label ID:633
+781	compareIntegerEqual (uiState, 0, #const50, 0)
+782	jumpNCF (label ID:636)
+783	compareRationalMore (ffreq, 0, #const58, 0)
+784	jumpNCF (label ID:634)
+785	subRational (ffreq, #const58, ffreq)
+786	jump (label ID:635)
+787	label ID:634
+787	assignRational (ffreq, #const57)
+788	label ID:635
+788	update (ffreq)
+789	label ID:636
+789	compareIntegerEqual (uiState, 0, #const52, 0)
+790	jumpNCF (label ID:639)
+791	compareRationalMore (fgain, 0, #const61, 0)
+792	jumpNCF (label ID:637)
+793	subRational (fgain, #const60, fgain)
+794	jump (label ID:638)
+795	label ID:637
+795	assignRational (fgain, #const59)
+796	label ID:638
+796	update (fgain)
+797	label ID:639
+797	compareIntegerEqual (uiState, 0, #const54, 0)
+798	jumpNCF (label ID:642)
+799	compareRationalMore (fquality, 0, #const60, 0)
+800	jumpNCF (label ID:640)
+801	subRational (fquality, #const60, fquality)
+802	jump (label ID:641)
+803	label ID:640
+803	assignRational (fquality, #const59)
+804	label ID:641
+804	update (fquality)
+805	label ID:642
+805	compareIntegerEqual (uiState, 0, #const47, 0)
+806	jumpNCF (label ID:644)
+807	compareRationalMore (volume, 0, #const100 = "0.0"(rational), 0)
+808	jumpNCF (label ID:643)
+809	subRational (volume, #const60, volume)
+810	update (volume)
+811	label ID:643
+811	label ID:644
+811	compareIntegerEqual (uiState, 0, #const45, 0)
+812	jumpNCF (label ID:647)
+813	compareIntegerEqual (uiSel, 0, #const101 = "1"(integer), 0)
+814	jumpNCF (label ID:645)
+815	assignInteger (uiSel, #const97 = "0"(integer))
+816	jump (label ID:646)
+817	label ID:645
+817	assignInteger (uiSel, #const101 = "1"(integer))
+818	label ID:646
+818	update (uiSel)
+819	label ID:647
+819	compareIntegerEqual (uiState, 0, #const55, 0)
+820	jumpNCF (label ID:650)
+821	compareIntegerMore (uiSel, 0, #const97 = "0"(integer), 0)
+822	jumpNCF (label ID:648)
+823	subInteger (uiSel, #const101 = "1"(integer), uiSel)
+824	jump (label ID:649)
+825	label ID:648
+825	assignInteger (uiSel, #const46)
+826	label ID:649
+826	update (uiSel)
+827	label ID:650
+827	compareIntegerEqual (uiState, 0, #const56, 0)
+828	jumpNCF (label ID:653)
+829	compareIntegerMore (uiSel, 0, #const97 = "0"(integer), 0)
+830	jumpNCF (label ID:651)
+831	subInteger (uiSel, #const101 = "1"(integer), uiSel)
+832	jump (label ID:652)
+833	label ID:651
+833	assignInteger (uiSel, #const46)
+834	label ID:652
+834	update (uiSel)
+835	label ID:653
+835	assignInteger (uiUpdate, #const101 = "1"(integer))
+836	update (uiUpdate)
+837	label ID:654
+837	compareIntegerEqual (uiUpdate, 0, #const101 = "1"(integer), 0)
+838	jumpNCF (label ID:714)
+839	compareIntegerEqual (uiState, 0, #const97 = "0"(integer), 0)
+840	jumpNCF (label ID:655)
+841	assignString (#fv_uiDisplay_headerText, 0, #const66, 0)
+842	label ID:655
+842	compareIntegerEqual (uiState, 0, #const42, 0)
+843	jumpNCF (label ID:656)
+844	assignString (#fv_uiDisplay_headerText, 0, #const68, 0)
+845	label ID:656
+845	compareIntegerEqual (uiState, 0, #const44, 0)
+846	jumpNCF (label ID:657)
+847	assignString (#fv_uiDisplay_headerText, 0, #const70, 0)
+848	label ID:657
+848	compareIntegerEqual (uiState, 0, #const48, 0)
+849	jumpNCF (label ID:658)
+850	assignString (#fv_uiDisplay_headerText, 0, #const72, 0)
+851	label ID:658
+851	compareIntegerEqual (uiState, 0, #const49, 0)
+852	jumpNCF (label ID:659)
+853	assignString (#fv_uiDisplay_headerText, 0, #const74, 0)
+854	label ID:659
+854	compareIntegerEqual (uiState, 0, #const50, 0)
+855	jumpNCF (label ID:660)
+856	assignString (#fv_uiDisplay_headerText, 0, #const76, 0)
+857	label ID:660
+857	compareIntegerEqual (uiState, 0, #const52, 0)
+858	jumpNCF (label ID:661)
+859	assignString (#fv_uiDisplay_headerText, 0, #const78, 0)
+860	label ID:661
+860	compareIntegerEqual (uiState, 0, #const54, 0)
+861	jumpNCF (label ID:662)
+862	assignString (#fv_uiDisplay_headerText, 0, #const80, 0)
+863	label ID:662
+863	compareIntegerEqual (uiState, 0, #const47, 0)
+864	jumpNCF (label ID:663)
+865	assignString (#fv_uiDisplay_headerText, 0, #const82, 0)
+866	label ID:663
+866	compareIntegerEqual (uiState, 0, #const45, 0)
+867	jumpNCF (label ID:664)
+868	assignString (#fv_uiDisplay_headerText, 0, #const84, 0)
+869	label ID:664
+869	compareIntegerEqual (uiState, 0, #const55, 0)
+870	jumpNCF (label ID:665)
+871	assignString (#fv_uiDisplay_headerText, 0, #const86, 0)
+872	label ID:665
+872	compareIntegerEqual (uiState, 0, #const56, 0)
+873	jumpNCF (label ID:666)
+874	assignString (#fv_uiDisplay_headerText, 0, #const88, 0)
+875	label ID:666
+875	compareIntegerEqual (uiState, 0, #const97 = "0"(integer), 0)
+876	jumpNCF (label ID:667)
+877	assignString (#fv_uiDisplay_selText, 0, #const2, 0)
+878	label ID:667
+878	compareIntegerEqual (uiState, 0, #const42, 0)
+879	jumpNCF (label ID:673)
+880	compareIntegerEqual (uiMenuSel, 0, uiSel, 0)
+881	jumpNCF (label ID:668)
+882	assignString (#fv_uiDisplay_selText, 0, #const4, 0)
+883	jump (label ID:669)
+884	label ID:668
+884	assignString (#fv_uiDisplay_selText, 0, #const5, 0)
+885	label ID:669
+885	compareIntegerEqual (uiSel, 0, #const97 = "0"(integer), 0)
+886	jumpNCF (label ID:670)
+887	concatStrings (#fv_uiDisplay_selText, 0, #const70, 0)
+888	label ID:670
+888	compareIntegerEqual (uiSel, 0, #const101 = "1"(integer), 0)
+889	jumpNCF (label ID:671)
+890	concatStrings (#fv_uiDisplay_selText, 0, #const84, 0)
+891	label ID:671
+891	compareIntegerEqual (uiSel, 0, #const46, 0)
+892	jumpNCF (label ID:672)
+893	concatStrings (#fv_uiDisplay_selText, 0, #const82, 0)
+894	label ID:672
+894	label ID:673
+894	compareIntegerEqual (uiState, 0, #const44, 0)
+895	jumpNCF (label ID:680)
+896	compareIntegerEqual (uiFilterBankSel, 0, uiSel, 0)
+897	jumpNCF (label ID:674)
+898	assignString (#fv_uiDisplay_selText, 0, #const4, 0)
+899	jump (label ID:675)
+900	label ID:674
+900	assignString (#fv_uiDisplay_selText, 0, #const5, 0)
+901	label ID:675
+901	compareIntegerEqual (uiSel, 0, #const97 = "0"(integer), 0)
+902	jumpNCF (label ID:676)
+903	concatStrings (#fv_uiDisplay_selText, 0, #const12, 0)
+904	label ID:676
+904	compareIntegerEqual (uiSel, 0, #const101 = "1"(integer), 0)
+905	jumpNCF (label ID:677)
+906	concatStrings (#fv_uiDisplay_selText, 0, #const13, 0)
+907	label ID:677
+907	compareIntegerEqual (uiSel, 0, #const46, 0)
+908	jumpNCF (label ID:678)
+909	concatStrings (#fv_uiDisplay_selText, 0, #const14, 0)
+910	label ID:678
+910	compareIntegerEqual (uiSel, 0, #const98 = "3"(integer), 0)
+911	jumpNCF (label ID:679)
+912	concatStrings (#fv_uiDisplay_selText, 0, #const16, 0)
+913	label ID:679
+913	label ID:680
+913	compareIntegerEqual (uiState, 0, #const48, 0)
+914	jumpNCF (label ID:683)
+915	compareIntegerEqual (uiFilterIndex, 0, uiSel, 0)
+916	jumpNCF (label ID:681)
+917	assignString (#fv_uiDisplay_selText, 0, #const4, 0)
+918	jump (label ID:682)
+919	label ID:681
+919	assignString (#fv_uiDisplay_selText, 0, #const5, 0)
+920	label ID:682
+920	concatStrings (#fv_uiDisplay_selText, 0, #const18, 0)
+921	integerToString (#fv_uiDisplay_#fv_getSelText_valToStr, 0, uiSel, 0)
+922	concatStrings (#fv_uiDisplay_selText, 0, #fv_uiDisplay_#fv_getSelText_valToStr, 0)
+923	label ID:683
+923	compareIntegerEqual (uiState, 0, #const49, 0)
+924	jumpNCF (label ID:692)
+925	compareIntegerEqual (uiFilterTypeSel, 0, uiSel, 0)
+926	jumpNCF (label ID:684)
+927	assignString (#fv_uiDisplay_selText, 0, #const4, 0)
+928	jump (label ID:685)
+929	label ID:684
+929	assignString (#fv_uiDisplay_selText, 0, #const5, 0)
+930	label ID:685
+930	compareIntegerEqual (uiSel, 0, #const97 = "0"(integer), 0)
+931	jumpNCF (label ID:686)
+932	concatStrings (#fv_uiDisplay_selText, 0, #const20, 0)
+933	label ID:686
+933	compareIntegerEqual (uiSel, 0, #const101 = "1"(integer), 0)
+934	jumpNCF (label ID:687)
+935	concatStrings (#fv_uiDisplay_selText, 0, #const21, 0)
+936	label ID:687
+936	compareIntegerEqual (uiSel, 0, #const46, 0)
+937	jumpNCF (label ID:688)
+938	concatStrings (#fv_uiDisplay_selText, 0, #const22, 0)
+939	label ID:688
+939	compareIntegerEqual (uiSel, 0, #const98 = "3"(integer), 0)
+940	jumpNCF (label ID:689)
+941	concatStrings (#fv_uiDisplay_selText, 0, #const23, 0)
+942	label ID:689
+942	compareIntegerEqual (uiSel, 0, #const95, 0)
+943	jumpNCF (label ID:690)
+944	concatStrings (#fv_uiDisplay_selText, 0, #const25, 0)
+945	label ID:690
+945	compareIntegerEqual (uiSel, 0, #const53, 0)
+946	jumpNCF (label ID:691)
+947	concatStrings (#fv_uiDisplay_selText, 0, #const27, 0)
+948	label ID:691
+948	label ID:692
+948	compareIntegerEqual (uiState, 0, #const50, 0)
+949	jumpNCF (label ID:693)
+950	rationalToString (#fv_uiDisplay_selText, 0, ffreq, 0)
+951	concatStrings (#fv_uiDisplay_selText, 0, #const29, 0)
+952	label ID:693
+952	compareIntegerEqual (uiState, 0, #const52, 0)
+953	jumpNCF (label ID:694)
+954	rationalToString (#fv_uiDisplay_selText, 0, fgain, 0)
+955	label ID:694
+955	compareIntegerEqual (uiState, 0, #const54, 0)
+956	jumpNCF (label ID:695)
+957	rationalToString (#fv_uiDisplay_selText, 0, fquality, 0)
+958	label ID:695
+958	compareIntegerEqual (uiState, 0, #const47, 0)
+959	jumpNCF (label ID:696)
+960	rationalToString (#fv_uiDisplay_selText, 0, volume, 0)
+961	label ID:696
+961	compareIntegerEqual (uiState, 0, #const45, 0)
+962	jumpNCF (label ID:701)
+963	compareIntegerEqual (uiSelChannel, 0, uiSel, 0)
+964	jumpNCF (label ID:697)
+965	assignString (#fv_uiDisplay_selText, 0, #const4, 0)
+966	jump (label ID:698)
+967	label ID:697
+967	assignString (#fv_uiDisplay_selText, 0, #const5, 0)
+968	label ID:698
+968	compareIntegerEqual (uiSel, 0, #const97 = "0"(integer), 0)
+969	jumpNCF (label ID:699)
+970	concatStrings (#fv_uiDisplay_selText, 0, #const12, 0)
+971	label ID:699
+971	compareIntegerEqual (uiSel, 0, #const101 = "1"(integer), 0)
+972	jumpNCF (label ID:700)
+973	concatStrings (#fv_uiDisplay_selText, 0, #const13, 0)
+974	label ID:700
+974	label ID:701
+974	compareIntegerEqual (uiState, 0, #const55, 0)
+975	jumpNCF (label ID:707)
+976	compareIntegerEqual (uiSelChannel, 0, uiSel, 0)
+977	jumpNCF (label ID:702)
+978	assignString (#fv_uiDisplay_selText, 0, #const4, 0)
+979	jump (label ID:703)
+980	label ID:702
+980	assignString (#fv_uiDisplay_selText, 0, #const5, 0)
+981	label ID:703
+981	compareIntegerEqual (uiSel, 0, #const97 = "0"(integer), 0)
+982	jumpNCF (label ID:704)
+983	concatStrings (#fv_uiDisplay_selText, 0, #const14, 0)
+984	label ID:704
+984	compareIntegerEqual (uiSel, 0, #const101 = "1"(integer), 0)
+985	jumpNCF (label ID:705)
+986	concatStrings (#fv_uiDisplay_selText, 0, #const16, 0)
+987	label ID:705
+987	compareIntegerEqual (uiSel, 0, #const46, 0)
+988	jumpNCF (label ID:706)
+989	concatStrings (#fv_uiDisplay_selText, 0, #const35, 0)
+990	label ID:706
+990	label ID:707
+990	compareIntegerEqual (uiState, 0, #const56, 0)
+991	jumpNCF (label ID:713)
+992	compareIntegerEqual (uiSelChannel, 0, uiSel, 0)
+993	jumpNCF (label ID:708)
+994	assignString (#fv_uiDisplay_selText, 0, #const4, 0)
+995	jump (label ID:709)
+996	label ID:708
+996	assignString (#fv_uiDisplay_selText, 0, #const5, 0)
+997	label ID:709
+997	compareIntegerEqual (uiSel, 0, #const97 = "0"(integer), 0)
+998	jumpNCF (label ID:710)
+999	concatStrings (#fv_uiDisplay_selText, 0, #const14, 0)
+1000	label ID:710
+1000	compareIntegerEqual (uiSel, 0, #const101 = "1"(integer), 0)
+1001	jumpNCF (label ID:711)
+1002	concatStrings (#fv_uiDisplay_selText, 0, #const16, 0)
+1003	label ID:711
+1003	compareIntegerEqual (uiSel, 0, #const46, 0)
+1004	jumpNCF (label ID:712)
+1005	concatStrings (#fv_uiDisplay_selText, 0, #const35, 0)
+1006	label ID:712
+1006	label ID:713
+1006	assignString (#fv_uiDisplay_dispText, 0, #fv_uiDisplay_headerText, 0)
+1007	concatStrings (#fv_uiDisplay_dispText, 0, #const64, 0)
+1008	concatStrings (#fv_uiDisplay_dispText, 0, #fv_uiDisplay_selText, 0)
+1009	uiSetDisplay (d, 0, #fv_uiDisplay_dispText, 0)
+1010	assignInteger (uiUpdate, #const97 = "0"(integer))
+1011	label ID:714
+1011	jump (label ID:56)

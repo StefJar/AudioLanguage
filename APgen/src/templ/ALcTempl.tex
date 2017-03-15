@@ -1,0 +1,33 @@
+\chapter{Introduction}
+
+The Audio Language is designed as a imperative textual domain specific language. It contains structures for sequences, selections, repetitions and Procedural programming. In the following chapters the different aspects of programming with the Audio Language are explained.\\
+Parts of this handbook are generated automatic.
+
+\chapter{the program body}
+Describing an audio device with the Audio Language can be structured into tree parts. The first parts explains what piece of hardware should run what part of the description. The second part defines so called "global variables". These variables are accessible in every part of the program and can be exchanged between parts of hardware running parts of the description. The third part are functions which are describing the functionality of the audio device. The following listing gives a short example of the "frame" an Audio Language program:
+\begin{lstlisting}
+global {
+	rational r;
+}
+
+main (myAudioDevPart1) {
+	local {
+	}
+	code {
+		r = 1;
+	}	
+}
+
+main (myAudioDevPart2) {
+	local {
+	}
+	code {
+		r = 21;
+	}	
+}
+\end{lstlisting}
+This program divides the description of the audio device into two parts. There is one global variable "r" defined. Putting this into the Audio Language Compiler it will produces two files "myAudioDevPart1.alasm" and "myAudioDevPart2.alasm". The following sections will describe the "main" Function syntax and the variable declaration syntax.
+
+\section{the "main" function}
+
+\section{global and local variable declarations}

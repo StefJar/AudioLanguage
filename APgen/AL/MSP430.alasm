@@ -1,0 +1,86 @@
+globals {
+	biquad filter[2];
+}
+
+function MSP430
+locals {
+		led vpfx2lGreen;
+		button vpfx2bRight;
+		string vpfx2tstr;
+		panel vpfx2p;
+		rational vpfx2fs;
+		rational vpfx2f2;
+		rational vpfx2q;
+		led vpfx2lRed;
+		button vpfx2bMiddle;
+		display vpfx2d;
+		button vpfx2bLeft;
+		rational vpfx2f;
+		rational vpfx2g;
+}
+code {
+	//function inline for "UI"
+		// init UI ;
+		// the panel ;
+		uiSetDim 0, 0, 550, 500, vpfx2p, 0;
+		uiInitPanel 1, vpfx2p, 0;
+		// the display ;
+		uiSetDim 10, 10, 500, 300, vpfx2d, 0;
+		uiInitDisplay 11, vpfx2d, 0, vpfx2p, 0;
+		// left button ;
+		uiSetDim 50, 400, 50, 50, vpfx2bLeft, 0;
+		uiInitButton 21, vpfx2bLeft, 0, vpfx2p, 0;
+		// red led ;
+		uiSetDim 150, 400, 50, 50, vpfx2lRed, 0;
+		uiInitLED 31, vpfx2lRed, 0, vpfx2p, 0;
+		// middle button ;
+		uiSetDim 250, 400, 50, 50, vpfx2bMiddle, 0;
+		uiInitButton 22, vpfx2bMiddle, 0, vpfx2p, 0;
+		// green led ;
+		uiSetDim 350, 400, 50, 50, vpfx2lGreen, 0;
+		uiInitLED 31, vpfx2lGreen, 0, vpfx2p, 0;
+		// right button ;
+		uiSetDim 450, 400, 50, 50, vpfx2bRight, 0;
+		uiInitButton 23, vpfx2bRight, 0, vpfx2p, 0;
+		// open string ;
+		ALASMsetStr vpfx2tstr, 0, "left=LP LP;middle=HP LP;right=HP HP";
+		// init constants ;
+		// set sample frequency to 48kHz ;
+		ALASMsetRational vpfx2fs, [48000.000000];
+		ALASMsetRational vpfx2q, [1.000000];
+		ALASMsetRational vpfx2g, [2.000000];
+		// UI behavior ;
+		uiSetDisplay vpfx2d, 0, vpfx2tstr, 0;
+		uiSetLED vpfx2lRed, 0, 0;
+		uiSetLED vpfx2lGreen, 0, 0;
+		label @labelNr21;
+			uiCheckButtonPressed vpfx2bLeft, 0;
+			jumpNCF @labelNr16;
+				ALASMsetRational vpfx2f, [70.000000];
+				initBiquadAsLP filter, 0, vpfx2fs, vpfx2f;
+				initBiquadAsLP filter, 1, vpfx2fs, vpfx2f;
+				uiSetLED vpfx2lRed, 0, 1;
+				uiSetLED vpfx2lGreen, 0, 0;
+				update filter;
+			label @labelNr16;
+			uiCheckButtonPressed vpfx2bMiddle, 0;
+			jumpNCF @labelNr18;
+				ALASMsetRational vpfx2f, [1000.000000];
+				ALASMsetRational vpfx2f2, [2000.000000];
+				initBiquadAsHP filter, 0, vpfx2fs, vpfx2f;
+				initBiquadAsLP filter, 1, vpfx2fs, vpfx2f2;
+				uiSetLED vpfx2lRed, 0, 0;
+				uiSetLED vpfx2lGreen, 0, 1;
+				update filter;
+			label @labelNr18;
+			uiCheckButtonPressed vpfx2bRight, 0;
+			jumpNCF @labelNr20;
+				ALASMsetRational vpfx2f, [4000.000000];
+				initBiquadAsHP filter, 0, vpfx2fs, vpfx2f;
+				initBiquadAsHP filter, 1, vpfx2fs, vpfx2f;
+				uiSetLED vpfx2lRed, 0, 1;
+				uiSetLED vpfx2lGreen, 0, 1;
+				update filter;
+			label @labelNr20;
+		jump @labelNr21;
+}

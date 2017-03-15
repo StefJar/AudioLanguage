@@ -1,0 +1,175 @@
+Variables
+Layout: <Variable index> <name> <type> [<amount>]
+0	bqf1	biquad	[2]
+1	bqf2	biquad	[2]
+2	gaintext	string	[1]
+3	gainStr	string	[1]
+4	bHP	button	[1]
+5	p	panel	[1]
+6	fLP	rational	[1]
+7	bDown	button	[1]
+8	bReset	button	[1]
+9	fHP	rational	[1]
+10	fs	rational	[1]
+11	byPassFlag	integer	[1]
+12	in1	rational	[1024]
+13	in2	rational	[1024]
+14	gain	rational	[1]
+15	out1	rational	[1024]
+16	out2	rational	[1024]
+17	d	display	[1]
+18	g	rational	[1]
+19	bUp	button	[1]
+20	bLP	button	[1]
+21	q	rational	[1]
+22	bBypass	button	[1]
+23	bBP	button	[1]
+24	#const1	rational	[1]
+25	#const2	rational	[1]
+26	#const3	rational	[1]
+27	#const4	rational	[1]
+28	#const5	rational	[1]
+29	#const6	integer	[1]
+30	#const7	string	[1]
+31	#const8	string	[1]
+32	#const9	rational	[1]
+33	#const10	rational	[1]
+34	#const11	string	[1]
+35	#const12	rational	[1]
+36	#const13	string	[1]
+37	#const14	string	[1]
+38	#const15	integer	[1]
+39	#const16	string	[1]
+40	#const17	string	[1]
+41	#const18	string	[1]
+Code
+Layout: <programm counter> function (parameter1, parameter2, ..., parameterN)  
+0	assignConstRational (#const1, 0, 1, 44100.0)
+1	assignConstRational (#const2, 0, 1, 1.0)
+2	assignConstRational (#const3, 0, 1, 2.0)
+3	assignConstRational (#const4, 0, 1, 8000.0)
+4	assignConstRational (#const5, 0, 1, 1000.0)
+5	assignConstInteger (#const6, 0, 1, 1)
+6	setStringSize (#const7, 0, 31)
+7	setStringValues (#const7, 0, 0, 1701602675, 540701795, 2036477233, 1936941424)
+8	setStringValues (#const7, 0, 16, 1278030346, 758325328, 874532930, 542132269)
+9	setStringSize (#const8, 0, 5)
+10	setStringValues (#const8, 0, 0, 1702061426, 538976372, 538976288, 538976288)
+11	assignConstRational (#const9, 0, 1, 10.0)
+12	assignConstRational (#const10, 0, 1, 0.1)
+13	setStringSize (#const11, 0, 14)
+14	setStringValues (#const11, 0, 0, 1852399975, 175142176, 1970037078, 538983013)
+15	assignConstRational (#const12, 0, 1, 0.0)
+16	setStringSize (#const13, 0, 16)
+17	setStringValues (#const13, 0, 0, 1852399975, 2003788832, 1633028718, 979727724)
+18	setStringSize (#const14, 0, 24)
+19	setStringValues (#const14, 0, 0, 2036473918, 1936941392, 758123040, 824201292)
+20	setStringValues (#const14, 0, 16, 542130733, 1346907442, 538976288, 538976288)
+21	assignConstInteger (#const15, 0, 1, 0)
+22	setStringSize (#const16, 0, 20)
+23	setStringValues (#const16, 0, 0, 1347166270, 758123040, 824201292, 542130733)
+24	setStringValues (#const16, 0, 16, 1346907442, 538976288, 538976288, 538976288)
+25	setStringSize (#const17, 0, 20)
+26	setStringValues (#const17, 0, 0, 1346510910, 758123040, 824201292, 542130733)
+27	setStringValues (#const17, 0, 16, 1346907442, 538976288, 538976288, 538976288)
+28	setStringSize (#const18, 0, 20)
+29	setStringValues (#const18, 0, 0, 1346904126, 758123040, 824201292, 542130733)
+30	setStringValues (#const18, 0, 16, 1346907442, 538976288, 538976288, 538976288)
+31	uiInitPanel (1, p, 0)
+32	uiInitDisplay (1, d, 0, p, 0)
+33	uiInitButton (1, bBypass, 0, p, 0)
+34	uiInitButton (2, bLP, 0, p, 0)
+35	uiInitButton (3, bBP, 0, p, 0)
+36	uiInitButton (4, bHP, 0, p, 0)
+37	uiInitButton (8, bUp, 0, p, 0)
+38	uiInitButton (7, bDown, 0, p, 0)
+39	uiInitButton (6, bReset, 0, p, 0)
+40	assignRational (fs, #const1)
+41	assignRational (q, #const2)
+42	assignRational (g, #const3)
+43	assignRational (fLP, #const4)
+44	assignRational (fHP, #const5)
+45	assignRational (gain, #const2)
+46	initBiquadAsLP (bqf1, 0, fs, fLP)
+47	initBiquadAsLP (bqf1, 1, fs, fLP)
+48	initBiquadAsHP (bqf2, 0, fs, fHP)
+49	initBiquadAsHP (bqf2, 1, fs, fHP)
+50	assignInteger (byPassFlag, #const6)
+51	uiSetDisplay (d, 0, #const7, 0)
+52	label ID:13
+52	uiCheckButtonPressed (bReset, 0)
+53	jumpNCF (label ID:2)
+54	uiSetDisplay (d, 0, #const8, 0)
+55	assignRational (gain, #const2)
+56	label ID:2
+56	uiCheckButtonPressed (bUp, 0)
+57	jumpNCF (label ID:4)
+58	compareRationalLess (gain, 0, #const9, 0)
+59	jumpNCF (label ID:3)
+60	addRational (gain, #const10, gain)
+61	label ID:3
+61	assignString (gaintext, 0, #const11, 0)
+62	rationalToString (gainStr, 0, gain, 0)
+63	concatStrings (gaintext, 0, gainStr, 0)
+64	uiSetDisplay (d, 0, gaintext, 0)
+65	label ID:4
+65	uiCheckButtonPressed (bDown, 0)
+66	jumpNCF (label ID:6)
+67	subRational (gain, #const10, gain)
+68	compareRationalLess (gain, 0, #const12, 0)
+69	jumpNCF (label ID:5)
+70	assignRational (gain, #const12)
+71	label ID:5
+71	assignString (gaintext, 0, #const13, 0)
+72	rationalToString (gainStr, 0, gain, 0)
+73	concatStrings (gaintext, 0, gainStr, 0)
+74	uiSetDisplay (d, 0, gaintext, 0)
+75	label ID:6
+75	uiCheckButtonPressed (bBypass, 0)
+76	jumpNCF (label ID:7)
+77	uiSetDisplay (d, 0, #const14, 0)
+78	assignInteger (byPassFlag, #const6)
+79	label ID:7
+79	uiCheckButtonPressed (bLP, 0)
+80	jumpNCF (label ID:8)
+81	assignInteger (byPassFlag, #const15)
+82	uiSetDisplay (d, 0, #const16, 0)
+83	initBiquadAsLP (bqf1, 0, fs, fLP)
+84	initBiquadAsLP (bqf1, 1, fs, fLP)
+85	initBiquadAsLP (bqf2, 0, fs, fLP)
+86	initBiquadAsLP (bqf2, 1, fs, fLP)
+87	label ID:8
+87	uiCheckButtonPressed (bBP, 0)
+88	jumpNCF (label ID:9)
+89	assignInteger (byPassFlag, #const15)
+90	uiSetDisplay (d, 0, #const17, 0)
+91	initBiquadAsHP (bqf1, 0, fs, fHP)
+92	initBiquadAsLP (bqf1, 1, fs, fLP)
+93	initBiquadAsHP (bqf2, 0, fs, fHP)
+94	initBiquadAsLP (bqf2, 1, fs, fLP)
+95	label ID:9
+95	uiCheckButtonPressed (bHP, 0)
+96	jumpNCF (label ID:10)
+97	assignInteger (byPassFlag, #const15)
+98	uiSetDisplay (d, 0, #const18, 0)
+99	initBiquadAsHP (bqf1, 0, fs, fHP)
+100	initBiquadAsHP (bqf1, 1, fs, fHP)
+101	initBiquadAsHP (bqf2, 0, fs, fHP)
+102	initBiquadAsHP (bqf2, 1, fs, fHP)
+103	label ID:10
+103	readSampleFrame (0, in1, 1)
+104	readSampleFrame (1, in2, 0)
+105	mulRational (in1, gain, in1)
+106	mulRational (in2, gain, in2)
+107	compareIntegerEqual (byPassFlag, 0, #const6, 0)
+108	jumpNCF (label ID:12)
+109	assignRational (out1, in1)
+110	assignRational (out2, in2)
+111	jump (label ID:11)
+112	label ID:12
+112	convoluteBiquad (in1, bqf1, out1)
+113	convoluteBiquad (in2, bqf2, out2)
+114	label ID:11
+114	writeSampleFrame (0, out1)
+115	writeSampleFrame (1, out2)
+116	jump (label ID:13)

@@ -1,0 +1,16 @@
+function bypass
+locals
+{
+	integer inputChannel;
+	integer outputChannel;
+	rational v;	
+}
+code
+{
+	assignConstInteger inputChannel,1;
+	assignConstInteger outputChannel,2;
+	
+	readSample 1,v;
+	writeSample 2,v;
+	jump -2;
+}

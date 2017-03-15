@@ -1,0 +1,45 @@
+global {
+	rational x;
+}
+
+// this is a one line comment
+
+/* this
+is a
+two or more line
+line
+comment
+*/
+
+
+function test_123abc {
+	interface {
+		io	rational	res;
+		in		rational	a;
+		in		rational	b;	
+	}
+
+	local {
+	}
+
+	code {
+		res = a + b;
+	}
+
+}
+
+main {
+	local {
+		rational	a;
+		integer		i;
+		rational	b;
+	}
+
+	code {
+		a = 0.56;
+		b = 10;
+		for (i = 0; i < 100; i++) {
+			(b) = test_123abc(a,b);
+		}
+	}	
+}

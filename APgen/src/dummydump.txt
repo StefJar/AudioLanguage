@@ -1,0 +1,362 @@
+#1.) entry rules
+def p_startElements (p):
+    """startElements : globalVarStm
+            | functionStm
+            | mainStm
+            | typedefStm
+            | commentStm
+    """
+    p[0] = p[1]
+    
+def p_start (p):
+    """start :
+        | startElements
+        | start startElements
+    """
+    l = len(p)
+    if l == 1:
+        p[0] = []
+    elif l == 2:
+        p[0] = [p[1]]
+    else:
+        p[1].append(p[2])
+        p[0] = p[1]
+
+def p_globalStm (p):
+    'globalVarStm : globalVarListStm'
+    p[0] = p[1]
+
+def p_functionStm (p):
+    'functionStm : function name lBrace interfaceVarListStm localVarListStm codeListStm rBrace'
+    p[0] = ASTfunction(p.lineno(1) ,p.lexpos(1), p[2], p[4], p[5], p[6])
+
+def p_mainStm (p):
+    'mainStm : main lSoftBrace name rSoftBrace lBrace localVarListStm codeListStm rBrace'
+    p[0] = ASTmain(p.lineno(1) ,p.lexpos(1), p[3], p[6] ,p[7])
+
+def p_typedefStm (p):
+    'typedefStm : typedef name lBrace varListDecl rBrace'
+    p[0] = ASTtypedef (p.lineno(1) ,p.lexpos(1), p[2], p[4])
+
+
+def p_commentStm (p):
+    'commentStm : comment'
+    p[0] = ASTcomment (p.lineno(1) ,p.lexpos(1), p[1])
+
+#2.) variable rules
+
+#2.1) element rules
+def p_varDeclaration (p):
+    'varDeclaration : name name'
+    p[0] = ASTvariableDef(p.lineno(1) ,p.lexpos(1), p[1], p[2], 1)
+
+def p_varDeclarationWithNumber (p):
+    'varDeclaration : name name lBracket iNumber rBracket'
+    p[0] = ASTvariableDef(p.lineno(1) ,p.lexpos(1), p[1], p[2], int(p[4]))
+
+def p_varDeclStm (p):
+    'varDeclStm : varDeclaration semicolon'
+    p[0] = p[1]
+
+def p_commentAtTheVarDeclStm (p):
+    'varDeclStm : commentStm'
+    p[0] = p[1]
+
+def p_interfaceVarStm (p):
+    'interfaceVarStm : name name name semicolon'
+    p[0] = ASTfuncParameter(p.lineno(1) ,p.lexpos(1), p[2], p[3], p[1])
+
+def p_commentAtTheInterfaceVarDeclStm (p):
+    'interfaceVarStm : commentStm'
+    p[0] = p[1]
+
+    
+#2.2) list rules
+def p_varListDecl (p):
+    """varListDecl :
+        | varDeclStm
+        | varListDecl varDeclStm
+    """
+    l = len(p)
+    if l == 1:
+        p[0] = []
+    elif l == 2:
+        p[0] = [p[1]]
+    else:
+        p[1].append(p[2])
+        p[0] = p[1]
+
+def p_interfaceVarListDecl (p):
+    """interfaceVarListDecl :
+        | interfaceVarStm
+        | interfaceVarListDecl interfaceVarStm
+    """
+    l = len(p)
+    if l == 1:
+        p[0] = []
+    elif l == 2:
+        p[0] = [p[1]]
+    else:
+        p[1].append(p[2])
+        p[0] = p[1]
+
+#2.3) final statements
+def p_globalVarListStm (p):
+    'globalVarListStm : global lBrace varListDecl rBrace'
+    p[0] = p[3]
+
+def p_localVarListStm (p):
+    'localVarListStm : local lBrace varListDecl rBrace'
+    p[0] = p[3]
+
+def p_interfaceVarListStm (p):
+    'interfaceVarListStm : interface lBrace interfaceVarListDecl rBrace'
+    p[0] = p[3]
+
+#3.) code
+
+#3.1) basics
+def p_codeListStm (p):
+    'codeListStm : code lBrace statements rBrace'
+    p[0] = p[3]
+    
+def p_statements (p):
+    """statements :
+            | statement
+            | statements statement
+    """
+    l = len(p)
+    if l == 1:
+        p[0] = []
+    elif l == 2:
+        p[0] = [p[1]]
+    else:
+        p[1].append(p[2])
+        p[0] = p[1]
+
+
+#3.2) statements
+
+#3.2.1) expressions
+
+# variables
+def p_varVariableExp (p):
+    """varExp : name
+        | varExp point name
+    """
+    l = len(p)
+    if l == 2:
+        p[0] = ASTinstructionParamRefVar(p.lineno(1) ,p.lexpos(1), p[1])
+    else:
+        var = p[1]
+        var.addSubValue(p[3])
+        p[0] = var
+
+
+def p_varVariable (p):
+    'var : varExp'
+    # variable with index 0
+    p[0] = p[1]
+    
+
+def p_varVariableArray (p):
+    'var : varExp lBracket iNumber rBracket'
+    # variable with index at p[3]
+    var = p[1]
+    var.setIndex(p[3])
+    p[0] = var
+
+# numbers
+def p_expiNumber (p):
+    'expiNumber : iNumber'
+    p[0] = ASTinstructionParamConst(p.lineno(1) ,p.lexpos(1), p[1], int)
+
+def p_expfNumber (p):
+    'expfNumber : fNumber'
+    p[0] = ASTinstructionParamConst(p.lineno(1) ,p.lexpos(1), p[1], float)
+
+# literals
+def p_expString (p):
+    'expString : string'
+    p[0] = ASTinstructionParamConst(p.lineno(1) ,p.lexpos(1), p[1], str)
+
+
+def p_expVariable (p):
+    """exp : var
+            | expiNumber
+            | expfNumber
+            | expString
+    """
+    p[0] = p[1]
+
+
+# operations on variables and numbers    
+def p_expNumberAdd (p):
+    'exp : exp add exp'
+    p[0] = ASTexpression(p.lineno(1) ,p.lexpos(1), '+', [p[1], p[3]])
+
+def p_expNumberSub (p):
+    'exp : exp sub exp'
+    p[0] = ASTexpression(p.lineno(1) ,p.lexpos(1), '-', [p[1], p[3]])
+
+def p_expNumberMul (p):
+    'exp : exp mul exp'
+    p[0] = ASTexpression(p.lineno(1) ,p.lexpos(1), '*', [p[1], p[3]])
+
+def p_expNumberDiv (p):
+    'exp : exp div exp'
+    p[0] = ASTexpression(p.lineno(1) ,p.lexpos(1), '/', [p[1], p[3]])
+
+
+def p_expBraces (p):
+    'exp : lSoftBrace exp rSoftBrace'
+    p[0] = ASTexpression(p.lineno(1) ,p.lexpos(1), '()', [p[2]])
+
+def p_expInc (p):
+    'exp : exp inc'
+    p[0] = ASTexpression(p.lineno(1) ,p.lexpos(1), 'inc', [p[1]])
+
+def p_expDec (p):
+    'exp : exp dec'
+    p[0] = ASTexpression(p.lineno(1) ,p.lexpos(1), 'dec', [p[1]])
+
+def p_expbParam (p):
+    'expbParam : exp'
+    p[0] = p[1]
+    
+# boolean expressions
+def p_expbNot (p):
+    'expb : not expbParam'
+    p[0] = ASTexpression(p.lineno(1) ,p.lexpos(1), 'not', [p[1]])
+
+def p_expbNequal(p):
+    'expb : expbParam nEqual expbParam'
+    p[0] = ASTexpression(p.lineno(1) ,p.lexpos(1), '!=', [p[1], p[3]])
+
+
+def p_expbEqual(p):
+    'expb : expbParam equal expbParam'
+    p[0] = ASTexpression(p.lineno(1) ,p.lexpos(1), '==', [p[1], p[3]])
+
+
+def p_expbLess(p):
+    'expb : expbParam less expbParam'
+    p[0] = ASTexpression(p.lineno(1) ,p.lexpos(1), '<', [p[1], p[3]])
+
+def p_expbLessEqual(p):
+    'expb : expbParam lessEqual expbParam'
+    p[0] = ASTexpression(p.lineno(1) ,p.lexpos(1), '<=', [p[1], p[3]])
+
+def p_expbMore(p):
+    'expb : expbParam more expbParam'
+    p[0] = ASTexpression(p.lineno(1) ,p.lexpos(1), '>', [p[1], p[3]])
+
+def p_expbMoreEqual(p):
+    'expb : expbParam moreEqual expbParam'
+    p[0] = ASTexpression(p.lineno(1) ,p.lexpos(1), '>=', [p[1], p[3]])
+
+
+# 3.2.2) assigns
+def p_expAssign(p):
+    'exp : var assign exp'
+    p[0] = ASTexpression(p.lineno(1) ,p.lexpos(1), '=', [p[1], p[3]])
+    
+def p_expAddAssign (p):
+    'exp : var addAssign exp'
+    p[0] = ASTexpression(p.lineno(1) ,p.lexpos(1), '+=', [p[1], p[3]])
+
+# 3.2.3) conditions
+def p_stmIf (p):
+    'statement : if lBracket expb rBracket lBrace statements rBrace'
+    p[0] = ASTConditionalBlock(p.lineno(1) ,p.lexpos(1), p[3], p[6], None, False, None)
+
+
+def p_stmIfElse (p):
+    'statement : if lBracket expb rBracket lBrace statements rBrace else lBrace statements rBrace'
+    p[0] = ASTConditionalBlock(p.lineno(1) ,p.lexpos(1), p[3], p[6], p[10], False, None)
+    
+# 3.2.4) stand alone expr
+def p_stmExp (p):
+    'statement : exp semicolon'
+    p[0] = p[1]
+
+# 3.2.5) for loop
+def p_stmForLoop (p):
+    'statement : for lBracket exp semicolon expb semicolon exp rBracket lBrace statements rBrace'
+    p[0] = [
+            p[3],
+            ASTConditionalBlock(p.lineno(1) ,p.lexpos(1), p[5], p[10], None, True, p[7])
+        ]
+
+# 3.2.5.2) for loop endless
+def p_stmForLoopEndless (p):
+    'statement : for lBracket semicolon semicolon rBracket lBrace statements rBrace'
+    p[0] = ASTConditionalBlock(p.lineno(1) ,p.lexpos(1), None , p[7], None, True, None)
+
+#3.2.5.3 while loop
+def p_stmWhileLoop (p):
+    'statement : while lBracket expb rBracket lBrace statements rBrace'
+    p[0] = ASTConditionalBlock(p.lineno(1) ,p.lexpos(1), p[3] ,p[6], None, True, None)
+
+#3.2.5.4 while loop endless
+def p_stmWhileLoopEndless (p):
+    'statement : while lBracket rBracket lBrace statements rBrace'
+    p[0] = ASTConditionalBlock(p.lineno(1) ,p.lexpos(1), None ,p[5], None, True, None)
+
+
+# 3.2.6) function call
+def p_fcParamList (p):
+    """fcParamList :
+            | exp
+            | fcParamList comma exp 
+    """
+    l = len(p)
+    if l == 1:
+        p[0] = []
+    elif l == 2:
+        p[0] = [p[1]]
+    else:
+        p[1].append(p[3])
+        p[0] = p[1]
+
+def p_fcParamListCompl (p):
+    'fcParamListCompl : lBracket fcParamList rBracket'
+    p[0] = p[2]
+
+def p_stmFunctionCall (p):
+    'statement : fcParamListCompl assign name fcParamListCompl semicolon'
+    # look if there is still an entry of that function
+    p[0] = ASTinstructionFunctionCall(p.lineno(1) ,p.lexpos(1), p[3], p[1], p[4])
+
+# 3.2.7 comment
+def p_stmComment (p):
+    'statement : comment'
+    p[0] = ASTcomment(p.lineno(1) ,p.lexpos(1), p[1])
+
+# 3.2.8 variable operations
+def p_stmVariableOperation (p):
+    'statement : name lBracket operationParamList rBracket semicolon'
+    p[0] = ASTvariableOperation(p.lineno(1) ,p.lexpos(1), p[1],p[3])
+
+def p_operationParamList (p):
+    """operationParamList :
+        | name assign exp
+        | operationParamList comma name assign exp
+    """ 
+    l = len(p)
+    if l <= 1:
+        p[0] = {}
+    elif l == 4:
+        p[0] = {p[1] : p[3]}
+    else:
+        p[1][p[3]] = p[5]
+        p[0] = p[1]
+
+def p_checkButtonPressed (p):
+    'statement : checkButtonPressed lSoftBrace var rSoftBrace lBrace statements rBrace'
+    instrCheckBP = ASTinstruction(p.lineno(1) ,p.lexpos(1), 'uiCheckButtonPressed', [p[3]])
+    p[0] = ASTConditionalBlock(p.lineno(1) ,p.lexpos(1), instrCheckBP ,p[6], None, False, None)
+
+def p_update (p):
+    'statement : update lSoftBrace var rSoftBrace semicolon'
+    p[0] = ASTinstruction(p.lineno(1) ,p.lexpos(1), 'update', [p[3]])

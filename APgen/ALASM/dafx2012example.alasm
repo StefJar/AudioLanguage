@@ -1,0 +1,23 @@
+function dafx2012example
+locals
+{
+	rational 	x				[512];
+	rational	y				[512];	
+	biquad		upperVoiceBQ	[8];
+}
+code
+{
+	initBiquadAsHP 0,48000.0,90.0,upperVoiceBQ;
+	initBiquadAsHP 1,48000.0,90.0,upperVoiceBQ;
+	initBiquadAsHP 2,48000.0,90.0,upperVoiceBQ;
+	initBiquadAsHP 3,48000.0,90.0,upperVoiceBQ;
+	initBiquadAsLP 4,48000.0,1000.0,upperVoiceBQ;
+	initBiquadAsLP 5,48000.0,1000.0,upperVoiceBQ;
+	initBiquadAsLP 6,48000.0,1000.0,upperVoiceBQ;
+	initBiquadAsLP 7,48000.0,1000.0,upperVoiceBQ;
+		
+	readSampleFrame 1,x;
+	convoluteVectorBiquad x, upperVoiceBQ, y;
+	writeSampleFrame 2,y;
+	jump -3;
+}

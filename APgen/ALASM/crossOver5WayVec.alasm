@@ -1,0 +1,64 @@
+function crossOver5WayVec
+locals
+{
+	rational 	x[256];
+	rational	y_bypass[256];
+	rational	y_subbass[256];
+	rational	y_lowerVoice[256];
+	rational	y_upperVoice[256];
+	rational	y_harmonics[256];
+	
+	biquad		subBassBQ 		[4];
+	delay		subBassD		[8];
+	
+	biquad		lowerVoiceBQ	[8];
+	
+	biquad		upperVoiceBQ	[8];
+	
+	delay		harmonicsD		[8];
+	biquad		harmonicsBQ		[4];
+}
+code
+{
+	initBiquadAsLP 0,44100.0,120.0,subBassBQ;
+	initBiquadAsLP 1,44100.0,120.0,subBassBQ;
+	initBiquadAsLP 2,44100.0,120.0,subBassBQ;
+	initBiquadAsLP 3,44100.0,120.0,subBassBQ;
+	
+	initBiquadAsHP 0,44100.0,90.0,lowerVoiceBQ;
+	initBiquadAsHP 1,44100.0,90.0,lowerVoiceBQ;
+	initBiquadAsHP 2,44100.0,90.0,lowerVoiceBQ;	
+	initBiquadAsHP 3,44100.0,90.0,lowerVoiceBQ;
+	initBiquadAsLP 4,44100.0,1000.0,lowerVoiceBQ;
+	initBiquadAsLP 5,44100.0,1000.0,lowerVoiceBQ;
+	initBiquadAsLP 6,44100.0,1000.0,lowerVoiceBQ;
+	initBiquadAsLP 7,44100.0,1000.0,lowerVoiceBQ;
+	
+	initBiquadAsHP 0,44100.0,800.0,upperVoiceBQ;
+	initBiquadAsHP 1,44100.0,800.0,upperVoiceBQ;
+	initBiquadAsHP 2,44100.0,800.0,upperVoiceBQ;
+	initBiquadAsHP 3,44100.0,800.0,upperVoiceBQ;
+	initBiquadAsLP 4,44100.0,8000.0,upperVoiceBQ;
+	initBiquadAsLP 5,44100.0,8000.0,upperVoiceBQ;
+	initBiquadAsLP 6,44100.0,8000.0,upperVoiceBQ;
+	initBiquadAsLP 7,44100.0,8000.0,upperVoiceBQ;
+	
+	initBiquadAsHP 0,44100.0,6000.0,harmonicsBQ;
+	initBiquadAsHP 1,44100.0,6000.0,harmonicsBQ;
+	initBiquadAsHP 2,44100.0,6000.0,harmonicsBQ;
+	initBiquadAsHP 3,44100.0,6000.0,harmonicsBQ;
+	
+	readSampleFrame 1,x;
+	shiftVectorDelay x,subBassD,y_subbass;
+	convoluteVectorBiquad y_subbass,subBassBQ,y_subbass;
+	convoluteVectorBiquad x, lowerVoiceBQ, y_lowerVoice;
+	convoluteVectorBiquad x, upperVoiceBQ, y_upperVoice;
+	convoluteVectorBiquad x, harmonicsBQ, y_harmonics;
+	shiftVectorDelay y_harmonics,harmonicsD,y_harmonics;
+	writeSampleFrame 2,x;
+	writeSampleFrame 3,y_subbass;
+	writeSampleFrame 4,y_lowerVoice;
+	writeSampleFrame 5,y_upperVoice;
+	writeSampleFrame 6,y_harmonics;
+	jump -12;
+}

@@ -1,0 +1,8 @@
+function infiniteLoop
+locals
+{
+}
+code
+{
+	jump 0;
+}

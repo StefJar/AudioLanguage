@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<APGen>
+
+<files>
+	<headerTemplate>templ/headerTempl.h</headerTemplate>
+	<implementationTemplate>templ/implTempl.c</implementationTemplate>
+	<APbluePrints>
+		<APBPsingleThread>templ/APbluePrintSingleThread.c</APBPsingleThread>
+		<APBPmultiThread>templ/APbluePrintMultiThread.c</APBPmultiThread>
+	</APbluePrints>
+	<APstartUpTemplate>templ/mainTempl.c</APstartUpTemplate>
+</files>
+
+
+</APGen>

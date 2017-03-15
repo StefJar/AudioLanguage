@@ -1,0 +1,3532 @@
+Created by PLY version 3.4 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    arrowRight
+    arrowLeft
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> <empty>
+Rule 2     start -> startElements
+Rule 3     startElements -> startEle
+Rule 4     startElements -> startElements startEle
+Rule 5     startEle -> comment
+Rule 6     startEle -> global lBrace varDeclList rBrace
+Rule 7     startEle -> typedef name lBrace varDeclList rBrace
+Rule 8     startEle -> function name lBrace interfaceVarListStm localVarListStm codeListStm rBrace
+Rule 9     startEle -> main lSoftBrace name rSoftBrace lBrace localVarListStm codeListStm rBrace
+Rule 10    varDeclList -> <empty>
+Rule 11    varDeclList -> varDeclListElementL
+Rule 12    varDeclListElementL -> varDecl
+Rule 13    varDeclListElementL -> varDeclListElementL varDecl
+Rule 14    varDecl -> name name semicolon
+Rule 15    varDecl -> name name lBracket iNumber rBracket semicolon
+Rule 16    varDecl -> comment
+Rule 17    interfaceVarListStm -> interface lBrace interfaceVarListDeclList rBrace
+Rule 18    interfaceVarListDeclList -> <empty>
+Rule 19    interfaceVarListDeclList -> interfaceVarListDeclL
+Rule 20    interfaceVarListDeclL -> interfaceVarListDecl
+Rule 21    interfaceVarListDeclL -> interfaceVarListDeclL interfaceVarListDecl
+Rule 22    interfaceVarListDecl -> name name name semicolon
+Rule 23    interfaceVarListDecl -> name name name lBracket iNumber rBracket semicolon
+Rule 24    interfaceVarListDecl -> comment
+Rule 25    localVarListStm -> local lBrace varDeclList rBrace
+Rule 26    codeListStm -> code lBrace instrStatementList rBrace
+Rule 27    instrStatementList -> <empty>
+Rule 28    instrStatementList -> instrStatementListL
+Rule 29    instrStatementListL -> statement
+Rule 30    instrStatementListL -> instrStatementListL statement
+Rule 31    var -> varDef
+Rule 32    var -> varDef lBracket iNumber rBracket
+Rule 33    varDef -> name subVarVals
+Rule 34    subVarVals -> <empty>
+Rule 35    subVarVals -> varSubValuesList
+Rule 36    varSubValuesList -> point name
+Rule 37    varSubValuesList -> varSubValuesList point name
+Rule 38    constINumber -> iNumber
+Rule 39    constFNumber -> fNumber
+Rule 40    constString -> string
+Rule 41    const -> constINumber
+Rule 42    const -> constFNumber
+Rule 43    const -> constString
+Rule 44    argument -> var
+Rule 45    argument -> const
+Rule 46    statement -> var assign argument add argument semicolon
+Rule 47    statement -> var assign argument sub argument semicolon
+Rule 48    statement -> var assign argument mul argument semicolon
+Rule 49    statement -> var assign argument div argument semicolon
+Rule 50    statement -> var assign argument mod argument semicolon
+Rule 51    statement -> var inc semicolon
+Rule 52    statement -> var dec semicolon
+Rule 53    statement -> var addAssign argument semicolon
+Rule 54    statement -> var assign argument semicolon
+Rule 55    expb -> not argument
+Rule 56    expb -> argument nEqual argument
+Rule 57    expb -> argument equal argument
+Rule 58    expb -> argument less argument
+Rule 59    expb -> argument lessEqual argument
+Rule 60    expb -> argument greater argument
+Rule 61    expb -> argument greaterEqual argument
+Rule 62    statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+Rule 63    statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace
+Rule 64    statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+Rule 65    statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+Rule 66    statement -> while lBracket expb rBracket lBrace instrStatementListL rBrace
+Rule 67    statement -> while lBracket rBracket lBrace instrStatementListL rBrace
+Rule 68    statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+Rule 69    fcParamListCompl -> <empty>
+Rule 70    fcParamListCompl -> fcParamList
+Rule 71    fcParamList -> argument
+Rule 72    fcParamList -> fcParamList comma argument
+Rule 73    statement -> comment
+Rule 74    statement -> name lBracket operationParamListL rBracket semicolon
+Rule 75    operationParamListL -> <empty>
+Rule 76    operationParamListL -> operationParamList
+Rule 77    operationParamList -> name assign argument
+Rule 78    operationParamList -> operationParamList comma name assign argument
+Rule 79    statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+Rule 80    statement -> update lSoftBrace var rSoftBrace semicolon
+
+Terminals, with rules where they appear
+
+add                  : 46
+addAssign            : 53
+arrowLeft            : 
+arrowRight           : 
+assign               : 46 47 48 49 50 54 68 77 78
+checkButtonPressed   : 79
+code                 : 26
+comma                : 72 78
+comment              : 5 16 24 73
+dec                  : 52
+div                  : 49
+else                 : 62
+equal                : 57
+error                : 
+fNumber              : 39
+for                  : 64 65
+function             : 8
+global               : 6
+greater              : 60
+greaterEqual         : 61
+iNumber              : 15 23 32 38
+if                   : 62 63
+inc                  : 51
+interface            : 17
+lBrace               : 6 7 8 9 17 25 26 62 62 63 64 65 66 67 79
+lBracket             : 15 23 32 62 63 64 65 66 67 68 68 74
+lSoftBrace           : 9 79 80
+less                 : 58
+lessEqual            : 59
+local                : 25
+main                 : 9
+mod                  : 50
+mul                  : 48
+nEqual               : 56
+name                 : 7 8 9 14 14 15 15 22 22 22 23 23 23 33 36 37 68 74 77 78
+not                  : 55
+point                : 36 37
+rBrace               : 6 7 8 9 17 25 26 62 62 63 64 65 66 67 79
+rBracket             : 15 23 32 62 63 64 65 66 67 68 68 74
+rSoftBrace           : 9 79 80
+semicolon            : 14 15 22 23 46 47 48 49 50 51 52 53 54 64 65 65 68 74 80
+string               : 40
+sub                  : 47
+typedef              : 7
+update               : 80
+while                : 66 67
+
+Nonterminals, with rules where they appear
+
+argument             : 46 46 47 47 48 48 49 49 50 50 53 54 55 56 56 57 57 58 58 59 59 60 60 61 61 71 72 77 78
+codeListStm          : 8 9
+const                : 45
+constFNumber         : 42
+constINumber         : 41
+constString          : 43
+expb                 : 62 63 64 66
+fcParamList          : 70 72
+fcParamListCompl     : 68 68
+instrStatementList   : 26
+instrStatementListL  : 28 30 62 62 63 64 65 66 67 79
+interfaceVarListDecl : 20 21
+interfaceVarListDeclL : 19 21
+interfaceVarListDeclList : 17
+interfaceVarListStm  : 8
+localVarListStm      : 8 9
+operationParamList   : 76 78
+operationParamListL  : 74
+start                : 0
+startEle             : 3 4
+startElements        : 2 4
+statement            : 29 30 64 64
+subVarVals           : 33
+var                  : 44 46 47 48 49 50 51 52 53 54 79 80
+varDecl              : 12 13
+varDeclList          : 6 7 25
+varDeclListElementL  : 11 13
+varDef               : 31 32
+varSubValuesList     : 35 37
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> .
+    (2) start -> . startElements
+    (3) startElements -> . startEle
+    (4) startElements -> . startElements startEle
+    (5) startEle -> . comment
+    (6) startEle -> . global lBrace varDeclList rBrace
+    (7) startEle -> . typedef name lBrace varDeclList rBrace
+    (8) startEle -> . function name lBrace interfaceVarListStm localVarListStm codeListStm rBrace
+    (9) startEle -> . main lSoftBrace name rSoftBrace lBrace localVarListStm codeListStm rBrace
+
+    $end            reduce using rule 1 (start -> .)
+    comment         shift and go to state 1
+    global          shift and go to state 5
+    typedef         shift and go to state 3
+    function        shift and go to state 2
+    main            shift and go to state 8
+
+    startElements                  shift and go to state 4
+    start                          shift and go to state 6
+    startEle                       shift and go to state 7
+
+state 1
+
+    (5) startEle -> comment .
+
+    comment         reduce using rule 5 (startEle -> comment .)
+    global          reduce using rule 5 (startEle -> comment .)
+    typedef         reduce using rule 5 (startEle -> comment .)
+    function        reduce using rule 5 (startEle -> comment .)
+    main            reduce using rule 5 (startEle -> comment .)
+    $end            reduce using rule 5 (startEle -> comment .)
+
+
+state 2
+
+    (8) startEle -> function . name lBrace interfaceVarListStm localVarListStm codeListStm rBrace
+
+    name            shift and go to state 9
+
+
+state 3
+
+    (7) startEle -> typedef . name lBrace varDeclList rBrace
+
+    name            shift and go to state 10
+
+
+state 4
+
+    (2) start -> startElements .
+    (4) startElements -> startElements . startEle
+    (5) startEle -> . comment
+    (6) startEle -> . global lBrace varDeclList rBrace
+    (7) startEle -> . typedef name lBrace varDeclList rBrace
+    (8) startEle -> . function name lBrace interfaceVarListStm localVarListStm codeListStm rBrace
+    (9) startEle -> . main lSoftBrace name rSoftBrace lBrace localVarListStm codeListStm rBrace
+
+    $end            reduce using rule 2 (start -> startElements .)
+    comment         shift and go to state 1
+    global          shift and go to state 5
+    typedef         shift and go to state 3
+    function        shift and go to state 2
+    main            shift and go to state 8
+
+    startEle                       shift and go to state 11
+
+state 5
+
+    (6) startEle -> global . lBrace varDeclList rBrace
+
+    lBrace          shift and go to state 12
+
+
+state 6
+
+    (0) S' -> start .
+
+
+
+state 7
+
+    (3) startElements -> startEle .
+
+    comment         reduce using rule 3 (startElements -> startEle .)
+    global          reduce using rule 3 (startElements -> startEle .)
+    typedef         reduce using rule 3 (startElements -> startEle .)
+    function        reduce using rule 3 (startElements -> startEle .)
+    main            reduce using rule 3 (startElements -> startEle .)
+    $end            reduce using rule 3 (startElements -> startEle .)
+
+
+state 8
+
+    (9) startEle -> main . lSoftBrace name rSoftBrace lBrace localVarListStm codeListStm rBrace
+
+    lSoftBrace      shift and go to state 13
+
+
+state 9
+
+    (8) startEle -> function name . lBrace interfaceVarListStm localVarListStm codeListStm rBrace
+
+    lBrace          shift and go to state 14
+
+
+state 10
+
+    (7) startEle -> typedef name . lBrace varDeclList rBrace
+
+    lBrace          shift and go to state 15
+
+
+state 11
+
+    (4) startElements -> startElements startEle .
+
+    comment         reduce using rule 4 (startElements -> startElements startEle .)
+    global          reduce using rule 4 (startElements -> startElements startEle .)
+    typedef         reduce using rule 4 (startElements -> startElements startEle .)
+    function        reduce using rule 4 (startElements -> startElements startEle .)
+    main            reduce using rule 4 (startElements -> startElements startEle .)
+    $end            reduce using rule 4 (startElements -> startElements startEle .)
+
+
+state 12
+
+    (6) startEle -> global lBrace . varDeclList rBrace
+    (10) varDeclList -> .
+    (11) varDeclList -> . varDeclListElementL
+    (12) varDeclListElementL -> . varDecl
+    (13) varDeclListElementL -> . varDeclListElementL varDecl
+    (14) varDecl -> . name name semicolon
+    (15) varDecl -> . name name lBracket iNumber rBracket semicolon
+    (16) varDecl -> . comment
+
+    rBrace          reduce using rule 10 (varDeclList -> .)
+    name            shift and go to state 20
+    comment         shift and go to state 16
+
+    varDeclListElementL            shift and go to state 18
+    varDecl                        shift and go to state 17
+    varDeclList                    shift and go to state 19
+
+state 13
+
+    (9) startEle -> main lSoftBrace . name rSoftBrace lBrace localVarListStm codeListStm rBrace
+
+    name            shift and go to state 21
+
+
+state 14
+
+    (8) startEle -> function name lBrace . interfaceVarListStm localVarListStm codeListStm rBrace
+    (17) interfaceVarListStm -> . interface lBrace interfaceVarListDeclList rBrace
+
+    interface       shift and go to state 22
+
+    interfaceVarListStm            shift and go to state 23
+
+state 15
+
+    (7) startEle -> typedef name lBrace . varDeclList rBrace
+    (10) varDeclList -> .
+    (11) varDeclList -> . varDeclListElementL
+    (12) varDeclListElementL -> . varDecl
+    (13) varDeclListElementL -> . varDeclListElementL varDecl
+    (14) varDecl -> . name name semicolon
+    (15) varDecl -> . name name lBracket iNumber rBracket semicolon
+    (16) varDecl -> . comment
+
+    rBrace          reduce using rule 10 (varDeclList -> .)
+    name            shift and go to state 20
+    comment         shift and go to state 16
+
+    varDeclListElementL            shift and go to state 18
+    varDecl                        shift and go to state 17
+    varDeclList                    shift and go to state 24
+
+state 16
+
+    (16) varDecl -> comment .
+
+    name            reduce using rule 16 (varDecl -> comment .)
+    comment         reduce using rule 16 (varDecl -> comment .)
+    rBrace          reduce using rule 16 (varDecl -> comment .)
+
+
+state 17
+
+    (12) varDeclListElementL -> varDecl .
+
+    name            reduce using rule 12 (varDeclListElementL -> varDecl .)
+    comment         reduce using rule 12 (varDeclListElementL -> varDecl .)
+    rBrace          reduce using rule 12 (varDeclListElementL -> varDecl .)
+
+
+state 18
+
+    (11) varDeclList -> varDeclListElementL .
+    (13) varDeclListElementL -> varDeclListElementL . varDecl
+    (14) varDecl -> . name name semicolon
+    (15) varDecl -> . name name lBracket iNumber rBracket semicolon
+    (16) varDecl -> . comment
+
+    rBrace          reduce using rule 11 (varDeclList -> varDeclListElementL .)
+    name            shift and go to state 20
+    comment         shift and go to state 16
+
+    varDecl                        shift and go to state 25
+
+state 19
+
+    (6) startEle -> global lBrace varDeclList . rBrace
+
+    rBrace          shift and go to state 26
+
+
+state 20
+
+    (14) varDecl -> name . name semicolon
+    (15) varDecl -> name . name lBracket iNumber rBracket semicolon
+
+    name            shift and go to state 27
+
+
+state 21
+
+    (9) startEle -> main lSoftBrace name . rSoftBrace lBrace localVarListStm codeListStm rBrace
+
+    rSoftBrace      shift and go to state 28
+
+
+state 22
+
+    (17) interfaceVarListStm -> interface . lBrace interfaceVarListDeclList rBrace
+
+    lBrace          shift and go to state 29
+
+
+state 23
+
+    (8) startEle -> function name lBrace interfaceVarListStm . localVarListStm codeListStm rBrace
+    (25) localVarListStm -> . local lBrace varDeclList rBrace
+
+    local           shift and go to state 31
+
+    localVarListStm                shift and go to state 30
+
+state 24
+
+    (7) startEle -> typedef name lBrace varDeclList . rBrace
+
+    rBrace          shift and go to state 32
+
+
+state 25
+
+    (13) varDeclListElementL -> varDeclListElementL varDecl .
+
+    name            reduce using rule 13 (varDeclListElementL -> varDeclListElementL varDecl .)
+    comment         reduce using rule 13 (varDeclListElementL -> varDeclListElementL varDecl .)
+    rBrace          reduce using rule 13 (varDeclListElementL -> varDeclListElementL varDecl .)
+
+
+state 26
+
+    (6) startEle -> global lBrace varDeclList rBrace .
+
+    comment         reduce using rule 6 (startEle -> global lBrace varDeclList rBrace .)
+    global          reduce using rule 6 (startEle -> global lBrace varDeclList rBrace .)
+    typedef         reduce using rule 6 (startEle -> global lBrace varDeclList rBrace .)
+    function        reduce using rule 6 (startEle -> global lBrace varDeclList rBrace .)
+    main            reduce using rule 6 (startEle -> global lBrace varDeclList rBrace .)
+    $end            reduce using rule 6 (startEle -> global lBrace varDeclList rBrace .)
+
+
+state 27
+
+    (14) varDecl -> name name . semicolon
+    (15) varDecl -> name name . lBracket iNumber rBracket semicolon
+
+    semicolon       shift and go to state 34
+    lBracket        shift and go to state 33
+
+
+state 28
+
+    (9) startEle -> main lSoftBrace name rSoftBrace . lBrace localVarListStm codeListStm rBrace
+
+    lBrace          shift and go to state 35
+
+
+state 29
+
+    (17) interfaceVarListStm -> interface lBrace . interfaceVarListDeclList rBrace
+    (18) interfaceVarListDeclList -> .
+    (19) interfaceVarListDeclList -> . interfaceVarListDeclL
+    (20) interfaceVarListDeclL -> . interfaceVarListDecl
+    (21) interfaceVarListDeclL -> . interfaceVarListDeclL interfaceVarListDecl
+    (22) interfaceVarListDecl -> . name name name semicolon
+    (23) interfaceVarListDecl -> . name name name lBracket iNumber rBracket semicolon
+    (24) interfaceVarListDecl -> . comment
+
+    rBrace          reduce using rule 18 (interfaceVarListDeclList -> .)
+    name            shift and go to state 40
+    comment         shift and go to state 36
+
+    interfaceVarListDecl           shift and go to state 37
+    interfaceVarListDeclList       shift and go to state 38
+    interfaceVarListDeclL          shift and go to state 39
+
+state 30
+
+    (8) startEle -> function name lBrace interfaceVarListStm localVarListStm . codeListStm rBrace
+    (26) codeListStm -> . code lBrace instrStatementList rBrace
+
+    code            shift and go to state 42
+
+    codeListStm                    shift and go to state 41
+
+state 31
+
+    (25) localVarListStm -> local . lBrace varDeclList rBrace
+
+    lBrace          shift and go to state 43
+
+
+state 32
+
+    (7) startEle -> typedef name lBrace varDeclList rBrace .
+
+    comment         reduce using rule 7 (startEle -> typedef name lBrace varDeclList rBrace .)
+    global          reduce using rule 7 (startEle -> typedef name lBrace varDeclList rBrace .)
+    typedef         reduce using rule 7 (startEle -> typedef name lBrace varDeclList rBrace .)
+    function        reduce using rule 7 (startEle -> typedef name lBrace varDeclList rBrace .)
+    main            reduce using rule 7 (startEle -> typedef name lBrace varDeclList rBrace .)
+    $end            reduce using rule 7 (startEle -> typedef name lBrace varDeclList rBrace .)
+
+
+state 33
+
+    (15) varDecl -> name name lBracket . iNumber rBracket semicolon
+
+    iNumber         shift and go to state 44
+
+
+state 34
+
+    (14) varDecl -> name name semicolon .
+
+    name            reduce using rule 14 (varDecl -> name name semicolon .)
+    comment         reduce using rule 14 (varDecl -> name name semicolon .)
+    rBrace          reduce using rule 14 (varDecl -> name name semicolon .)
+
+
+state 35
+
+    (9) startEle -> main lSoftBrace name rSoftBrace lBrace . localVarListStm codeListStm rBrace
+    (25) localVarListStm -> . local lBrace varDeclList rBrace
+
+    local           shift and go to state 31
+
+    localVarListStm                shift and go to state 45
+
+state 36
+
+    (24) interfaceVarListDecl -> comment .
+
+    name            reduce using rule 24 (interfaceVarListDecl -> comment .)
+    comment         reduce using rule 24 (interfaceVarListDecl -> comment .)
+    rBrace          reduce using rule 24 (interfaceVarListDecl -> comment .)
+
+
+state 37
+
+    (20) interfaceVarListDeclL -> interfaceVarListDecl .
+
+    name            reduce using rule 20 (interfaceVarListDeclL -> interfaceVarListDecl .)
+    comment         reduce using rule 20 (interfaceVarListDeclL -> interfaceVarListDecl .)
+    rBrace          reduce using rule 20 (interfaceVarListDeclL -> interfaceVarListDecl .)
+
+
+state 38
+
+    (17) interfaceVarListStm -> interface lBrace interfaceVarListDeclList . rBrace
+
+    rBrace          shift and go to state 46
+
+
+state 39
+
+    (19) interfaceVarListDeclList -> interfaceVarListDeclL .
+    (21) interfaceVarListDeclL -> interfaceVarListDeclL . interfaceVarListDecl
+    (22) interfaceVarListDecl -> . name name name semicolon
+    (23) interfaceVarListDecl -> . name name name lBracket iNumber rBracket semicolon
+    (24) interfaceVarListDecl -> . comment
+
+    rBrace          reduce using rule 19 (interfaceVarListDeclList -> interfaceVarListDeclL .)
+    name            shift and go to state 40
+    comment         shift and go to state 36
+
+    interfaceVarListDecl           shift and go to state 47
+
+state 40
+
+    (22) interfaceVarListDecl -> name . name name semicolon
+    (23) interfaceVarListDecl -> name . name name lBracket iNumber rBracket semicolon
+
+    name            shift and go to state 48
+
+
+state 41
+
+    (8) startEle -> function name lBrace interfaceVarListStm localVarListStm codeListStm . rBrace
+
+    rBrace          shift and go to state 49
+
+
+state 42
+
+    (26) codeListStm -> code . lBrace instrStatementList rBrace
+
+    lBrace          shift and go to state 50
+
+
+state 43
+
+    (25) localVarListStm -> local lBrace . varDeclList rBrace
+    (10) varDeclList -> .
+    (11) varDeclList -> . varDeclListElementL
+    (12) varDeclListElementL -> . varDecl
+    (13) varDeclListElementL -> . varDeclListElementL varDecl
+    (14) varDecl -> . name name semicolon
+    (15) varDecl -> . name name lBracket iNumber rBracket semicolon
+    (16) varDecl -> . comment
+
+    rBrace          reduce using rule 10 (varDeclList -> .)
+    name            shift and go to state 20
+    comment         shift and go to state 16
+
+    varDeclListElementL            shift and go to state 18
+    varDecl                        shift and go to state 17
+    varDeclList                    shift and go to state 51
+
+state 44
+
+    (15) varDecl -> name name lBracket iNumber . rBracket semicolon
+
+    rBracket        shift and go to state 52
+
+
+state 45
+
+    (9) startEle -> main lSoftBrace name rSoftBrace lBrace localVarListStm . codeListStm rBrace
+    (26) codeListStm -> . code lBrace instrStatementList rBrace
+
+    code            shift and go to state 42
+
+    codeListStm                    shift and go to state 53
+
+state 46
+
+    (17) interfaceVarListStm -> interface lBrace interfaceVarListDeclList rBrace .
+
+    local           reduce using rule 17 (interfaceVarListStm -> interface lBrace interfaceVarListDeclList rBrace .)
+
+
+state 47
+
+    (21) interfaceVarListDeclL -> interfaceVarListDeclL interfaceVarListDecl .
+
+    name            reduce using rule 21 (interfaceVarListDeclL -> interfaceVarListDeclL interfaceVarListDecl .)
+    comment         reduce using rule 21 (interfaceVarListDeclL -> interfaceVarListDeclL interfaceVarListDecl .)
+    rBrace          reduce using rule 21 (interfaceVarListDeclL -> interfaceVarListDeclL interfaceVarListDecl .)
+
+
+state 48
+
+    (22) interfaceVarListDecl -> name name . name semicolon
+    (23) interfaceVarListDecl -> name name . name lBracket iNumber rBracket semicolon
+
+    name            shift and go to state 54
+
+
+state 49
+
+    (8) startEle -> function name lBrace interfaceVarListStm localVarListStm codeListStm rBrace .
+
+    comment         reduce using rule 8 (startEle -> function name lBrace interfaceVarListStm localVarListStm codeListStm rBrace .)
+    global          reduce using rule 8 (startEle -> function name lBrace interfaceVarListStm localVarListStm codeListStm rBrace .)
+    typedef         reduce using rule 8 (startEle -> function name lBrace interfaceVarListStm localVarListStm codeListStm rBrace .)
+    function        reduce using rule 8 (startEle -> function name lBrace interfaceVarListStm localVarListStm codeListStm rBrace .)
+    main            reduce using rule 8 (startEle -> function name lBrace interfaceVarListStm localVarListStm codeListStm rBrace .)
+    $end            reduce using rule 8 (startEle -> function name lBrace interfaceVarListStm localVarListStm codeListStm rBrace .)
+
+
+state 50
+
+    (26) codeListStm -> code lBrace . instrStatementList rBrace
+    (27) instrStatementList -> .
+    (28) instrStatementList -> . instrStatementListL
+    (29) instrStatementListL -> . statement
+    (30) instrStatementListL -> . instrStatementListL statement
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    rBrace          reduce using rule 27 (instrStatementList -> .)
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    instrStatementListL            shift and go to state 63
+    varDef                         shift and go to state 65
+    instrStatementList             shift and go to state 56
+    statement                      shift and go to state 60
+    var                            shift and go to state 61
+
+state 51
+
+    (25) localVarListStm -> local lBrace varDeclList . rBrace
+
+    rBrace          shift and go to state 68
+
+
+state 52
+
+    (15) varDecl -> name name lBracket iNumber rBracket . semicolon
+
+    semicolon       shift and go to state 69
+
+
+state 53
+
+    (9) startEle -> main lSoftBrace name rSoftBrace lBrace localVarListStm codeListStm . rBrace
+
+    rBrace          shift and go to state 70
+
+
+state 54
+
+    (22) interfaceVarListDecl -> name name name . semicolon
+    (23) interfaceVarListDecl -> name name name . lBracket iNumber rBracket semicolon
+
+    semicolon       shift and go to state 72
+    lBracket        shift and go to state 71
+
+
+state 55
+
+    (73) statement -> comment .
+
+    rBrace          reduce using rule 73 (statement -> comment .)
+    if              reduce using rule 73 (statement -> comment .)
+    for             reduce using rule 73 (statement -> comment .)
+    while           reduce using rule 73 (statement -> comment .)
+    lBracket        reduce using rule 73 (statement -> comment .)
+    comment         reduce using rule 73 (statement -> comment .)
+    name            reduce using rule 73 (statement -> comment .)
+    checkButtonPressed reduce using rule 73 (statement -> comment .)
+    update          reduce using rule 73 (statement -> comment .)
+    not             reduce using rule 73 (statement -> comment .)
+    iNumber         reduce using rule 73 (statement -> comment .)
+    fNumber         reduce using rule 73 (statement -> comment .)
+    string          reduce using rule 73 (statement -> comment .)
+    rBracket        reduce using rule 73 (statement -> comment .)
+
+
+state 56
+
+    (26) codeListStm -> code lBrace instrStatementList . rBrace
+
+    rBrace          shift and go to state 73
+
+
+state 57
+
+    (64) statement -> for . lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> for . lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+
+    lBracket        shift and go to state 74
+
+
+state 58
+
+    (74) statement -> name . lBracket operationParamListL rBracket semicolon
+    (33) varDef -> name . subVarVals
+    (34) subVarVals -> .
+    (35) subVarVals -> . varSubValuesList
+    (36) varSubValuesList -> . point name
+    (37) varSubValuesList -> . varSubValuesList point name
+
+  ! shift/reduce conflict for lBracket resolved as shift
+    lBracket        shift and go to state 76
+    assign          reduce using rule 34 (subVarVals -> .)
+    inc             reduce using rule 34 (subVarVals -> .)
+    dec             reduce using rule 34 (subVarVals -> .)
+    addAssign       reduce using rule 34 (subVarVals -> .)
+    point           shift and go to state 75
+
+  ! lBracket        [ reduce using rule 34 (subVarVals -> .) ]
+
+    varSubValuesList               shift and go to state 77
+    subVarVals                     shift and go to state 78
+
+state 59
+
+    (68) statement -> lBracket . fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (69) fcParamListCompl -> .
+    (70) fcParamListCompl -> . fcParamList
+    (71) fcParamList -> . argument
+    (72) fcParamList -> . fcParamList comma argument
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    rBracket        reduce using rule 69 (fcParamListCompl -> .)
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 85
+    varDef                         shift and go to state 65
+    fcParamListCompl               shift and go to state 86
+    var                            shift and go to state 88
+    fcParamList                    shift and go to state 82
+
+state 60
+
+    (29) instrStatementListL -> statement .
+
+    rBrace          reduce using rule 29 (instrStatementListL -> statement .)
+    if              reduce using rule 29 (instrStatementListL -> statement .)
+    for             reduce using rule 29 (instrStatementListL -> statement .)
+    while           reduce using rule 29 (instrStatementListL -> statement .)
+    lBracket        reduce using rule 29 (instrStatementListL -> statement .)
+    comment         reduce using rule 29 (instrStatementListL -> statement .)
+    name            reduce using rule 29 (instrStatementListL -> statement .)
+    checkButtonPressed reduce using rule 29 (instrStatementListL -> statement .)
+    update          reduce using rule 29 (instrStatementListL -> statement .)
+
+
+state 61
+
+    (46) statement -> var . assign argument add argument semicolon
+    (47) statement -> var . assign argument sub argument semicolon
+    (48) statement -> var . assign argument mul argument semicolon
+    (49) statement -> var . assign argument div argument semicolon
+    (50) statement -> var . assign argument mod argument semicolon
+    (51) statement -> var . inc semicolon
+    (52) statement -> var . dec semicolon
+    (53) statement -> var . addAssign argument semicolon
+    (54) statement -> var . assign argument semicolon
+
+    assign          shift and go to state 94
+    inc             shift and go to state 93
+    dec             shift and go to state 91
+    addAssign       shift and go to state 92
+
+
+state 62
+
+    (62) statement -> if . lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> if . lBracket expb rBracket lBrace instrStatementListL rBrace
+
+    lBracket        shift and go to state 95
+
+
+state 63
+
+    (28) instrStatementList -> instrStatementListL .
+    (30) instrStatementListL -> instrStatementListL . statement
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    rBrace          reduce using rule 28 (instrStatementList -> instrStatementListL .)
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 96
+    var                            shift and go to state 61
+
+state 64
+
+    (80) statement -> update . lSoftBrace var rSoftBrace semicolon
+
+    lSoftBrace      shift and go to state 97
+
+
+state 65
+
+    (31) var -> varDef .
+    (32) var -> varDef . lBracket iNumber rBracket
+
+    assign          reduce using rule 31 (var -> varDef .)
+    inc             reduce using rule 31 (var -> varDef .)
+    dec             reduce using rule 31 (var -> varDef .)
+    addAssign       reduce using rule 31 (var -> varDef .)
+    rSoftBrace      reduce using rule 31 (var -> varDef .)
+    rBracket        reduce using rule 31 (var -> varDef .)
+    semicolon       reduce using rule 31 (var -> varDef .)
+    comma           reduce using rule 31 (var -> varDef .)
+    nEqual          reduce using rule 31 (var -> varDef .)
+    equal           reduce using rule 31 (var -> varDef .)
+    less            reduce using rule 31 (var -> varDef .)
+    lessEqual       reduce using rule 31 (var -> varDef .)
+    greater         reduce using rule 31 (var -> varDef .)
+    greaterEqual    reduce using rule 31 (var -> varDef .)
+    add             reduce using rule 31 (var -> varDef .)
+    sub             reduce using rule 31 (var -> varDef .)
+    mul             reduce using rule 31 (var -> varDef .)
+    div             reduce using rule 31 (var -> varDef .)
+    mod             reduce using rule 31 (var -> varDef .)
+    lBracket        shift and go to state 98
+
+
+state 66
+
+    (79) statement -> checkButtonPressed . lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+
+    lSoftBrace      shift and go to state 99
+
+
+state 67
+
+    (66) statement -> while . lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> while . lBracket rBracket lBrace instrStatementListL rBrace
+
+    lBracket        shift and go to state 100
+
+
+state 68
+
+    (25) localVarListStm -> local lBrace varDeclList rBrace .
+
+    code            reduce using rule 25 (localVarListStm -> local lBrace varDeclList rBrace .)
+
+
+state 69
+
+    (15) varDecl -> name name lBracket iNumber rBracket semicolon .
+
+    name            reduce using rule 15 (varDecl -> name name lBracket iNumber rBracket semicolon .)
+    comment         reduce using rule 15 (varDecl -> name name lBracket iNumber rBracket semicolon .)
+    rBrace          reduce using rule 15 (varDecl -> name name lBracket iNumber rBracket semicolon .)
+
+
+state 70
+
+    (9) startEle -> main lSoftBrace name rSoftBrace lBrace localVarListStm codeListStm rBrace .
+
+    comment         reduce using rule 9 (startEle -> main lSoftBrace name rSoftBrace lBrace localVarListStm codeListStm rBrace .)
+    global          reduce using rule 9 (startEle -> main lSoftBrace name rSoftBrace lBrace localVarListStm codeListStm rBrace .)
+    typedef         reduce using rule 9 (startEle -> main lSoftBrace name rSoftBrace lBrace localVarListStm codeListStm rBrace .)
+    function        reduce using rule 9 (startEle -> main lSoftBrace name rSoftBrace lBrace localVarListStm codeListStm rBrace .)
+    main            reduce using rule 9 (startEle -> main lSoftBrace name rSoftBrace lBrace localVarListStm codeListStm rBrace .)
+    $end            reduce using rule 9 (startEle -> main lSoftBrace name rSoftBrace lBrace localVarListStm codeListStm rBrace .)
+
+
+state 71
+
+    (23) interfaceVarListDecl -> name name name lBracket . iNumber rBracket semicolon
+
+    iNumber         shift and go to state 101
+
+
+state 72
+
+    (22) interfaceVarListDecl -> name name name semicolon .
+
+    name            reduce using rule 22 (interfaceVarListDecl -> name name name semicolon .)
+    comment         reduce using rule 22 (interfaceVarListDecl -> name name name semicolon .)
+    rBrace          reduce using rule 22 (interfaceVarListDecl -> name name name semicolon .)
+
+
+state 73
+
+    (26) codeListStm -> code lBrace instrStatementList rBrace .
+
+    rBrace          reduce using rule 26 (codeListStm -> code lBrace instrStatementList rBrace .)
+
+
+state 74
+
+    (64) statement -> for lBracket . statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> for lBracket . semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    semicolon       shift and go to state 102
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 103
+    var                            shift and go to state 61
+
+state 75
+
+    (36) varSubValuesList -> point . name
+
+    name            shift and go to state 104
+
+
+state 76
+
+    (74) statement -> name lBracket . operationParamListL rBracket semicolon
+    (75) operationParamListL -> .
+    (76) operationParamListL -> . operationParamList
+    (77) operationParamList -> . name assign argument
+    (78) operationParamList -> . operationParamList comma name assign argument
+
+    rBracket        reduce using rule 75 (operationParamListL -> .)
+    name            shift and go to state 105
+
+    operationParamList             shift and go to state 107
+    operationParamListL            shift and go to state 106
+
+state 77
+
+    (35) subVarVals -> varSubValuesList .
+    (37) varSubValuesList -> varSubValuesList . point name
+
+    lBracket        reduce using rule 35 (subVarVals -> varSubValuesList .)
+    comma           reduce using rule 35 (subVarVals -> varSubValuesList .)
+    rBracket        reduce using rule 35 (subVarVals -> varSubValuesList .)
+    semicolon       reduce using rule 35 (subVarVals -> varSubValuesList .)
+    add             reduce using rule 35 (subVarVals -> varSubValuesList .)
+    sub             reduce using rule 35 (subVarVals -> varSubValuesList .)
+    mul             reduce using rule 35 (subVarVals -> varSubValuesList .)
+    div             reduce using rule 35 (subVarVals -> varSubValuesList .)
+    mod             reduce using rule 35 (subVarVals -> varSubValuesList .)
+    nEqual          reduce using rule 35 (subVarVals -> varSubValuesList .)
+    equal           reduce using rule 35 (subVarVals -> varSubValuesList .)
+    less            reduce using rule 35 (subVarVals -> varSubValuesList .)
+    lessEqual       reduce using rule 35 (subVarVals -> varSubValuesList .)
+    greater         reduce using rule 35 (subVarVals -> varSubValuesList .)
+    greaterEqual    reduce using rule 35 (subVarVals -> varSubValuesList .)
+    rSoftBrace      reduce using rule 35 (subVarVals -> varSubValuesList .)
+    assign          reduce using rule 35 (subVarVals -> varSubValuesList .)
+    inc             reduce using rule 35 (subVarVals -> varSubValuesList .)
+    dec             reduce using rule 35 (subVarVals -> varSubValuesList .)
+    addAssign       reduce using rule 35 (subVarVals -> varSubValuesList .)
+    point           shift and go to state 108
+
+
+state 78
+
+    (33) varDef -> name subVarVals .
+
+    lBracket        reduce using rule 33 (varDef -> name subVarVals .)
+    rBracket        reduce using rule 33 (varDef -> name subVarVals .)
+    semicolon       reduce using rule 33 (varDef -> name subVarVals .)
+    assign          reduce using rule 33 (varDef -> name subVarVals .)
+    inc             reduce using rule 33 (varDef -> name subVarVals .)
+    dec             reduce using rule 33 (varDef -> name subVarVals .)
+    addAssign       reduce using rule 33 (varDef -> name subVarVals .)
+    comma           reduce using rule 33 (varDef -> name subVarVals .)
+    rSoftBrace      reduce using rule 33 (varDef -> name subVarVals .)
+    nEqual          reduce using rule 33 (varDef -> name subVarVals .)
+    equal           reduce using rule 33 (varDef -> name subVarVals .)
+    less            reduce using rule 33 (varDef -> name subVarVals .)
+    lessEqual       reduce using rule 33 (varDef -> name subVarVals .)
+    greater         reduce using rule 33 (varDef -> name subVarVals .)
+    greaterEqual    reduce using rule 33 (varDef -> name subVarVals .)
+    add             reduce using rule 33 (varDef -> name subVarVals .)
+    sub             reduce using rule 33 (varDef -> name subVarVals .)
+    mul             reduce using rule 33 (varDef -> name subVarVals .)
+    div             reduce using rule 33 (varDef -> name subVarVals .)
+    mod             reduce using rule 33 (varDef -> name subVarVals .)
+
+
+state 79
+
+    (39) constFNumber -> fNumber .
+
+    rBracket        reduce using rule 39 (constFNumber -> fNumber .)
+    semicolon       reduce using rule 39 (constFNumber -> fNumber .)
+    comma           reduce using rule 39 (constFNumber -> fNumber .)
+    nEqual          reduce using rule 39 (constFNumber -> fNumber .)
+    equal           reduce using rule 39 (constFNumber -> fNumber .)
+    less            reduce using rule 39 (constFNumber -> fNumber .)
+    lessEqual       reduce using rule 39 (constFNumber -> fNumber .)
+    greater         reduce using rule 39 (constFNumber -> fNumber .)
+    greaterEqual    reduce using rule 39 (constFNumber -> fNumber .)
+    add             reduce using rule 39 (constFNumber -> fNumber .)
+    sub             reduce using rule 39 (constFNumber -> fNumber .)
+    mul             reduce using rule 39 (constFNumber -> fNumber .)
+    div             reduce using rule 39 (constFNumber -> fNumber .)
+    mod             reduce using rule 39 (constFNumber -> fNumber .)
+
+
+state 80
+
+    (45) argument -> const .
+
+    semicolon       reduce using rule 45 (argument -> const .)
+    nEqual          reduce using rule 45 (argument -> const .)
+    equal           reduce using rule 45 (argument -> const .)
+    less            reduce using rule 45 (argument -> const .)
+    lessEqual       reduce using rule 45 (argument -> const .)
+    greater         reduce using rule 45 (argument -> const .)
+    greaterEqual    reduce using rule 45 (argument -> const .)
+    rBracket        reduce using rule 45 (argument -> const .)
+    add             reduce using rule 45 (argument -> const .)
+    sub             reduce using rule 45 (argument -> const .)
+    mul             reduce using rule 45 (argument -> const .)
+    div             reduce using rule 45 (argument -> const .)
+    mod             reduce using rule 45 (argument -> const .)
+    comma           reduce using rule 45 (argument -> const .)
+
+
+state 81
+
+    (33) varDef -> name . subVarVals
+    (34) subVarVals -> .
+    (35) subVarVals -> . varSubValuesList
+    (36) varSubValuesList -> . point name
+    (37) varSubValuesList -> . varSubValuesList point name
+
+    lBracket        reduce using rule 34 (subVarVals -> .)
+    comma           reduce using rule 34 (subVarVals -> .)
+    rBracket        reduce using rule 34 (subVarVals -> .)
+    semicolon       reduce using rule 34 (subVarVals -> .)
+    add             reduce using rule 34 (subVarVals -> .)
+    sub             reduce using rule 34 (subVarVals -> .)
+    mul             reduce using rule 34 (subVarVals -> .)
+    div             reduce using rule 34 (subVarVals -> .)
+    mod             reduce using rule 34 (subVarVals -> .)
+    nEqual          reduce using rule 34 (subVarVals -> .)
+    equal           reduce using rule 34 (subVarVals -> .)
+    less            reduce using rule 34 (subVarVals -> .)
+    lessEqual       reduce using rule 34 (subVarVals -> .)
+    greater         reduce using rule 34 (subVarVals -> .)
+    greaterEqual    reduce using rule 34 (subVarVals -> .)
+    rSoftBrace      reduce using rule 34 (subVarVals -> .)
+    point           shift and go to state 75
+
+    varSubValuesList               shift and go to state 77
+    subVarVals                     shift and go to state 78
+
+state 82
+
+    (70) fcParamListCompl -> fcParamList .
+    (72) fcParamList -> fcParamList . comma argument
+
+    rBracket        reduce using rule 70 (fcParamListCompl -> fcParamList .)
+    comma           shift and go to state 109
+
+
+state 83
+
+    (42) const -> constFNumber .
+
+    rBracket        reduce using rule 42 (const -> constFNumber .)
+    semicolon       reduce using rule 42 (const -> constFNumber .)
+    comma           reduce using rule 42 (const -> constFNumber .)
+    nEqual          reduce using rule 42 (const -> constFNumber .)
+    equal           reduce using rule 42 (const -> constFNumber .)
+    less            reduce using rule 42 (const -> constFNumber .)
+    lessEqual       reduce using rule 42 (const -> constFNumber .)
+    greater         reduce using rule 42 (const -> constFNumber .)
+    greaterEqual    reduce using rule 42 (const -> constFNumber .)
+    add             reduce using rule 42 (const -> constFNumber .)
+    sub             reduce using rule 42 (const -> constFNumber .)
+    mul             reduce using rule 42 (const -> constFNumber .)
+    div             reduce using rule 42 (const -> constFNumber .)
+    mod             reduce using rule 42 (const -> constFNumber .)
+
+
+state 84
+
+    (38) constINumber -> iNumber .
+
+    rBracket        reduce using rule 38 (constINumber -> iNumber .)
+    semicolon       reduce using rule 38 (constINumber -> iNumber .)
+    comma           reduce using rule 38 (constINumber -> iNumber .)
+    nEqual          reduce using rule 38 (constINumber -> iNumber .)
+    equal           reduce using rule 38 (constINumber -> iNumber .)
+    less            reduce using rule 38 (constINumber -> iNumber .)
+    lessEqual       reduce using rule 38 (constINumber -> iNumber .)
+    greater         reduce using rule 38 (constINumber -> iNumber .)
+    greaterEqual    reduce using rule 38 (constINumber -> iNumber .)
+    add             reduce using rule 38 (constINumber -> iNumber .)
+    sub             reduce using rule 38 (constINumber -> iNumber .)
+    mul             reduce using rule 38 (constINumber -> iNumber .)
+    div             reduce using rule 38 (constINumber -> iNumber .)
+    mod             reduce using rule 38 (constINumber -> iNumber .)
+
+
+state 85
+
+    (71) fcParamList -> argument .
+
+    comma           reduce using rule 71 (fcParamList -> argument .)
+    rBracket        reduce using rule 71 (fcParamList -> argument .)
+
+
+state 86
+
+    (68) statement -> lBracket fcParamListCompl . rBracket assign name lBracket fcParamListCompl rBracket semicolon
+
+    rBracket        shift and go to state 110
+
+
+state 87
+
+    (43) const -> constString .
+
+    rBracket        reduce using rule 43 (const -> constString .)
+    semicolon       reduce using rule 43 (const -> constString .)
+    comma           reduce using rule 43 (const -> constString .)
+    nEqual          reduce using rule 43 (const -> constString .)
+    equal           reduce using rule 43 (const -> constString .)
+    less            reduce using rule 43 (const -> constString .)
+    lessEqual       reduce using rule 43 (const -> constString .)
+    greater         reduce using rule 43 (const -> constString .)
+    greaterEqual    reduce using rule 43 (const -> constString .)
+    add             reduce using rule 43 (const -> constString .)
+    sub             reduce using rule 43 (const -> constString .)
+    mul             reduce using rule 43 (const -> constString .)
+    div             reduce using rule 43 (const -> constString .)
+    mod             reduce using rule 43 (const -> constString .)
+
+
+state 88
+
+    (44) argument -> var .
+
+    semicolon       reduce using rule 44 (argument -> var .)
+    nEqual          reduce using rule 44 (argument -> var .)
+    equal           reduce using rule 44 (argument -> var .)
+    less            reduce using rule 44 (argument -> var .)
+    lessEqual       reduce using rule 44 (argument -> var .)
+    greater         reduce using rule 44 (argument -> var .)
+    greaterEqual    reduce using rule 44 (argument -> var .)
+    rBracket        reduce using rule 44 (argument -> var .)
+    add             reduce using rule 44 (argument -> var .)
+    sub             reduce using rule 44 (argument -> var .)
+    mul             reduce using rule 44 (argument -> var .)
+    div             reduce using rule 44 (argument -> var .)
+    mod             reduce using rule 44 (argument -> var .)
+    comma           reduce using rule 44 (argument -> var .)
+
+
+state 89
+
+    (40) constString -> string .
+
+    semicolon       reduce using rule 40 (constString -> string .)
+    comma           reduce using rule 40 (constString -> string .)
+    rBracket        reduce using rule 40 (constString -> string .)
+    nEqual          reduce using rule 40 (constString -> string .)
+    equal           reduce using rule 40 (constString -> string .)
+    less            reduce using rule 40 (constString -> string .)
+    lessEqual       reduce using rule 40 (constString -> string .)
+    greater         reduce using rule 40 (constString -> string .)
+    greaterEqual    reduce using rule 40 (constString -> string .)
+    add             reduce using rule 40 (constString -> string .)
+    sub             reduce using rule 40 (constString -> string .)
+    mul             reduce using rule 40 (constString -> string .)
+    div             reduce using rule 40 (constString -> string .)
+    mod             reduce using rule 40 (constString -> string .)
+
+
+state 90
+
+    (41) const -> constINumber .
+
+    rBracket        reduce using rule 41 (const -> constINumber .)
+    semicolon       reduce using rule 41 (const -> constINumber .)
+    comma           reduce using rule 41 (const -> constINumber .)
+    nEqual          reduce using rule 41 (const -> constINumber .)
+    equal           reduce using rule 41 (const -> constINumber .)
+    less            reduce using rule 41 (const -> constINumber .)
+    lessEqual       reduce using rule 41 (const -> constINumber .)
+    greater         reduce using rule 41 (const -> constINumber .)
+    greaterEqual    reduce using rule 41 (const -> constINumber .)
+    add             reduce using rule 41 (const -> constINumber .)
+    sub             reduce using rule 41 (const -> constINumber .)
+    mul             reduce using rule 41 (const -> constINumber .)
+    div             reduce using rule 41 (const -> constINumber .)
+    mod             reduce using rule 41 (const -> constINumber .)
+
+
+state 91
+
+    (52) statement -> var dec . semicolon
+
+    semicolon       shift and go to state 111
+
+
+state 92
+
+    (53) statement -> var addAssign . argument semicolon
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 112
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 93
+
+    (51) statement -> var inc . semicolon
+
+    semicolon       shift and go to state 113
+
+
+state 94
+
+    (46) statement -> var assign . argument add argument semicolon
+    (47) statement -> var assign . argument sub argument semicolon
+    (48) statement -> var assign . argument mul argument semicolon
+    (49) statement -> var assign . argument div argument semicolon
+    (50) statement -> var assign . argument mod argument semicolon
+    (54) statement -> var assign . argument semicolon
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 114
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 95
+
+    (62) statement -> if lBracket . expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> if lBracket . expb rBracket lBrace instrStatementListL rBrace
+    (55) expb -> . not argument
+    (56) expb -> . argument nEqual argument
+    (57) expb -> . argument equal argument
+    (58) expb -> . argument less argument
+    (59) expb -> . argument lessEqual argument
+    (60) expb -> . argument greater argument
+    (61) expb -> . argument greaterEqual argument
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    not             shift and go to state 116
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 115
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+    expb                           shift and go to state 117
+
+state 96
+
+    (30) instrStatementListL -> instrStatementListL statement .
+
+    rBrace          reduce using rule 30 (instrStatementListL -> instrStatementListL statement .)
+    if              reduce using rule 30 (instrStatementListL -> instrStatementListL statement .)
+    for             reduce using rule 30 (instrStatementListL -> instrStatementListL statement .)
+    while           reduce using rule 30 (instrStatementListL -> instrStatementListL statement .)
+    lBracket        reduce using rule 30 (instrStatementListL -> instrStatementListL statement .)
+    comment         reduce using rule 30 (instrStatementListL -> instrStatementListL statement .)
+    name            reduce using rule 30 (instrStatementListL -> instrStatementListL statement .)
+    checkButtonPressed reduce using rule 30 (instrStatementListL -> instrStatementListL statement .)
+    update          reduce using rule 30 (instrStatementListL -> instrStatementListL statement .)
+
+
+state 97
+
+    (80) statement -> update lSoftBrace . var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    name            shift and go to state 81
+
+    var                            shift and go to state 118
+    varDef                         shift and go to state 65
+
+state 98
+
+    (32) var -> varDef lBracket . iNumber rBracket
+
+    iNumber         shift and go to state 119
+
+
+state 99
+
+    (79) statement -> checkButtonPressed lSoftBrace . var rSoftBrace lBrace instrStatementListL rBrace
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    name            shift and go to state 81
+
+    var                            shift and go to state 120
+    varDef                         shift and go to state 65
+
+state 100
+
+    (66) statement -> while lBracket . expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> while lBracket . rBracket lBrace instrStatementListL rBrace
+    (55) expb -> . not argument
+    (56) expb -> . argument nEqual argument
+    (57) expb -> . argument equal argument
+    (58) expb -> . argument less argument
+    (59) expb -> . argument lessEqual argument
+    (60) expb -> . argument greater argument
+    (61) expb -> . argument greaterEqual argument
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    rBracket        shift and go to state 121
+    not             shift and go to state 116
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 115
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+    expb                           shift and go to state 122
+
+state 101
+
+    (23) interfaceVarListDecl -> name name name lBracket iNumber . rBracket semicolon
+
+    rBracket        shift and go to state 123
+
+
+state 102
+
+    (65) statement -> for lBracket semicolon . semicolon rBracket lBrace instrStatementListL rBrace
+
+    semicolon       shift and go to state 124
+
+
+state 103
+
+    (64) statement -> for lBracket statement . expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (55) expb -> . not argument
+    (56) expb -> . argument nEqual argument
+    (57) expb -> . argument equal argument
+    (58) expb -> . argument less argument
+    (59) expb -> . argument lessEqual argument
+    (60) expb -> . argument greater argument
+    (61) expb -> . argument greaterEqual argument
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    not             shift and go to state 116
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 115
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+    expb                           shift and go to state 125
+
+state 104
+
+    (36) varSubValuesList -> point name .
+
+    point           reduce using rule 36 (varSubValuesList -> point name .)
+    lBracket        reduce using rule 36 (varSubValuesList -> point name .)
+    assign          reduce using rule 36 (varSubValuesList -> point name .)
+    inc             reduce using rule 36 (varSubValuesList -> point name .)
+    dec             reduce using rule 36 (varSubValuesList -> point name .)
+    addAssign       reduce using rule 36 (varSubValuesList -> point name .)
+    comma           reduce using rule 36 (varSubValuesList -> point name .)
+    rBracket        reduce using rule 36 (varSubValuesList -> point name .)
+    semicolon       reduce using rule 36 (varSubValuesList -> point name .)
+    add             reduce using rule 36 (varSubValuesList -> point name .)
+    sub             reduce using rule 36 (varSubValuesList -> point name .)
+    mul             reduce using rule 36 (varSubValuesList -> point name .)
+    div             reduce using rule 36 (varSubValuesList -> point name .)
+    mod             reduce using rule 36 (varSubValuesList -> point name .)
+    nEqual          reduce using rule 36 (varSubValuesList -> point name .)
+    equal           reduce using rule 36 (varSubValuesList -> point name .)
+    less            reduce using rule 36 (varSubValuesList -> point name .)
+    lessEqual       reduce using rule 36 (varSubValuesList -> point name .)
+    greater         reduce using rule 36 (varSubValuesList -> point name .)
+    greaterEqual    reduce using rule 36 (varSubValuesList -> point name .)
+    rSoftBrace      reduce using rule 36 (varSubValuesList -> point name .)
+
+
+state 105
+
+    (77) operationParamList -> name . assign argument
+
+    assign          shift and go to state 126
+
+
+state 106
+
+    (74) statement -> name lBracket operationParamListL . rBracket semicolon
+
+    rBracket        shift and go to state 127
+
+
+state 107
+
+    (76) operationParamListL -> operationParamList .
+    (78) operationParamList -> operationParamList . comma name assign argument
+
+    rBracket        reduce using rule 76 (operationParamListL -> operationParamList .)
+    comma           shift and go to state 128
+
+
+state 108
+
+    (37) varSubValuesList -> varSubValuesList point . name
+
+    name            shift and go to state 129
+
+
+state 109
+
+    (72) fcParamList -> fcParamList comma . argument
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 130
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 110
+
+    (68) statement -> lBracket fcParamListCompl rBracket . assign name lBracket fcParamListCompl rBracket semicolon
+
+    assign          shift and go to state 131
+
+
+state 111
+
+    (52) statement -> var dec semicolon .
+
+    rBrace          reduce using rule 52 (statement -> var dec semicolon .)
+    if              reduce using rule 52 (statement -> var dec semicolon .)
+    for             reduce using rule 52 (statement -> var dec semicolon .)
+    while           reduce using rule 52 (statement -> var dec semicolon .)
+    lBracket        reduce using rule 52 (statement -> var dec semicolon .)
+    comment         reduce using rule 52 (statement -> var dec semicolon .)
+    name            reduce using rule 52 (statement -> var dec semicolon .)
+    checkButtonPressed reduce using rule 52 (statement -> var dec semicolon .)
+    update          reduce using rule 52 (statement -> var dec semicolon .)
+    not             reduce using rule 52 (statement -> var dec semicolon .)
+    iNumber         reduce using rule 52 (statement -> var dec semicolon .)
+    fNumber         reduce using rule 52 (statement -> var dec semicolon .)
+    string          reduce using rule 52 (statement -> var dec semicolon .)
+    rBracket        reduce using rule 52 (statement -> var dec semicolon .)
+
+
+state 112
+
+    (53) statement -> var addAssign argument . semicolon
+
+    semicolon       shift and go to state 132
+
+
+state 113
+
+    (51) statement -> var inc semicolon .
+
+    rBrace          reduce using rule 51 (statement -> var inc semicolon .)
+    if              reduce using rule 51 (statement -> var inc semicolon .)
+    for             reduce using rule 51 (statement -> var inc semicolon .)
+    while           reduce using rule 51 (statement -> var inc semicolon .)
+    lBracket        reduce using rule 51 (statement -> var inc semicolon .)
+    comment         reduce using rule 51 (statement -> var inc semicolon .)
+    name            reduce using rule 51 (statement -> var inc semicolon .)
+    checkButtonPressed reduce using rule 51 (statement -> var inc semicolon .)
+    update          reduce using rule 51 (statement -> var inc semicolon .)
+    not             reduce using rule 51 (statement -> var inc semicolon .)
+    iNumber         reduce using rule 51 (statement -> var inc semicolon .)
+    fNumber         reduce using rule 51 (statement -> var inc semicolon .)
+    string          reduce using rule 51 (statement -> var inc semicolon .)
+    rBracket        reduce using rule 51 (statement -> var inc semicolon .)
+
+
+state 114
+
+    (46) statement -> var assign argument . add argument semicolon
+    (47) statement -> var assign argument . sub argument semicolon
+    (48) statement -> var assign argument . mul argument semicolon
+    (49) statement -> var assign argument . div argument semicolon
+    (50) statement -> var assign argument . mod argument semicolon
+    (54) statement -> var assign argument . semicolon
+
+    add             shift and go to state 135
+    sub             shift and go to state 133
+    mul             shift and go to state 136
+    div             shift and go to state 137
+    mod             shift and go to state 138
+    semicolon       shift and go to state 134
+
+
+state 115
+
+    (56) expb -> argument . nEqual argument
+    (57) expb -> argument . equal argument
+    (58) expb -> argument . less argument
+    (59) expb -> argument . lessEqual argument
+    (60) expb -> argument . greater argument
+    (61) expb -> argument . greaterEqual argument
+
+    nEqual          shift and go to state 142
+    equal           shift and go to state 143
+    less            shift and go to state 141
+    lessEqual       shift and go to state 144
+    greater         shift and go to state 140
+    greaterEqual    shift and go to state 139
+
+
+state 116
+
+    (55) expb -> not . argument
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 145
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 117
+
+    (62) statement -> if lBracket expb . rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> if lBracket expb . rBracket lBrace instrStatementListL rBrace
+
+    rBracket        shift and go to state 146
+
+
+state 118
+
+    (80) statement -> update lSoftBrace var . rSoftBrace semicolon
+
+    rSoftBrace      shift and go to state 147
+
+
+state 119
+
+    (32) var -> varDef lBracket iNumber . rBracket
+
+    rBracket        shift and go to state 148
+
+
+state 120
+
+    (79) statement -> checkButtonPressed lSoftBrace var . rSoftBrace lBrace instrStatementListL rBrace
+
+    rSoftBrace      shift and go to state 149
+
+
+state 121
+
+    (67) statement -> while lBracket rBracket . lBrace instrStatementListL rBrace
+
+    lBrace          shift and go to state 150
+
+
+state 122
+
+    (66) statement -> while lBracket expb . rBracket lBrace instrStatementListL rBrace
+
+    rBracket        shift and go to state 151
+
+
+state 123
+
+    (23) interfaceVarListDecl -> name name name lBracket iNumber rBracket . semicolon
+
+    semicolon       shift and go to state 152
+
+
+state 124
+
+    (65) statement -> for lBracket semicolon semicolon . rBracket lBrace instrStatementListL rBrace
+
+    rBracket        shift and go to state 153
+
+
+state 125
+
+    (64) statement -> for lBracket statement expb . semicolon statement rBracket lBrace instrStatementListL rBrace
+
+    semicolon       shift and go to state 154
+
+
+state 126
+
+    (77) operationParamList -> name assign . argument
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 155
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 127
+
+    (74) statement -> name lBracket operationParamListL rBracket . semicolon
+
+    semicolon       shift and go to state 156
+
+
+state 128
+
+    (78) operationParamList -> operationParamList comma . name assign argument
+
+    name            shift and go to state 157
+
+
+state 129
+
+    (37) varSubValuesList -> varSubValuesList point name .
+
+    point           reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    lBracket        reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    assign          reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    inc             reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    dec             reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    addAssign       reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    comma           reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    rBracket        reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    semicolon       reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    add             reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    sub             reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    mul             reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    div             reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    mod             reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    nEqual          reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    equal           reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    less            reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    lessEqual       reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    greater         reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    greaterEqual    reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+    rSoftBrace      reduce using rule 37 (varSubValuesList -> varSubValuesList point name .)
+
+
+state 130
+
+    (72) fcParamList -> fcParamList comma argument .
+
+    comma           reduce using rule 72 (fcParamList -> fcParamList comma argument .)
+    rBracket        reduce using rule 72 (fcParamList -> fcParamList comma argument .)
+
+
+state 131
+
+    (68) statement -> lBracket fcParamListCompl rBracket assign . name lBracket fcParamListCompl rBracket semicolon
+
+    name            shift and go to state 158
+
+
+state 132
+
+    (53) statement -> var addAssign argument semicolon .
+
+    rBrace          reduce using rule 53 (statement -> var addAssign argument semicolon .)
+    if              reduce using rule 53 (statement -> var addAssign argument semicolon .)
+    for             reduce using rule 53 (statement -> var addAssign argument semicolon .)
+    while           reduce using rule 53 (statement -> var addAssign argument semicolon .)
+    lBracket        reduce using rule 53 (statement -> var addAssign argument semicolon .)
+    comment         reduce using rule 53 (statement -> var addAssign argument semicolon .)
+    name            reduce using rule 53 (statement -> var addAssign argument semicolon .)
+    checkButtonPressed reduce using rule 53 (statement -> var addAssign argument semicolon .)
+    update          reduce using rule 53 (statement -> var addAssign argument semicolon .)
+    not             reduce using rule 53 (statement -> var addAssign argument semicolon .)
+    iNumber         reduce using rule 53 (statement -> var addAssign argument semicolon .)
+    fNumber         reduce using rule 53 (statement -> var addAssign argument semicolon .)
+    string          reduce using rule 53 (statement -> var addAssign argument semicolon .)
+    rBracket        reduce using rule 53 (statement -> var addAssign argument semicolon .)
+
+
+state 133
+
+    (47) statement -> var assign argument sub . argument semicolon
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 159
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 134
+
+    (54) statement -> var assign argument semicolon .
+
+    rBrace          reduce using rule 54 (statement -> var assign argument semicolon .)
+    if              reduce using rule 54 (statement -> var assign argument semicolon .)
+    for             reduce using rule 54 (statement -> var assign argument semicolon .)
+    while           reduce using rule 54 (statement -> var assign argument semicolon .)
+    lBracket        reduce using rule 54 (statement -> var assign argument semicolon .)
+    comment         reduce using rule 54 (statement -> var assign argument semicolon .)
+    name            reduce using rule 54 (statement -> var assign argument semicolon .)
+    checkButtonPressed reduce using rule 54 (statement -> var assign argument semicolon .)
+    update          reduce using rule 54 (statement -> var assign argument semicolon .)
+    not             reduce using rule 54 (statement -> var assign argument semicolon .)
+    iNumber         reduce using rule 54 (statement -> var assign argument semicolon .)
+    fNumber         reduce using rule 54 (statement -> var assign argument semicolon .)
+    string          reduce using rule 54 (statement -> var assign argument semicolon .)
+    rBracket        reduce using rule 54 (statement -> var assign argument semicolon .)
+
+
+state 135
+
+    (46) statement -> var assign argument add . argument semicolon
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 160
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 136
+
+    (48) statement -> var assign argument mul . argument semicolon
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 161
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 137
+
+    (49) statement -> var assign argument div . argument semicolon
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 162
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 138
+
+    (50) statement -> var assign argument mod . argument semicolon
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 163
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 139
+
+    (61) expb -> argument greaterEqual . argument
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 164
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 140
+
+    (60) expb -> argument greater . argument
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 165
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 141
+
+    (58) expb -> argument less . argument
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 166
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 142
+
+    (56) expb -> argument nEqual . argument
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 167
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 143
+
+    (57) expb -> argument equal . argument
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 168
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 144
+
+    (59) expb -> argument lessEqual . argument
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 169
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 145
+
+    (55) expb -> not argument .
+
+    rBracket        reduce using rule 55 (expb -> not argument .)
+    semicolon       reduce using rule 55 (expb -> not argument .)
+
+
+state 146
+
+    (62) statement -> if lBracket expb rBracket . lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> if lBracket expb rBracket . lBrace instrStatementListL rBrace
+
+    lBrace          shift and go to state 170
+
+
+state 147
+
+    (80) statement -> update lSoftBrace var rSoftBrace . semicolon
+
+    semicolon       shift and go to state 171
+
+
+state 148
+
+    (32) var -> varDef lBracket iNumber rBracket .
+
+    assign          reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    inc             reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    dec             reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    addAssign       reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    rSoftBrace      reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    rBracket        reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    semicolon       reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    comma           reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    nEqual          reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    equal           reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    less            reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    lessEqual       reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    greater         reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    greaterEqual    reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    add             reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    sub             reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    mul             reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    div             reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+    mod             reduce using rule 32 (var -> varDef lBracket iNumber rBracket .)
+
+
+state 149
+
+    (79) statement -> checkButtonPressed lSoftBrace var rSoftBrace . lBrace instrStatementListL rBrace
+
+    lBrace          shift and go to state 172
+
+
+state 150
+
+    (67) statement -> while lBracket rBracket lBrace . instrStatementListL rBrace
+    (29) instrStatementListL -> . statement
+    (30) instrStatementListL -> . instrStatementListL statement
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    instrStatementListL            shift and go to state 173
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 60
+    var                            shift and go to state 61
+
+state 151
+
+    (66) statement -> while lBracket expb rBracket . lBrace instrStatementListL rBrace
+
+    lBrace          shift and go to state 174
+
+
+state 152
+
+    (23) interfaceVarListDecl -> name name name lBracket iNumber rBracket semicolon .
+
+    name            reduce using rule 23 (interfaceVarListDecl -> name name name lBracket iNumber rBracket semicolon .)
+    comment         reduce using rule 23 (interfaceVarListDecl -> name name name lBracket iNumber rBracket semicolon .)
+    rBrace          reduce using rule 23 (interfaceVarListDecl -> name name name lBracket iNumber rBracket semicolon .)
+
+
+state 153
+
+    (65) statement -> for lBracket semicolon semicolon rBracket . lBrace instrStatementListL rBrace
+
+    lBrace          shift and go to state 175
+
+
+state 154
+
+    (64) statement -> for lBracket statement expb semicolon . statement rBracket lBrace instrStatementListL rBrace
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 176
+    var                            shift and go to state 61
+
+state 155
+
+    (77) operationParamList -> name assign argument .
+
+    comma           reduce using rule 77 (operationParamList -> name assign argument .)
+    rBracket        reduce using rule 77 (operationParamList -> name assign argument .)
+
+
+state 156
+
+    (74) statement -> name lBracket operationParamListL rBracket semicolon .
+
+    rBrace          reduce using rule 74 (statement -> name lBracket operationParamListL rBracket semicolon .)
+    if              reduce using rule 74 (statement -> name lBracket operationParamListL rBracket semicolon .)
+    for             reduce using rule 74 (statement -> name lBracket operationParamListL rBracket semicolon .)
+    while           reduce using rule 74 (statement -> name lBracket operationParamListL rBracket semicolon .)
+    lBracket        reduce using rule 74 (statement -> name lBracket operationParamListL rBracket semicolon .)
+    comment         reduce using rule 74 (statement -> name lBracket operationParamListL rBracket semicolon .)
+    name            reduce using rule 74 (statement -> name lBracket operationParamListL rBracket semicolon .)
+    checkButtonPressed reduce using rule 74 (statement -> name lBracket operationParamListL rBracket semicolon .)
+    update          reduce using rule 74 (statement -> name lBracket operationParamListL rBracket semicolon .)
+    not             reduce using rule 74 (statement -> name lBracket operationParamListL rBracket semicolon .)
+    iNumber         reduce using rule 74 (statement -> name lBracket operationParamListL rBracket semicolon .)
+    fNumber         reduce using rule 74 (statement -> name lBracket operationParamListL rBracket semicolon .)
+    string          reduce using rule 74 (statement -> name lBracket operationParamListL rBracket semicolon .)
+    rBracket        reduce using rule 74 (statement -> name lBracket operationParamListL rBracket semicolon .)
+
+
+state 157
+
+    (78) operationParamList -> operationParamList comma name . assign argument
+
+    assign          shift and go to state 177
+
+
+state 158
+
+    (68) statement -> lBracket fcParamListCompl rBracket assign name . lBracket fcParamListCompl rBracket semicolon
+
+    lBracket        shift and go to state 178
+
+
+state 159
+
+    (47) statement -> var assign argument sub argument . semicolon
+
+    semicolon       shift and go to state 179
+
+
+state 160
+
+    (46) statement -> var assign argument add argument . semicolon
+
+    semicolon       shift and go to state 180
+
+
+state 161
+
+    (48) statement -> var assign argument mul argument . semicolon
+
+    semicolon       shift and go to state 181
+
+
+state 162
+
+    (49) statement -> var assign argument div argument . semicolon
+
+    semicolon       shift and go to state 182
+
+
+state 163
+
+    (50) statement -> var assign argument mod argument . semicolon
+
+    semicolon       shift and go to state 183
+
+
+state 164
+
+    (61) expb -> argument greaterEqual argument .
+
+    rBracket        reduce using rule 61 (expb -> argument greaterEqual argument .)
+    semicolon       reduce using rule 61 (expb -> argument greaterEqual argument .)
+
+
+state 165
+
+    (60) expb -> argument greater argument .
+
+    rBracket        reduce using rule 60 (expb -> argument greater argument .)
+    semicolon       reduce using rule 60 (expb -> argument greater argument .)
+
+
+state 166
+
+    (58) expb -> argument less argument .
+
+    rBracket        reduce using rule 58 (expb -> argument less argument .)
+    semicolon       reduce using rule 58 (expb -> argument less argument .)
+
+
+state 167
+
+    (56) expb -> argument nEqual argument .
+
+    rBracket        reduce using rule 56 (expb -> argument nEqual argument .)
+    semicolon       reduce using rule 56 (expb -> argument nEqual argument .)
+
+
+state 168
+
+    (57) expb -> argument equal argument .
+
+    rBracket        reduce using rule 57 (expb -> argument equal argument .)
+    semicolon       reduce using rule 57 (expb -> argument equal argument .)
+
+
+state 169
+
+    (59) expb -> argument lessEqual argument .
+
+    rBracket        reduce using rule 59 (expb -> argument lessEqual argument .)
+    semicolon       reduce using rule 59 (expb -> argument lessEqual argument .)
+
+
+state 170
+
+    (62) statement -> if lBracket expb rBracket lBrace . instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> if lBracket expb rBracket lBrace . instrStatementListL rBrace
+    (29) instrStatementListL -> . statement
+    (30) instrStatementListL -> . instrStatementListL statement
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    instrStatementListL            shift and go to state 184
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 60
+    var                            shift and go to state 61
+
+state 171
+
+    (80) statement -> update lSoftBrace var rSoftBrace semicolon .
+
+    rBrace          reduce using rule 80 (statement -> update lSoftBrace var rSoftBrace semicolon .)
+    if              reduce using rule 80 (statement -> update lSoftBrace var rSoftBrace semicolon .)
+    for             reduce using rule 80 (statement -> update lSoftBrace var rSoftBrace semicolon .)
+    while           reduce using rule 80 (statement -> update lSoftBrace var rSoftBrace semicolon .)
+    lBracket        reduce using rule 80 (statement -> update lSoftBrace var rSoftBrace semicolon .)
+    comment         reduce using rule 80 (statement -> update lSoftBrace var rSoftBrace semicolon .)
+    name            reduce using rule 80 (statement -> update lSoftBrace var rSoftBrace semicolon .)
+    checkButtonPressed reduce using rule 80 (statement -> update lSoftBrace var rSoftBrace semicolon .)
+    update          reduce using rule 80 (statement -> update lSoftBrace var rSoftBrace semicolon .)
+    not             reduce using rule 80 (statement -> update lSoftBrace var rSoftBrace semicolon .)
+    iNumber         reduce using rule 80 (statement -> update lSoftBrace var rSoftBrace semicolon .)
+    fNumber         reduce using rule 80 (statement -> update lSoftBrace var rSoftBrace semicolon .)
+    string          reduce using rule 80 (statement -> update lSoftBrace var rSoftBrace semicolon .)
+    rBracket        reduce using rule 80 (statement -> update lSoftBrace var rSoftBrace semicolon .)
+
+
+state 172
+
+    (79) statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace . instrStatementListL rBrace
+    (29) instrStatementListL -> . statement
+    (30) instrStatementListL -> . instrStatementListL statement
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    instrStatementListL            shift and go to state 185
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 60
+    var                            shift and go to state 61
+
+state 173
+
+    (67) statement -> while lBracket rBracket lBrace instrStatementListL . rBrace
+    (30) instrStatementListL -> instrStatementListL . statement
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    rBrace          shift and go to state 186
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 96
+    var                            shift and go to state 61
+
+state 174
+
+    (66) statement -> while lBracket expb rBracket lBrace . instrStatementListL rBrace
+    (29) instrStatementListL -> . statement
+    (30) instrStatementListL -> . instrStatementListL statement
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    instrStatementListL            shift and go to state 187
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 60
+    var                            shift and go to state 61
+
+state 175
+
+    (65) statement -> for lBracket semicolon semicolon rBracket lBrace . instrStatementListL rBrace
+    (29) instrStatementListL -> . statement
+    (30) instrStatementListL -> . instrStatementListL statement
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    instrStatementListL            shift and go to state 188
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 60
+    var                            shift and go to state 61
+
+state 176
+
+    (64) statement -> for lBracket statement expb semicolon statement . rBracket lBrace instrStatementListL rBrace
+
+    rBracket        shift and go to state 189
+
+
+state 177
+
+    (78) operationParamList -> operationParamList comma name assign . argument
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 190
+    varDef                         shift and go to state 65
+    var                            shift and go to state 88
+
+state 178
+
+    (68) statement -> lBracket fcParamListCompl rBracket assign name lBracket . fcParamListCompl rBracket semicolon
+    (69) fcParamListCompl -> .
+    (70) fcParamListCompl -> . fcParamList
+    (71) fcParamList -> . argument
+    (72) fcParamList -> . fcParamList comma argument
+    (44) argument -> . var
+    (45) argument -> . const
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (41) const -> . constINumber
+    (42) const -> . constFNumber
+    (43) const -> . constString
+    (33) varDef -> . name subVarVals
+    (38) constINumber -> . iNumber
+    (39) constFNumber -> . fNumber
+    (40) constString -> . string
+
+    rBracket        reduce using rule 69 (fcParamListCompl -> .)
+    name            shift and go to state 81
+    iNumber         shift and go to state 84
+    fNumber         shift and go to state 79
+    string          shift and go to state 89
+
+    const                          shift and go to state 80
+    constINumber                   shift and go to state 90
+    constFNumber                   shift and go to state 83
+    constString                    shift and go to state 87
+    argument                       shift and go to state 85
+    varDef                         shift and go to state 65
+    fcParamListCompl               shift and go to state 191
+    var                            shift and go to state 88
+    fcParamList                    shift and go to state 82
+
+state 179
+
+    (47) statement -> var assign argument sub argument semicolon .
+
+    rBrace          reduce using rule 47 (statement -> var assign argument sub argument semicolon .)
+    if              reduce using rule 47 (statement -> var assign argument sub argument semicolon .)
+    for             reduce using rule 47 (statement -> var assign argument sub argument semicolon .)
+    while           reduce using rule 47 (statement -> var assign argument sub argument semicolon .)
+    lBracket        reduce using rule 47 (statement -> var assign argument sub argument semicolon .)
+    comment         reduce using rule 47 (statement -> var assign argument sub argument semicolon .)
+    name            reduce using rule 47 (statement -> var assign argument sub argument semicolon .)
+    checkButtonPressed reduce using rule 47 (statement -> var assign argument sub argument semicolon .)
+    update          reduce using rule 47 (statement -> var assign argument sub argument semicolon .)
+    not             reduce using rule 47 (statement -> var assign argument sub argument semicolon .)
+    iNumber         reduce using rule 47 (statement -> var assign argument sub argument semicolon .)
+    fNumber         reduce using rule 47 (statement -> var assign argument sub argument semicolon .)
+    string          reduce using rule 47 (statement -> var assign argument sub argument semicolon .)
+    rBracket        reduce using rule 47 (statement -> var assign argument sub argument semicolon .)
+
+
+state 180
+
+    (46) statement -> var assign argument add argument semicolon .
+
+    rBrace          reduce using rule 46 (statement -> var assign argument add argument semicolon .)
+    if              reduce using rule 46 (statement -> var assign argument add argument semicolon .)
+    for             reduce using rule 46 (statement -> var assign argument add argument semicolon .)
+    while           reduce using rule 46 (statement -> var assign argument add argument semicolon .)
+    lBracket        reduce using rule 46 (statement -> var assign argument add argument semicolon .)
+    comment         reduce using rule 46 (statement -> var assign argument add argument semicolon .)
+    name            reduce using rule 46 (statement -> var assign argument add argument semicolon .)
+    checkButtonPressed reduce using rule 46 (statement -> var assign argument add argument semicolon .)
+    update          reduce using rule 46 (statement -> var assign argument add argument semicolon .)
+    not             reduce using rule 46 (statement -> var assign argument add argument semicolon .)
+    iNumber         reduce using rule 46 (statement -> var assign argument add argument semicolon .)
+    fNumber         reduce using rule 46 (statement -> var assign argument add argument semicolon .)
+    string          reduce using rule 46 (statement -> var assign argument add argument semicolon .)
+    rBracket        reduce using rule 46 (statement -> var assign argument add argument semicolon .)
+
+
+state 181
+
+    (48) statement -> var assign argument mul argument semicolon .
+
+    rBrace          reduce using rule 48 (statement -> var assign argument mul argument semicolon .)
+    if              reduce using rule 48 (statement -> var assign argument mul argument semicolon .)
+    for             reduce using rule 48 (statement -> var assign argument mul argument semicolon .)
+    while           reduce using rule 48 (statement -> var assign argument mul argument semicolon .)
+    lBracket        reduce using rule 48 (statement -> var assign argument mul argument semicolon .)
+    comment         reduce using rule 48 (statement -> var assign argument mul argument semicolon .)
+    name            reduce using rule 48 (statement -> var assign argument mul argument semicolon .)
+    checkButtonPressed reduce using rule 48 (statement -> var assign argument mul argument semicolon .)
+    update          reduce using rule 48 (statement -> var assign argument mul argument semicolon .)
+    not             reduce using rule 48 (statement -> var assign argument mul argument semicolon .)
+    iNumber         reduce using rule 48 (statement -> var assign argument mul argument semicolon .)
+    fNumber         reduce using rule 48 (statement -> var assign argument mul argument semicolon .)
+    string          reduce using rule 48 (statement -> var assign argument mul argument semicolon .)
+    rBracket        reduce using rule 48 (statement -> var assign argument mul argument semicolon .)
+
+
+state 182
+
+    (49) statement -> var assign argument div argument semicolon .
+
+    rBrace          reduce using rule 49 (statement -> var assign argument div argument semicolon .)
+    if              reduce using rule 49 (statement -> var assign argument div argument semicolon .)
+    for             reduce using rule 49 (statement -> var assign argument div argument semicolon .)
+    while           reduce using rule 49 (statement -> var assign argument div argument semicolon .)
+    lBracket        reduce using rule 49 (statement -> var assign argument div argument semicolon .)
+    comment         reduce using rule 49 (statement -> var assign argument div argument semicolon .)
+    name            reduce using rule 49 (statement -> var assign argument div argument semicolon .)
+    checkButtonPressed reduce using rule 49 (statement -> var assign argument div argument semicolon .)
+    update          reduce using rule 49 (statement -> var assign argument div argument semicolon .)
+    not             reduce using rule 49 (statement -> var assign argument div argument semicolon .)
+    iNumber         reduce using rule 49 (statement -> var assign argument div argument semicolon .)
+    fNumber         reduce using rule 49 (statement -> var assign argument div argument semicolon .)
+    string          reduce using rule 49 (statement -> var assign argument div argument semicolon .)
+    rBracket        reduce using rule 49 (statement -> var assign argument div argument semicolon .)
+
+
+state 183
+
+    (50) statement -> var assign argument mod argument semicolon .
+
+    rBrace          reduce using rule 50 (statement -> var assign argument mod argument semicolon .)
+    if              reduce using rule 50 (statement -> var assign argument mod argument semicolon .)
+    for             reduce using rule 50 (statement -> var assign argument mod argument semicolon .)
+    while           reduce using rule 50 (statement -> var assign argument mod argument semicolon .)
+    lBracket        reduce using rule 50 (statement -> var assign argument mod argument semicolon .)
+    comment         reduce using rule 50 (statement -> var assign argument mod argument semicolon .)
+    name            reduce using rule 50 (statement -> var assign argument mod argument semicolon .)
+    checkButtonPressed reduce using rule 50 (statement -> var assign argument mod argument semicolon .)
+    update          reduce using rule 50 (statement -> var assign argument mod argument semicolon .)
+    not             reduce using rule 50 (statement -> var assign argument mod argument semicolon .)
+    iNumber         reduce using rule 50 (statement -> var assign argument mod argument semicolon .)
+    fNumber         reduce using rule 50 (statement -> var assign argument mod argument semicolon .)
+    string          reduce using rule 50 (statement -> var assign argument mod argument semicolon .)
+    rBracket        reduce using rule 50 (statement -> var assign argument mod argument semicolon .)
+
+
+state 184
+
+    (62) statement -> if lBracket expb rBracket lBrace instrStatementListL . rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> if lBracket expb rBracket lBrace instrStatementListL . rBrace
+    (30) instrStatementListL -> instrStatementListL . statement
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    rBrace          shift and go to state 192
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 96
+    var                            shift and go to state 61
+
+state 185
+
+    (79) statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL . rBrace
+    (30) instrStatementListL -> instrStatementListL . statement
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    rBrace          shift and go to state 193
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 96
+    var                            shift and go to state 61
+
+state 186
+
+    (67) statement -> while lBracket rBracket lBrace instrStatementListL rBrace .
+
+    rBrace          reduce using rule 67 (statement -> while lBracket rBracket lBrace instrStatementListL rBrace .)
+    if              reduce using rule 67 (statement -> while lBracket rBracket lBrace instrStatementListL rBrace .)
+    for             reduce using rule 67 (statement -> while lBracket rBracket lBrace instrStatementListL rBrace .)
+    while           reduce using rule 67 (statement -> while lBracket rBracket lBrace instrStatementListL rBrace .)
+    lBracket        reduce using rule 67 (statement -> while lBracket rBracket lBrace instrStatementListL rBrace .)
+    comment         reduce using rule 67 (statement -> while lBracket rBracket lBrace instrStatementListL rBrace .)
+    name            reduce using rule 67 (statement -> while lBracket rBracket lBrace instrStatementListL rBrace .)
+    checkButtonPressed reduce using rule 67 (statement -> while lBracket rBracket lBrace instrStatementListL rBrace .)
+    update          reduce using rule 67 (statement -> while lBracket rBracket lBrace instrStatementListL rBrace .)
+    not             reduce using rule 67 (statement -> while lBracket rBracket lBrace instrStatementListL rBrace .)
+    iNumber         reduce using rule 67 (statement -> while lBracket rBracket lBrace instrStatementListL rBrace .)
+    fNumber         reduce using rule 67 (statement -> while lBracket rBracket lBrace instrStatementListL rBrace .)
+    string          reduce using rule 67 (statement -> while lBracket rBracket lBrace instrStatementListL rBrace .)
+    rBracket        reduce using rule 67 (statement -> while lBracket rBracket lBrace instrStatementListL rBrace .)
+
+
+state 187
+
+    (66) statement -> while lBracket expb rBracket lBrace instrStatementListL . rBrace
+    (30) instrStatementListL -> instrStatementListL . statement
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    rBrace          shift and go to state 194
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 96
+    var                            shift and go to state 61
+
+state 188
+
+    (65) statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL . rBrace
+    (30) instrStatementListL -> instrStatementListL . statement
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    rBrace          shift and go to state 195
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 96
+    var                            shift and go to state 61
+
+state 189
+
+    (64) statement -> for lBracket statement expb semicolon statement rBracket . lBrace instrStatementListL rBrace
+
+    lBrace          shift and go to state 196
+
+
+state 190
+
+    (78) operationParamList -> operationParamList comma name assign argument .
+
+    comma           reduce using rule 78 (operationParamList -> operationParamList comma name assign argument .)
+    rBracket        reduce using rule 78 (operationParamList -> operationParamList comma name assign argument .)
+
+
+state 191
+
+    (68) statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl . rBracket semicolon
+
+    rBracket        shift and go to state 197
+
+
+state 192
+
+    (62) statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace . else lBrace instrStatementListL rBrace
+    (63) statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace .
+
+    else            shift and go to state 198
+    rBrace          reduce using rule 63 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    if              reduce using rule 63 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    for             reduce using rule 63 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    while           reduce using rule 63 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    lBracket        reduce using rule 63 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    comment         reduce using rule 63 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    name            reduce using rule 63 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    checkButtonPressed reduce using rule 63 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    update          reduce using rule 63 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    not             reduce using rule 63 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    iNumber         reduce using rule 63 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    fNumber         reduce using rule 63 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    string          reduce using rule 63 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    rBracket        reduce using rule 63 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace .)
+
+
+state 193
+
+    (79) statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace .
+
+    rBrace          reduce using rule 79 (statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace .)
+    if              reduce using rule 79 (statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace .)
+    for             reduce using rule 79 (statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace .)
+    while           reduce using rule 79 (statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace .)
+    lBracket        reduce using rule 79 (statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace .)
+    comment         reduce using rule 79 (statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace .)
+    name            reduce using rule 79 (statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace .)
+    checkButtonPressed reduce using rule 79 (statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace .)
+    update          reduce using rule 79 (statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace .)
+    not             reduce using rule 79 (statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace .)
+    iNumber         reduce using rule 79 (statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace .)
+    fNumber         reduce using rule 79 (statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace .)
+    string          reduce using rule 79 (statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace .)
+    rBracket        reduce using rule 79 (statement -> checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace .)
+
+
+state 194
+
+    (66) statement -> while lBracket expb rBracket lBrace instrStatementListL rBrace .
+
+    rBrace          reduce using rule 66 (statement -> while lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    if              reduce using rule 66 (statement -> while lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    for             reduce using rule 66 (statement -> while lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    while           reduce using rule 66 (statement -> while lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    lBracket        reduce using rule 66 (statement -> while lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    comment         reduce using rule 66 (statement -> while lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    name            reduce using rule 66 (statement -> while lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    checkButtonPressed reduce using rule 66 (statement -> while lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    update          reduce using rule 66 (statement -> while lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    not             reduce using rule 66 (statement -> while lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    iNumber         reduce using rule 66 (statement -> while lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    fNumber         reduce using rule 66 (statement -> while lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    string          reduce using rule 66 (statement -> while lBracket expb rBracket lBrace instrStatementListL rBrace .)
+    rBracket        reduce using rule 66 (statement -> while lBracket expb rBracket lBrace instrStatementListL rBrace .)
+
+
+state 195
+
+    (65) statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace .
+
+    rBrace          reduce using rule 65 (statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace .)
+    if              reduce using rule 65 (statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace .)
+    for             reduce using rule 65 (statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace .)
+    while           reduce using rule 65 (statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace .)
+    lBracket        reduce using rule 65 (statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace .)
+    comment         reduce using rule 65 (statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace .)
+    name            reduce using rule 65 (statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace .)
+    checkButtonPressed reduce using rule 65 (statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace .)
+    update          reduce using rule 65 (statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace .)
+    not             reduce using rule 65 (statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace .)
+    iNumber         reduce using rule 65 (statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace .)
+    fNumber         reduce using rule 65 (statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace .)
+    string          reduce using rule 65 (statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace .)
+    rBracket        reduce using rule 65 (statement -> for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace .)
+
+
+state 196
+
+    (64) statement -> for lBracket statement expb semicolon statement rBracket lBrace . instrStatementListL rBrace
+    (29) instrStatementListL -> . statement
+    (30) instrStatementListL -> . instrStatementListL statement
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    instrStatementListL            shift and go to state 199
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 60
+    var                            shift and go to state 61
+
+state 197
+
+    (68) statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket . semicolon
+
+    semicolon       shift and go to state 200
+
+
+state 198
+
+    (62) statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else . lBrace instrStatementListL rBrace
+
+    lBrace          shift and go to state 201
+
+
+state 199
+
+    (64) statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL . rBrace
+    (30) instrStatementListL -> instrStatementListL . statement
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    rBrace          shift and go to state 202
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 96
+    var                            shift and go to state 61
+
+state 200
+
+    (68) statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon .
+
+    rBrace          reduce using rule 68 (statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon .)
+    if              reduce using rule 68 (statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon .)
+    for             reduce using rule 68 (statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon .)
+    while           reduce using rule 68 (statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon .)
+    lBracket        reduce using rule 68 (statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon .)
+    comment         reduce using rule 68 (statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon .)
+    name            reduce using rule 68 (statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon .)
+    checkButtonPressed reduce using rule 68 (statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon .)
+    update          reduce using rule 68 (statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon .)
+    not             reduce using rule 68 (statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon .)
+    iNumber         reduce using rule 68 (statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon .)
+    fNumber         reduce using rule 68 (statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon .)
+    string          reduce using rule 68 (statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon .)
+    rBracket        reduce using rule 68 (statement -> lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon .)
+
+
+state 201
+
+    (62) statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace . instrStatementListL rBrace
+    (29) instrStatementListL -> . statement
+    (30) instrStatementListL -> . instrStatementListL statement
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    instrStatementListL            shift and go to state 203
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 60
+    var                            shift and go to state 61
+
+state 202
+
+    (64) statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace .
+
+    rBrace          reduce using rule 64 (statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace .)
+    if              reduce using rule 64 (statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace .)
+    for             reduce using rule 64 (statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace .)
+    while           reduce using rule 64 (statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace .)
+    lBracket        reduce using rule 64 (statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace .)
+    comment         reduce using rule 64 (statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace .)
+    name            reduce using rule 64 (statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace .)
+    checkButtonPressed reduce using rule 64 (statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace .)
+    update          reduce using rule 64 (statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace .)
+    not             reduce using rule 64 (statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace .)
+    iNumber         reduce using rule 64 (statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace .)
+    fNumber         reduce using rule 64 (statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace .)
+    string          reduce using rule 64 (statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace .)
+    rBracket        reduce using rule 64 (statement -> for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace .)
+
+
+state 203
+
+    (62) statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL . rBrace
+    (30) instrStatementListL -> instrStatementListL . statement
+    (46) statement -> . var assign argument add argument semicolon
+    (47) statement -> . var assign argument sub argument semicolon
+    (48) statement -> . var assign argument mul argument semicolon
+    (49) statement -> . var assign argument div argument semicolon
+    (50) statement -> . var assign argument mod argument semicolon
+    (51) statement -> . var inc semicolon
+    (52) statement -> . var dec semicolon
+    (53) statement -> . var addAssign argument semicolon
+    (54) statement -> . var assign argument semicolon
+    (62) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace
+    (63) statement -> . if lBracket expb rBracket lBrace instrStatementListL rBrace
+    (64) statement -> . for lBracket statement expb semicolon statement rBracket lBrace instrStatementListL rBrace
+    (65) statement -> . for lBracket semicolon semicolon rBracket lBrace instrStatementListL rBrace
+    (66) statement -> . while lBracket expb rBracket lBrace instrStatementListL rBrace
+    (67) statement -> . while lBracket rBracket lBrace instrStatementListL rBrace
+    (68) statement -> . lBracket fcParamListCompl rBracket assign name lBracket fcParamListCompl rBracket semicolon
+    (73) statement -> . comment
+    (74) statement -> . name lBracket operationParamListL rBracket semicolon
+    (79) statement -> . checkButtonPressed lSoftBrace var rSoftBrace lBrace instrStatementListL rBrace
+    (80) statement -> . update lSoftBrace var rSoftBrace semicolon
+    (31) var -> . varDef
+    (32) var -> . varDef lBracket iNumber rBracket
+    (33) varDef -> . name subVarVals
+
+    rBrace          shift and go to state 204
+    if              shift and go to state 62
+    for             shift and go to state 57
+    while           shift and go to state 67
+    lBracket        shift and go to state 59
+    comment         shift and go to state 55
+    name            shift and go to state 58
+    checkButtonPressed shift and go to state 66
+    update          shift and go to state 64
+
+    varDef                         shift and go to state 65
+    statement                      shift and go to state 96
+    var                            shift and go to state 61
+
+state 204
+
+    (62) statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace .
+
+    rBrace          reduce using rule 62 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace .)
+    if              reduce using rule 62 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace .)
+    for             reduce using rule 62 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace .)
+    while           reduce using rule 62 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace .)
+    lBracket        reduce using rule 62 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace .)
+    comment         reduce using rule 62 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace .)
+    name            reduce using rule 62 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace .)
+    checkButtonPressed reduce using rule 62 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace .)
+    update          reduce using rule 62 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace .)
+    not             reduce using rule 62 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace .)
+    iNumber         reduce using rule 62 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace .)
+    fNumber         reduce using rule 62 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace .)
+    string          reduce using rule 62 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace .)
+    rBracket        reduce using rule 62 (statement -> if lBracket expb rBracket lBrace instrStatementListL rBrace else lBrace instrStatementListL rBrace .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for lBracket in state 58 resolved as shift

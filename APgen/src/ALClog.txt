@@ -1,0 +1,38 @@
+root [INFO] : start logger
+root [INFO] : setup
+root [INFO] : open database
+DB [INFO] : try to open AP.db ...
+DB [INFO] : check database ...
+DB [INFO] : database is ready!
+DB [INFO] : backup database to dbDump.xml ...
+DB [INFO] : backup finished!
+root [INFO] : populate basic i/o type list and generate HAL parameter to C89 mapping
+root [INFO] : populate function HAL list
+root [INFO] : populate variable HAL list
+root [INFO] : setup finished
+root [INFO] : try to open file "D:\Promotion\python\APgen\AL\RPItoASDP.al"
+root [INFO] : read data
+root [INFO] : close file
+root [INFO] : create AST tree
+root [INFO] : build user defined types
+root [DEBUG] : collect all types into one dict
+root [DEBUG] : build subtype dict
+root [DEBUG] : check type ring references
+root [DEBUG] : unroll subtypes
+root [DEBUG] : finished to build type tree
+root [INFO] : build global vars
+root [INFO] : build functions
+root [INFO] : build functions
+root [DEBUG] : flaten AST
+root [DEBUG] : preprocess functions
+root [DEBUG] : enrole function "getSelText"
+root [DEBUG] : enrole function "guiInit"
+root [DEBUG] : enrole function "getHeaderText"
+root [DEBUG] : enrole function "processFilterSet"
+root [DEBUG] : enrole function "dspInit"
+root [DEBUG] : enrole function "uiInit"
+root [DEBUG] : enrole function "ADSP"
+root [DEBUG] : enrole function "uiDisplay"
+root [DEBUG] : enrole function "PC"
+root [DEBUG] : get main targets
+root [DEBUG] : finalize main functions

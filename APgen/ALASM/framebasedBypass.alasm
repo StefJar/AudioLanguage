@@ -1,0 +1,20 @@
+function framebasedBypass
+locals
+{
+	rational 	x[1024];
+	rational	y[1024];
+	complex		c[1024];
+	FFT			fftPlan;
+	FFT			ifftPlan;
+}
+code
+{
+	initRFFT 1024,x,c,fftPlan;
+	initIFFT 1024,c,y,ifftPlan;
+		
+	readSampleFrame 1,x;
+	processRFFT fftPlan;
+	processIFFT ifftPlan;
+	writeSampleFrame 2,y;
+	jump -4;
+}

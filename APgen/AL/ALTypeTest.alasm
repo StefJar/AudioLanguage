@@ -1,0 +1,19 @@
+globals {
+	biquad gv_y_x_b[6];
+	rational gv_y_x_a[3];
+	rational gv_x_a;
+	rational gv_y_y[9];
+	biquad gv_x_b[2];
+}
+
+function ALTypeTest
+locals {
+		rational genConst_1;
+		rational genConst_2;
+}
+code {
+	ALASMsetRational genConst_1, [48000.000000];
+	ALASMsetRational genConst_2, [2000.000000];
+	ALASMsetRational gv_x_a, [123.000000];
+	initBiquadAsLP gv_x_b, 0, genConst_1, genConst_2;
+}

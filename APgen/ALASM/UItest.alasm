@@ -1,0 +1,61 @@
+function uiTest
+locals
+{
+	panel		p;
+	button		bLeft;
+	button		bMiddle;
+	button		bRight;
+	led			lRed;
+	led			lGreen;
+	display		d;
+	string		dispalyStr[3];
+}
+code
+{
+	ALASMsetStr				dispalyStr, 0, "left\nwith extra chars and \" 3";
+	ALASMsetStr				dispalyStr, 1, "\nmiddle";
+	ALASMsetStr				dispalyStr, 2, "right";
+	
+	uiSetDim				0, 0, 550, 500, p, 0;
+	uiInitPanel				1, p, 0;
+	
+	uiSetDim				10 , 10, 500, 300, d, 0;
+	uiInitDisplay			11, d, 0, p, 0;
+	
+	uiSetDim				50 , 400, 50, 50, bLeft, 0;
+	uiInitButton			21, bLeft, 0, p, 0;
+	
+	uiSetDim				150 , 400, 50, 50, lRed, 0;
+	uiInitLED				31, lRed, 0, p, 0;
+	
+	uiSetDim				250 , 400, 50, 50, bMiddle, 0;
+	uiInitButton			22, bMiddle, 0, p, 0;
+	
+	uiSetDim				350 , 400, 50, 50, lGreen, 0;
+	uiInitLED				32, lGreen, 0, p, 0;
+
+	uiSetDim				450 , 400, 50, 50, bRight, 0;
+	uiInitButton			23, bRight, 0, p, 0;
+	
+	uiCheckButtonPressed	bLeft, 0;
+	jumpNCF					4;
+	setCF					0;
+	uiSetLED				lRed, 0, 1;
+	uiSetDisplay			d, 0, dispalyStr, 0;
+
+	uiCheckButtonPressed	bMiddle, 0;
+	jumpNCF					4;
+	setCF					0;
+	uiSetLED				lGreen, 0, 1;
+	uiSetDisplay			d, 0, dispalyStr, 1;
+
+	uiCheckButtonPressed	bRight, 0;
+	jumpNCF					5;
+	setCF					0;
+	uiSetLED				lGreen, 0, 0;
+	uiSetLED				lRed, 0, 0;
+	uiSetDisplay			d, 0, dispalyStr, 2;
+
+	jump 					-16;
+	
+}

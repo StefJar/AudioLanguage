@@ -1,0 +1,64 @@
+function crossOver5Way
+locals
+{
+	rational 	x;
+	rational	y_bypass;
+	rational	y_subbass;
+	rational	y_lowerVoice;
+	rational	y_upperVoice;
+	rational	y_harmonics;
+	
+	biquad		subBassBQ 		[4];
+	delay		subBassD		[8];
+	
+	biquad		lowerVoiceBQ	[8];
+	
+	biquad		upperVoiceBQ	[8];
+	
+	delay		harmonicsD		[8];
+	biquad		harmonicsBQ		[4];
+}
+code
+{
+	initBiquadAsLP 0,44100.0,120.0,subBassBQ;
+	initBiquadAsLP 1,44100.0,120.0,subBassBQ;
+	initBiquadAsLP 2,44100.0,120.0,subBassBQ;
+	initBiquadAsLP 3,44100.0,120.0,subBassBQ;
+	
+	initBiquadAsHP 0,44100.0,90.0,lowerVoiceBQ;
+	initBiquadAsHP 1,44100.0,90.0,lowerVoiceBQ;
+	initBiquadAsHP 2,44100.0,90.0,lowerVoiceBQ;	
+	initBiquadAsHP 3,44100.0,90.0,lowerVoiceBQ;
+	initBiquadAsLP 4,44100.0,1000.0,lowerVoiceBQ;
+	initBiquadAsLP 5,44100.0,1000.0,lowerVoiceBQ;
+	initBiquadAsLP 6,44100.0,1000.0,lowerVoiceBQ;
+	initBiquadAsLP 7,44100.0,1000.0,lowerVoiceBQ;
+	
+	initBiquadAsHP 0,44100.0,800.0,upperVoiceBQ;
+	initBiquadAsHP 1,44100.0,800.0,upperVoiceBQ;
+	initBiquadAsHP 2,44100.0,800.0,upperVoiceBQ;
+	initBiquadAsHP 3,44100.0,800.0,upperVoiceBQ;
+	initBiquadAsLP 4,44100.0,8000.0,upperVoiceBQ;
+	initBiquadAsLP 5,44100.0,8000.0,upperVoiceBQ;
+	initBiquadAsLP 6,44100.0,8000.0,upperVoiceBQ;
+	initBiquadAsLP 7,44100.0,8000.0,upperVoiceBQ;
+	
+	initBiquadAsHP 0,44100.0,6000.0,harmonicsBQ;
+	initBiquadAsHP 1,44100.0,6000.0,harmonicsBQ;
+	initBiquadAsHP 2,44100.0,6000.0,harmonicsBQ;
+	initBiquadAsHP 3,44100.0,6000.0,harmonicsBQ;
+	
+	readSample 1,x;
+	shiftDelay x,subBassD,y_subbass;
+	convoluteBiquad y_subbass,subBassBQ,y_subbass;
+	convoluteBiquad x, lowerVoiceBQ, y_lowerVoice;
+	convoluteBiquad x, upperVoiceBQ, y_upperVoice;
+	convoluteBiquad x, harmonicsBQ, y_harmonics;
+	shiftDelay y_harmonics,harmonicsD,y_harmonics;
+	writeSample 2,x;
+	writeSample 3,y_subbass;
+	writeSample 4,y_lowerVoice;
+	writeSample 5,y_upperVoice;
+	writeSample 6,y_harmonics;
+	jump -12;
+}

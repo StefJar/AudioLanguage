@@ -1,0 +1,11 @@
+function bypassBlockWise
+locals
+{
+	rational 	x [512];
+}
+code
+{
+	readSampleFrame 1,x;
+	writeSampleFrame 2,x;
+	jump -2;
+}

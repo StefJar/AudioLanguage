@@ -1,0 +1,131 @@
+    ARCHITECTURE(ADSP-21369)
+
+    /*
+    ** include standard VisualDSP++ installation libraries in search path
+    */
+    
+#ifndef __NO_STD_LIB
+SEARCH_DIR( $ADI_DSP/213xx/lib )
+#endif
+
+// The I/O library provides support for printing hexadecimal constants
+// using the "%a" conversion specifier, and for registering alternatives to
+// the default device driver that is supported by the VisualDSP++ simulator
+// and EZ-KIT Lite systems. Those applications that do not require this
+// functionality may define the macro __LIBIO_LITE which will select an
+// alternative I/O library and lead to reduced code occupancy.
+
+#ifdef __LIBIO_LITE
+# define LIBIO libio_lite.dlb
+# define LIBIOMT libio_litemt.dlb
+#else
+# define LIBIO libio.dlb
+# define LIBIOMT libiomt.dlb
+#endif
+
+#ifdef _ADI_THREADS
+#ifdef __ADI_LIBEH__
+$LIBRARIES = libehmt.dlb, libc36xmt.dlb, LIBIOMT, libdsp36x.dlb;
+#else
+$LIBRARIES = libc36xmt.dlb, LIBIOMT, libdsp36x.dlb;
+#endif
+#else
+#ifdef __ADI_LIBEH__
+$LIBRARIES = libeh.dlb, libc36x.dlb, LIBIO, libdsp36x.dlb;
+#else
+$LIBRARIES = libc36x.dlb, LIBIO, libdsp36x.dlb;
+#endif
+#endif
+
+# define CRT_HDR 369_hdr.doj
+
+// Libraries from the command line are included in COMMAND_LINE_OBJECTS.
+$OBJECTS = CRT_HDR, $COMMAND_LINE_OBJECTS;
+
+/*
+** minimum sizes of the stack and heap allocated
+*/
+
+#define STACK_SIZE 512
+#define HEAP_SIZE 3K
+
+MEMORY
+{
+   MEM_Block_0_RAM_48bit           { TYPE(PM RAM) START(0x90000) END(0x93FFF) WIDTH(48) }
+   MEM_Block_1_RAM_32bit           { TYPE(DM RAM) START(0xB8000) END(0xBDFFF) WIDTH(32) }
+   MEM_Block_2_RAM_32bit           { TYPE(DM RAM) START(0xC0000) END(0xC1FFF) WIDTH(32) }
+   MEM_Block_3_RAM_64bit           { TYPE(DM RAM) START(0x70000) END(0x707FF) WIDTH(64) }
+   MEM_Block_3_RAM_16bit           { TYPE(DM RAM) START(0x1C2000) END(0x1C3FFF) WIDTH(16) }
+   MEM_sdram_32bit                 { TYPE(DM RAM) START(0x8000000) END(0x83FFFFF) WIDTH(32) }
+	
+} /* MEMORY */
+
+PROCESSOR p0
+{
+    #ifdef IDDE_ARGS
+      RESOLVE(___argv_string, ARGV_START)
+    #endif
+
+    KEEP( _main,___lib_end_of_heap_descriptions )
+    LINK_AGAINST( $COMMAND_LINE_LINK_AGAINST)
+    OUTPUT( $COMMAND_LINE_OUTPUT_FILE )
+
+  SECTIONS
+  {
+
+
+sec_Block_0_RAM_48bit
+   {
+            INPUT_SECTIONS( $OBJECTS(seg_rth) $LIBRARIES(seg_rth))
+            INPUT_SECTIONS( $OBJECTS(seg_init) $LIBRARIES(seg_init))
+            INPUT_SECTIONS( $OBJECTS(seg_int_code) $LIBRARIES(seg_int_code))
+            INPUT_SECTIONS( $OBJECTS(seg_pmco) $LIBRARIES(seg_pmco))
+   } >MEM_Block_0_RAM_48bit 
+sec_Block_1_RAM_32bit
+   {
+            INPUT_SECTIONS( $OBJECTS(seg_argv) $LIBRARIES(seg_argv))
+            INPUT_SECTIONS( $OBJECTS(seg_dmda) $LIBRARIES(seg_dmda))
+   } >MEM_Block_1_RAM_32bit 
+sec_Block_2_RAM_32bit
+   {
+            INPUT_SECTIONS( $OBJECTS(seg_pmda) $LIBRARIES(seg_pmda))
+            INPUT_SECTIONS( $OBJECTS(seg_dmda) $LIBRARIES(seg_dmda))
+   } >MEM_Block_2_RAM_32bit 
+sec_Block_3_RAM_64bit
+   {
+   } >MEM_Block_3_RAM_64bit 
+sec_Block_3_RAM_16bit
+   {
+   } >MEM_Block_3_RAM_16bit 
+sec_sdram_32bit
+   {
+            INPUT_SECTIONS( $OBJECTS(seg_dmda) $LIBRARIES(seg_dmda))
+   } >MEM_sdram_32bit 
+
+bss_Block_1_RAM_32bit  ZERO_INIT
+   {
+      INPUT_SECTIONS( $OBJECTS(.bss) $LIBRARIES(.bss))
+   } >MEM_Block_1_RAM_32bit
+
+stack_Block_2_RAM_32bit
+   {
+      RESERVE(stack_in_L1_data_a, stack_in_L1_data_a_length = STACK_SIZE)      
+      ldf_stack_space = stack_in_L1_data_a;
+      ldf_stack_length = stack_in_L1_data_a_length;
+      ldf_stack_end = ldf_stack_space + stack_in_L1_data_a_length;
+   } > MEM_Block_2_RAM_32bit
+
+heap_Block_2_RAM_32bit
+   {
+      RESERVE(heap_in_L1_data_a, heap_in_L1_data_a_length = HEAP_SIZE)
+      ldf_heap_space = heap_in_L1_data_a;
+      ldf_heap_end = ldf_heap_space + heap_in_L1_data_a_length;
+      ldf_heap_length = ldf_heap_end - ldf_heap_space;
+   } > MEM_Block_2_RAM_32bit
+
+
+  } /* SECTIONS */
+} /* PROCESSOR p0 */
+
+    //
+    //EOF -- 

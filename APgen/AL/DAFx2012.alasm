@@ -1,0 +1,33 @@
+globals {
+}
+
+function DAFx2012
+locals {
+		rational genConst_1;
+		rational genConst_2;
+		rational genConst_3;
+		biquad filter[8];
+		rational y[512];
+		rational x[512];
+}
+code {
+	ALASMsetRational genConst_1, [48000.000000];
+	ALASMsetRational genConst_3, [1000.000000];
+	ALASMsetRational genConst_2, [90.000000];
+	initBiquadAsHP filter, 0, genConst_1, genConst_2;
+	initBiquadAsHP filter, 1, genConst_1, genConst_2;
+	initBiquadAsHP filter, 2, genConst_1, genConst_2;
+	initBiquadAsHP filter, 3, genConst_1, genConst_2;
+	initBiquadAsLP filter, 4, genConst_1, genConst_3;
+	initBiquadAsLP filter, 5, genConst_1, genConst_3;
+	initBiquadAsLP filter, 6, genConst_1, genConst_3;
+	initBiquadAsLP filter, 7, genConst_1, genConst_3;
+	label @labelNr1;
+		// read input channel ;
+		readSampleFrame 1, x, 1;
+		// process sampels ;
+		convoluteBiquad x, filter, y;
+		// write output channel ;
+		writeSampleFrame 2, y;
+	jump @labelNr1;
+}

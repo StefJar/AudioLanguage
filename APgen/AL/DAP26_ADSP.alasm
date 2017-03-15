@@ -1,0 +1,184 @@
+globals {
+}
+
+function DAP26_ADSP
+locals {
+		rational oChan3_g;
+		limiter oChan2_l;
+		delay oChan3_d;
+		delay iChan2_d;
+		rational oChan2_g;
+		delay oChan2_d;
+		limiter oChan3_l;
+		delay oChan1_d;
+		rational oChan1_g;
+		limiter oChan1_l;
+		biquad oChan4_xo[3];
+		biquad oChan3_xo[3];
+		string genConst_1;
+		integer genConst_2;
+		integer genConst_3;
+		integer genConst_4;
+		string genConst_5;
+		string genConst_6;
+		biquad oChan4_eq[5];
+		string genConst_8;
+		biquad oChan1_xo[3];
+		biquad oChan2_eq[5];
+		biquad iChan1_eq[5];
+		biquad oChan1_eq[5];
+		limiter oChan4_l;
+		biquad iChan2_eq[5];
+		rational out[256];
+		delay oChan4_d;
+		rational oChan4_g;
+		rational in1[256];
+		rational in2[256];
+		biquad oChan3_eq[5];
+		rational iChan2_g;
+		string genConst_11;
+		rational genConst_7;
+		biquad oChan2_xo[3];
+		string genConst_9;
+		rational iChan1_g;
+		string genConst_10;
+		delay iChan1_d;
+}
+code {
+	ALASMsetInt genConst_4, [0];
+	ALASMsetInt genConst_3, [1];
+	ALASMsetInt genConst_2, [2];
+	ALASMsetStr genConst_11, 0, "input\noutput <-";
+	ALASMsetStr genConst_8, 0, "DAP 26";
+	ALASMsetStr genConst_1, 0, "gain";
+	ALASMsetStr genConst_9, 0, "input <-\noutput";
+	ALASMsetStr genConst_10, 0, "aa";
+	ALASMsetStr genConst_6, 0, "equalizer";
+	ALASMsetStr genConst_5, 0, "delay";
+	ALASMsetRational genConst_7, [0.000000];
+	//function inline for "initInputChannel"
+		ALASMsetRational iChan1_g, [1.000000];
+		initDelay iChan1_d, genConst_3, 0, 0;
+		initBiquad iChan1_eq, 0, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad iChan1_eq, 1, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad iChan1_eq, 2, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad iChan1_eq, 3, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad iChan1_eq, 4, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+	//function inline for "initInputChannel"
+		ALASMsetRational iChan2_g, [1.000000];
+		initDelay iChan2_d, genConst_3, 0, 0;
+		initBiquad iChan2_eq, 0, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad iChan2_eq, 1, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad iChan2_eq, 2, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad iChan2_eq, 3, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad iChan2_eq, 4, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+	//function inline for "initOutputChannel"
+		initDelay oChan1_d, genConst_3, 0, 0;
+		// crossover filter ;
+		initBiquad oChan1_xo, 0, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan1_xo, 1, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan1_xo, 2, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		// EQ ;
+		initBiquad oChan1_eq, 0, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan1_eq, 1, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan1_eq, 2, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan1_eq, 3, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan1_eq, 4, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		// gain ;
+		ALASMsetRational oChan1_g, [1.000000];
+		// limiter ;
+		initLimiter oChan1_l, 0.9, 0.7, 0.045, 0.056, 0.045, 0.0465;
+	//function inline for "initOutputChannel"
+		initDelay oChan2_d, genConst_3, 0, 0;
+		// crossover filter ;
+		initBiquad oChan2_xo, 0, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan2_xo, 1, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan2_xo, 2, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		// EQ ;
+		initBiquad oChan2_eq, 0, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan2_eq, 1, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan2_eq, 2, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan2_eq, 3, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan2_eq, 4, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		// gain ;
+		ALASMsetRational oChan2_g, [1.000000];
+		// limiter ;
+		initLimiter oChan2_l, 0.9, 0.7, 0.045, 0.056, 0.045, 0.0465;
+	//function inline for "initOutputChannel"
+		initDelay oChan3_d, genConst_3, 0, 0;
+		// crossover filter ;
+		initBiquad oChan3_xo, 0, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan3_xo, 1, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan3_xo, 2, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		// EQ ;
+		initBiquad oChan3_eq, 0, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan3_eq, 1, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan3_eq, 2, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan3_eq, 3, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan3_eq, 4, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		// gain ;
+		ALASMsetRational oChan3_g, [1.000000];
+		// limiter ;
+		initLimiter oChan3_l, 0.9, 0.7, 0.045, 0.056, 0.045, 0.0465;
+	//function inline for "initOutputChannel"
+		initDelay oChan4_d, genConst_3, 0, 0;
+		// crossover filter ;
+		initBiquad oChan4_xo, 0, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan4_xo, 1, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan4_xo, 2, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		// EQ ;
+		initBiquad oChan4_eq, 0, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan4_eq, 1, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan4_eq, 2, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan4_eq, 3, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		initBiquad oChan4_eq, 4, genConst_7, genConst_7, genConst_7, genConst_7, genConst_7;
+		// gain ;
+		ALASMsetRational oChan4_g, [1.000000];
+		// limiter ;
+		initLimiter oChan4_l, 0.9, 0.7, 0.045, 0.056, 0.045, 0.0465;
+	label @labelNr72;
+		// read input channels ;
+		// first read operation waits for a new sample frame ;
+		readSampleFrame 1, in1, 1;
+		// second extract 2nd channel from frame -> so no waiting ;
+		readSampleFrame 2, in2, 0;
+		// process input signals ;
+	//function inline for "processInputChannel"
+		calcDelay in1, iChan1_d, in1;
+		mulRational in1, iChan1_g, in1;
+		convoluteBiquad in1, iChan1_eq, in1;
+	//function inline for "processInputChannel"
+		calcDelay in2, iChan1_d, in2;
+		mulRational in2, iChan1_g, in2;
+		convoluteBiquad in2, iChan1_eq, in2;
+		// process output signals and write them to the outputs ;
+	//function inline for "processOutputChannel"
+		calcDelay in1, oChan1_d, out;
+		convoluteBiquad out, oChan1_xo, out;
+		convoluteBiquad out, oChan1_eq, out;
+		mulRational out, oChan1_g, out;
+		calcLimiter out, oChan1_l, out;
+		writeSampleFrame 1, out;
+	//function inline for "processOutputChannel"
+		calcDelay in1, oChan2_d, out;
+		convoluteBiquad out, oChan2_xo, out;
+		convoluteBiquad out, oChan2_eq, out;
+		mulRational out, oChan2_g, out;
+		calcLimiter out, oChan2_l, out;
+		writeSampleFrame 2, out;
+	//function inline for "processOutputChannel"
+		calcDelay in2, oChan3_d, out;
+		convoluteBiquad out, oChan3_xo, out;
+		convoluteBiquad out, oChan3_eq, out;
+		mulRational out, oChan3_g, out;
+		calcLimiter out, oChan3_l, out;
+		// sampleIO[operation=write ,src=out, channel=3]; ;
+	//function inline for "processOutputChannel"
+		calcDelay in2, oChan4_d, out;
+		convoluteBiquad out, oChan4_xo, out;
+		convoluteBiquad out, oChan4_eq, out;
+		mulRational out, oChan4_g, out;
+		calcLimiter out, oChan4_l, out;
+		// sampleIO[operation=write ,src=out, channel=4]; ;
+	jump @labelNr72;
+}

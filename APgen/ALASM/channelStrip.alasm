@@ -1,0 +1,98 @@
+globals{
+	rational	sens;
+
+	biquad 		impactNoiseF;
+	integer 	impactNoiseBypass;
+
+	noisegate 	noiseG;
+
+	compressor	compressor;
+
+	biquad 		EQ[3];
+
+	rational 	gain;
+
+	rational 	panLeft;
+}
+
+function channelStrip
+locals
+{
+	rational 	x[512];
+	rational	fs;
+	rational	f;
+	rational	q;
+	rational	g;
+	integer		constInt1;
+}
+code
+{
+	// setup constant
+	ALASMsetInt constInt1, [1];
+	ALASMsetRational fs, [48000.0];
+
+	// init sensity
+	ALASMsetRational  sens, [1.0];
+	// int impact noise filter
+	
+	// impact noise filter
+	ALASMsetRational f, [70.0];
+	initBiquadAsHP impactNoiseF, 0, fs, f;
+	ALASMsetInt impactNoiseBypass, [0];
+	
+	// init noisegate
+	// tav = 1/50hz / 1/48000kHz = 0.000458240509
+	// AT = 0.4
+	// RT = 0.01
+	// NT = 0.5 NS = 0.0
+	initNoisegate noiseG, 0.000458240509, 0.4, 0.01, 0.5, 0.0;
+	
+	// init compressor
+	initCompressor compressor, 0.000458240509, 0.4, 0.01, 0.8, 0.0;
+	
+	// init EQ
+	
+	ALASMsetRational f, [70.0];
+	ALASMsetRational q, [1.0];
+	ALASMsetRational g, [2.0];
+	
+	// EQ 1 - low frequ. shelf.
+	initBiquadAsLowFreqShelvFilter EQ, 0, fs, f, q, g;
+	// EQ 2 - peak. f
+	ALASMsetRational f, [1000.0];
+	initBiquadAsPeakFilter EQ, 0, fs, f, q, g;
+	// EQ 3 - high. frequ. shelf.
+	ALASMsetRational f, [4000.0];
+	initBiquadAsHighFreqShelvFilter EQ, 0, fs, f, q, g;
+	
+	// gain
+	ALASMsetRational gain, [2.0];
+	
+	// pan left
+	ALASMsetRational panLeft, [1.0];
+	
+	label @sampleLoop;
+	readSampleFrame 1, x;
+	// sensity
+	mulRational x, sens, x;
+	// bypass?
+	compareIntegerEqual impactNoiseBypass, 0, constInt1, 0;
+	jumpCF @impactBypass;
+	convoluteBiquad x, impactNoiseF, x;
+	label @impactBypass;
+	
+	// noisegate
+	calcNoisegate x, noiseG, x;
+	
+	// compressor
+	calcCompressor x, compressor, x;
+	
+	// gain
+	mulRational x, gain, x;
+	
+	// and the pan
+	mulRational x, panLeft, x;
+
+	writeSampleFrame 1, x;
+	jump @sampleLoop;
+}

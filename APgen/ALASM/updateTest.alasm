@@ -1,0 +1,58 @@
+globals{
+	integer		pressFlag;
+}
+
+function updateTest
+locals
+{
+	panel		p;
+	button		b;
+	button		bReset;
+	display		d;
+	string		dispalyStr[2];
+	integer		intConstZero;
+	integer		intConstOne;
+}
+code
+{
+	ALASMsetStr				dispalyStr, 0, "button pressed";
+	ALASMsetStr				dispalyStr, 1, "wait";
+	ALASMsetInt				pressFlag, [0];
+	ALASMsetInt				intConstZero, [0];
+	ALASMsetInt				intConstOne, [1];
+	
+	uiSetDim				0, 0, 300, 200, p, 0;
+	uiInitPanel				1, p, 0;
+	
+	uiSetDim				10 , 10, 280, 150, d, 0;
+	uiInitDisplay			11, d, 0, p, 0;
+	
+	uiSetDim				10 , 160, 140, 50, b, 0;
+	uiInitButton			21, b, 0, p, 0;
+
+	uiSetDim				150 , 160, 140, 50, bReset, 0;
+	uiInitButton			22, bReset, 0, p, 0;
+	
+	
+	uiSetDisplay			d, 0, dispalyStr, 1;
+	
+	uiCheckButtonPressed	b, 0;
+	jumpNCF					4;
+	setCF					0;
+	assignInteger			pressFlag, intConstOne;
+	update					pressFlag;
+		
+	uiCheckButtonPressed	bReset, 0;
+	jumpNCF					4;
+	setCF					0;
+	assignInteger			pressFlag, intConstZero;
+	uiSetDisplay			d, 0, dispalyStr, 1;
+	
+	comparaIntegerEqual		pressFlag,0, intConstOne, 0;
+	jumpNCF					4;
+	setCF					0;
+	uiSetDisplay			d, 0, dispalyStr, 0;
+	assignInteger			pressFlag, intConstZero;
+	
+	jump 					-15;
+}

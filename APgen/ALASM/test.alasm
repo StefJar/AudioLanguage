@@ -1,0 +1,16 @@
+globals
+{
+	rational a;
+	rational b;
+}
+
+function test
+locals
+{
+	rational c;
+}
+code
+{
+	assignRational c,a;
+	subRational c,a,b;
+}

@@ -1,0 +1,7 @@
+Variables
+Layout: <Variable index> <name> <type> [<amount>]
+0	#fv_b_y	integer	[1]
+1	#fv_b_x	integer	[1]
+Code
+Layout: <programm counter> function (parameter1, parameter2, ..., parameterN)  
+0	assignInteger (#fv_b_y, #fv_b_x)

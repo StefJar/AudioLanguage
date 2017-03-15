@@ -1,0 +1,96 @@
+Variables
+Layout: <Variable index> <name> <type> [<amount>]
+0	uiUpdate	integer	[1]
+1	uiFilterTypeSel	integer	[1]
+2	uiFilterIndex	integer	[1]
+3	LoutFilter	biquad	[3]
+4	RoutInpSel	integer	[1]
+5	RinFilter	biquad	[3]
+6	bDown	button	[1]
+7	uiFilterBankSel	integer	[1]
+8	fquality	rational	[1]
+9	fs	rational	[1]
+10	uiSel	integer	[1]
+11	volume	rational	[1]
+12	RoutFilter	biquad	[3]
+13	ffreq	rational	[1]
+14	LoutInpSel	integer	[1]
+15	d	display	[1]
+16	bUp	button	[1]
+17	bSelect	button	[1]
+18	LinFilter	biquad	[3]
+19	uiMenuSel	integer	[1]
+20	p	panel	[1]
+21	fgain	rational	[1]
+22	uiSelChannel	integer	[1]
+23	uiState	integer	[1]
+24	inL	rational	[1024]
+25	outR	rational	[1024]
+26	outL	rational	[1024]
+27	inR	rational	[1024]
+28	#const37	integer	[1]
+29	#const38	integer	[1]
+30	#const39	integer	[1]
+31	#const40	rational	[1]
+32	#fv_dspInit_i	integer	[1]
+33	#const98	integer	[1]
+34	#const99	rational	[1]
+35	#const102	rational	[1]
+Code
+Layout: <programm counter> function (parameter1, parameter2, ..., parameterN)  
+0	assignConstInteger (#const37, 0, 1, 0)
+1	assignConstInteger (#const38, 0, 1, 1)
+2	assignConstInteger (#const39, 0, 1, 2)
+3	assignConstRational (#const40, 0, 1, 0.0)
+4	assignConstInteger (#const98, 0, 1, 3)
+5	assignConstRational (#const99, 0, 1, 1.0)
+6	assignConstRational (#const102, 0, 1, 48000.0)
+7	assignInteger (#fv_dspInit_i, #const37 = "0"(integer))
+8	label ID:213
+8	compareIntegerLess (#fv_dspInit_i, 0, #const98, 0)
+9	jumpNCF (label ID:214)
+10	initBiquad (LinFilter, #fv_dspInit_i, #const99, #const40 = "0.0"(rational), #const40 = "0.0"(rational), #const40 = "0.0"(rational), #const40 = "0.0"(rational))
+11	initBiquad (RinFilter, #fv_dspInit_i, #const99, #const40 = "0.0"(rational), #const40 = "0.0"(rational), #const40 = "0.0"(rational), #const40 = "0.0"(rational))
+12	initBiquad (LoutFilter, #fv_dspInit_i, #const99, #const40 = "0.0"(rational), #const40 = "0.0"(rational), #const40 = "0.0"(rational), #const40 = "0.0"(rational))
+13	initBiquad (RoutFilter, #fv_dspInit_i, #const99, #const40 = "0.0"(rational), #const40 = "0.0"(rational), #const40 = "0.0"(rational), #const40 = "0.0"(rational))
+14	addInteger (#fv_dspInit_i, #const38 = "1"(integer), #fv_dspInit_i)
+15	jump (label ID:213)
+16	label ID:214
+16	assignInteger (LoutInpSel, #const37 = "0"(integer))
+17	assignInteger (RoutInpSel, #const38 = "1"(integer))
+18	assignRational (fs, #const102)
+19	assignRational (volume, #const99)
+20	label ID:55
+20	readSampleFrame (0, inL, 1)
+21	readSampleFrame (1, inR, 0)
+22	convoluteBiquad (inL, LinFilter, inL)
+23	convoluteBiquad (inR, RinFilter, inR)
+24	compareIntegerEqual (LoutInpSel, 0, #const37, 0)
+25	jumpNCF (label ID:49)
+26	convoluteBiquad (inL, LoutFilter, outL)
+27	label ID:49
+27	compareIntegerEqual (LoutInpSel, 0, #const38, 0)
+28	jumpNCF (label ID:50)
+29	convoluteBiquad (inR, LoutFilter, outL)
+30	label ID:50
+30	compareIntegerEqual (LoutInpSel, 0, #const39, 0)
+31	jumpNCF (label ID:51)
+32	assignRational (outL, #const40)
+33	label ID:51
+33	compareIntegerEqual (RoutInpSel, 0, #const37, 0)
+34	jumpNCF (label ID:52)
+35	convoluteBiquad (inL, RoutFilter, outR)
+36	label ID:52
+36	compareIntegerEqual (RoutInpSel, 0, #const38, 0)
+37	jumpNCF (label ID:53)
+38	convoluteBiquad (inR, RoutFilter, outR)
+39	label ID:53
+39	compareIntegerEqual (RoutInpSel, 0, #const39, 0)
+40	jumpNCF (label ID:54)
+41	assignRational (outR, #const40)
+42	label ID:54
+42	mulRational (outL, volume, outL)
+43	mulRational (outR, volume, outR)
+44	writeSampleFrame (0, outL)
+45	writeSampleFrame (1, outR)
+46	jump (label ID:55)
